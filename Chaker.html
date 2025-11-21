@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dany Chaker</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        background-color: #111;
+        color: #f2f2f2;
+        font-size: 18px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        background: #1a1a1a;
+        border-radius: 20px;
+        box-shadow: 0 0 100px rgba(255, 255, 255, 0.25);
+      }
+
+      header {
+        text-align: center;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #333;
+      }
+
+      h1 {
+        margin: 0;
+        color: #fff;
+        font-size: 3em;
+        letter-spacing: 1px;
+        transition: text-shadow 0.3s ease, transform 0.3s ease;
+      }
+
+      h1:hover {
+        text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+        transform: scale(1.1);
+      }
+
+      h2:hover,
+      h3:hover,
+      p:hover,
+      li:hover {
+        text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+      }
+
+      h2 {
+        color: #ccc;
+        margin-top: 30px;
+        font-size: 2em;
+        border-left: 4px solid #555;
+        padding-left: 10px;
+        transition: text-shadow 0.3s ease;
+      }
+
+      h3 {
+        font-size: 1.5em;
+        color: #e0e0e0;
+        font-style: italic;
+        transition: text-shadow 0.3s ease;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section p {
+        margin: 5px 0;
+        transition: text-shadow 0.3s ease;
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .skill {
+        background: #2a2a2a;
+        padding: 10px 20px;
+        border-radius: 12px;
+        transition: background 0.3s ease, transform 0.3s ease,
+          box-shadow 0.3s ease;
+        cursor: default;
+        color: #fff;
+        font-size: 1em;
+      }
+
+      .skill:hover {
+        background: #444;
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+      }
+
+      ul {
+        padding-left: 25px;
+      }
+
+      li {
+        margin-bottom: 8px;
+        transition: transform 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      li:hover {
+        transform: translateX(55px) scale(1.1);
+      }
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px dotted #555;
+        transition: color 0.3s ease, border-color 0.3s ease,
+          text-shadow 0.3s ease;
+      }
+
+      a:hover {
+        color: #ccc;
+        border-color: #888;
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Dany Chaker</h1>
+        <p></p>
+      </header>
+
+      <section class="section">
+        <h2>Kontaktní informace</h2>
+        <p>Telefon: <i><a href="tel: +420608925906">+420 608 925 906</a></i></p>
+        <p>Email: <i><a href="mailto:d.chaker@post.cz">d.chaker@post.cz</a></i></p>
+        <p>Adresa: <i><a href="https://g.co/kgs/wYNsduh">Otiskova 1, Brno, Česká republika</a></p></i>
+      </section>
+
+      <section class="section">
+        <h2>Profesní shrnutí</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Pracovní zkušenosti</h2>
+        <div>
+          <h3>Junior Developer</h3>
+          <p><i>VAPO zahrady s.r.o. | 2023 - současnost</i></p>
+          <p>
+            Design a tvorba webových stránek a následná údržba a optimalizace. Správa všeho co se týče IT v celé firmě (Server, Prodejna, Kanceláře)
+          </p>
+        </div>
+        <div>
+          <h3>Security</h3>
+          <p><i>Winning Group a.s. | 2024 - současnost</i></p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Vzdělání</h2>
+        <div>
+          <h3>Základní Škola</h3>
+          <p>
+            Základní škola, Brno, Holzova 1, příspěvková organizace | 2014 - 2023
+          </p>
+        </div>
+        <div>
+          <h3>Informační Technologie</h3>
+          <p>
+            Střední škola technická a ekonomická Brno, Olomoucká | 2023 - 2027
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Dovednosti</h2>
+        <div class="skills">
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">Tailwind CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">Python</div>
+          <div class="skill">C#</div>
+          <div class="skill">Git</div>
+          <div class="skill">MySQL</div>
+          <div class="skill">MS Office</div>
+          <div class="skill">MS 365</div>
+          <div class="skill">CISCO PT</div>
+          <div class="skill">Audacity</div>
+          <div class="skill">Blender</div>
+          <div class="skill">GIMP</div>
+          <div class="skill">Figma</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Certifikáty</h2>
+        <ul>
+          <li>ScioDat English - B2/C1</li>
+          <li>CISCO Python Essentials 1</li>
+          <li>CISCO Python Essentials 2</li>
+          <li>CISCO IT Essentials</li>
+          <li>CISCO CCNA 1</li>
+          <li>CISCO CCNA 2</li>
+          <li>CISCO CCNA 3</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Jazyky</h2>
+        <ul>
+          <li>Čeština - rodilý mluvčí</li>
+          <li>Angličtina - pokročilý</li>
+          <li>Ruština - mírně pokročilý</li>
+          <li>Arabština - začátečník</li>
+          <li>Němčina - začátečník</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Zájmy</h2>
+        <ul>
+          <li>Powerlifting</li>
+          <li>Downhill a horská cyklistika</li>
+          <li>Hraní na kytaru</li>
+          <li>Design</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
