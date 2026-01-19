@@ -1,3 +1,22 @@
+<style>
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  a {
+    color: #1db954; /* Spotify green for links */
+  }
+
+  table {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+
+  img {
+    border-radius: 8px;
+  }
+</style>
 <br clear="both">
 
 <h1 align="center">🌟 Welcome to Dany's Hub</h1>
