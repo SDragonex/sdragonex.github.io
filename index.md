@@ -1,22 +1,79 @@
 <style>
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
-  }
+/* --- Page background & text --- */
+body {
+  background-color: #121212;  /* tmavé pozadí */
+  color: #e0e0e0;             /* světlý text */
+  font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+  line-height: 1.6;
+}
 
-  a {
-    color: #1db954; /* Spotify green for links */
-  }
+/* --- Links --- */
+a {
+  color: #1db954;       /* Spotify green links */
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 
-  table {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-  }
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
 
-  img {
-    border-radius: 8px;
-  }
+/* --- Tables --- */
+table {
+  background-color: #1e1e1e;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+table th, table td {
+  border: 1px solid #333;
+  padding: 10px;
+  color: #e0e0e0;
+}
+table th {
+  background-color: #2a2a2a;
+}
+
+/* --- Cards / boxes --- */
+.card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+/* --- Images --- */
+img {
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+/* --- Divider lines --- */
+hr {
+  border: 1px solid #333;
+}
+
+/* --- Centering content --- */
+.center {
+  text-align: center;
+}
+
+/* --- Visitor badge / stats --- */
+img[src*="visitor-badge"], 
+img[src*="github-readme-stats"], 
+img[src*="spotify-recently-played-readme"] {
+  margin: 10px auto;
+  display: block;
+}
 </style>
+
+
+
 <br clear="both">
 
 <h1 align="center">🌟 Welcome to Dany's Hub</h1>
