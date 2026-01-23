@@ -1,0 +1,7 @@
+base_url = "https://sdragonex.github.io/"
+title = "HOME"
+theme = "duckquill"
+compile_sass = true
+
+[extra]
+accent_color = "#3584e4"
