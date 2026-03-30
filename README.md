@@ -1,2 +1,2 @@
 # sdragonex.github.io
-Portfolio Website
+[![Deploy Website](https://github.com/SDragonex/sdragonex.github.io/actions/workflows/deploy-zola.yml/badge.svg?branch=main)](https://github.com/SDragonex/sdragonex.github.io/actions/workflows/deploy-zola.yml)
