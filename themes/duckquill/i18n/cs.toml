@@ -1,0 +1,108 @@
+# Shown in language picker for multi-language sites
+
+language_name = "Čeština"
+
+# Tera date format used for listing posts
+
+date_format = "%d. %B %Y"
+date_locale = "cs_CZ"
+
+# Menu items.
+
+Links = "Odkazy"
+About = "O mně"
+Blog = "Blog"
+Demo = "Ukázka"
+Mods = "Mody"
+Coffee = "Kafe"
+
+alert_caution = "Pozor"
+alert_important = "Důležité"
+alert_note = "Poznámka"
+alert_tip = "Tip"
+alert_warning = "Varování"
+
+all_tags = "Zobrazit všechny tagy"
+archived = "Archivováno"
+author = "Autor"
+author_conjunction = " a "
+author_separator = ", "
+backlinks = "Zpětné odkazy"
+
+blog_post_author = "Autor článku"
+boosts_from = "Boosty z $INSTANCE"
+by_author = "Od $AUTHOR"
+
+comments = "Komentáře"
+comments_description = "Na tento článek můžeš reagovat veřejnou odpovědí přes Mastodon nebo jiný ActivityPub/Fediverse účet. Známé veřejné odpovědi se zobrazí níže."
+comments_noscript = "Načítání komentářů vyžaduje JavaScript. Zapni ho a obnov stránku, nebo přejdi na původní příspěvek na Mastodonu."
+comments_qr = "QR kód na Mastodon příspěvek"
+
+copy_code = "Kopírovat kód"
+disclaimer = "Upozornění"
+drafted = "Koncept"
+
+faves_from = "Oblíbené z $INSTANCE"
+featured = "Doporučené"
+feed = "RSS kanál"
+file_an_issue = "Nahlásit problém"
+filter_by_tag = "Filtrovat podle tagu"
+
+first = "První"
+go_to_top = "Zpět nahoru"
+hot = "Populární"
+
+language = "Jazyk"
+last = "Poslední"
+load_comments = "Načíst komentáře"
+loading = "Načítání..."
+
+many_minutes_read = "$NUMBER minut čtení"
+many_posts = "$NUMBER článků celkem"
+many_tags = "$NUMBER tagů celkem"
+
+minutes_read = "$NUMBER minuta čtení"
+more_matches = "$MATCHES dalších výsledků"
+
+next = "Další"
+no_comments = "Zatím žádné komentáře :/"
+one_posts = "$NUMBER článek celkem"
+one_tags = "$NUMBER tag celkem"
+
+open_post = "Otevřít článek"
+poor = "Slabé"
+
+posts = "$NUMBER článků celkem"
+posts_with_tag = "Články s tagem $TAG"
+
+powered_by = "Poháněno $ZOLA a $DUCKQUILL"
+
+previous = "Předchozí"
+published = "Publikováno"
+reload = "Obnovit"
+
+repo = "Repozitář"
+search = "Hledat"
+search_for = "Hledat"
+
+sensitive = "Citlivý obsah"
+share = "Sdílet"
+
+skip_to_content = "Přejít na obsah"
+source = "Zdroj webu"
+
+table_of_contents = "Obsah"
+
+tags = "tagy"
+tags_title = "Tagy"
+
+theme = "Téma"
+theme_dark = "Přepnout na tmavé téma"
+theme_light = "Přepnout na světlé téma"
+theme_system = "Použít systémové téma"
+
+trigger_warning = "Upozornění na obsah"
+
+updated = "Aktualizováno"
+view_comment = "Zobrazit komentář na"
+view_profile = "Zobrazit profil na"
