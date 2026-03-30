@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en" data-theme="system">
+<head>
+	<!-- 2026-03-30 Mon 07:35 -->
+	<meta charset="UTF-8" />
+	<meta name="description" content="Personal website of Dany Chaker" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="theme-color" content="#ED2100" />
+		<meta name="theme-color" content="#ED2100" media="(prefers-color-scheme:dark)" />
+	<title>Real-time machine learning: tips and tricks - Dany Chaker</title>
+	<link rel="canonical" href="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/" /><link rel="icon" type="image/png" href="https://sdragonex.github.io/Divocak-Systems/favicon.png" />
+
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://sdragonex.github.io/Divocak-Systems/apple-touch-icon.png" />
+
+		
+			
+				<link rel="alternate" type="application/atom+xml" title="Dany Chaker - Atom Feed" href="https://sdragonex.github.io/Divocak-Systems/atom.xml">
+			
+		
+    <style type="text/css">
+	:root {--accent-color: #ED2100;}[data-theme="dark"] {
+			--accent-color: #ED2100;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			:root:not([data-theme="light"]) {
+				--accent-color: #ED2100;
+			}
+		}</style>
+
+			<link type="text/css" rel="stylesheet" href="https://sdragonex.github.io/Divocak-Systems/style.css" />
+			<link type="text/css" rel="stylesheet" href="https://sdragonex.github.io/Divocak-Systems/icons.css" />
+			<script type="text/javascript" defer  src="https://sdragonex.github.io/Divocak-Systems/closable.js"></script>
+			<script type="text/javascript" defer  src="https://sdragonex.github.io/Divocak-Systems/fuse.js"></script>
+			<script type="text/javascript" defer  src="https://sdragonex.github.io/Divocak-Systems/search-fuse.js"></script>
+			<script type="text/javascript" defer  src="https://sdragonex.github.io/Divocak-Systems/theme-switcher.js"></script>
+
+	<meta property="og:site_name" content="Dany Chaker" />
+	<meta property="og:title" content="Real-time machine learning: tips and tricks - Dany Chaker" />
+	<meta property="og:url" content="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/" />
+	<meta property="og:description" content="Personal website of Dany Chaker" /><meta property="og:image" content="https://sdragonex.github.io/Divocak-Systems/card.png" /><meta property="og:locale" content="en_US" />
+</head>
+
+<body>
+
+		
+<header id="site-nav">
+	<nav>
+		<a href="#main-content" tabindex="0">
+			Skip to Main Content
+		</a>
+		<ul>
+			<li id="home">
+				<a href="https://sdragonex.github.io/Divocak-Systems">
+					<i class="icon"></i>Dany Chaker</a>
+			</li>
+			<li class="divider"></li><li>
+						<details class="closable">
+							<summary>Index</summary>
+							<ul>
+										<li>
+											<a href="https://sdragonex.github.io/Divocak-Systems/blog/">Blog</a>
+										</li>
+										<li>
+											<a href="https://sdragonex.github.io/Divocak-Systems/about/">About Me</a>
+										</li>
+										<li>
+											<a href="https://sdragonex.github.io/Divocak-Systems/backlog/">Backlog</a>
+										</li>
+										<li>
+											<a href="https://sdragonex.github.io/Divocak-Systems/interesting/">Interesting</a>
+										</li></ul>
+						</details>
+			 		 </li>
+					<li>
+						<a href="https:&#x2F;&#x2F;github.com&#x2F;sdragonex" rel="" class="external">GitHub</a>
+					</li>
+				<li id="search">
+					<button id="search-toggle" class="circle" title="Search">
+						<i class="icon"></i>
+					</button>
+				</li>
+
+<li id="language-switcher">
+	<details class="closable">
+		<summary class="circle" title="Language">
+			<i class="icon"></i>
+		</summary>
+		<ul><li>
+						<a lang="cs" href="https:&#x2F;&#x2F;sdragonex.github.io&#x2F;Divocak-Systems&#x2F;/cs/blog/real-time-machine-learning-tips-and-tricks/">Čeština</a>
+					</li></ul>
+	</details>
+</li>
+
+				<li id="theme-switcher">
+					<details class="closable">
+						<summary class="circle" title="Theme">
+							<i class="icon"></i>
+						</summary>
+						<ul>
+							<li>
+								<button class="circle" id="theme-light" title="Switch to Light Theme">
+									<i class="icon"></i>
+								</button>
+							</li>
+							<li>
+								<button class="circle" id="theme-dark" title="Switch to Dark Theme">
+									<i class="icon"></i>
+								</button>
+							</li>
+							<li>
+								<button class="circle" id="theme-system" title="Use System Theme">
+									<i class="icon"></i>
+								</button>
+							</li>
+						</ul>
+					</details>
+				</li>
+		</ul>
+	</nav>
+		<div id="search-container">
+			<label for="search-bar" class="visually-hidden">Search</label>
+			<input id="search-bar" placeholder="Search for…" autocomplete="off" type="search" disabled>
+			<div id="search-results-container">
+				<div id="search-results"></div>
+			</div>
+		</div>
+</header>
+<main id="main-content">
+		<article><div id="heading"><p>
+				<small>
+					<time datetime=" 2025-12-06T00:00:00+00:00">Published on
+						December 06, 2025</time></small>
+			</p><h1>Real-time machine learning: tips and tricks</h1><p>
+				<small><span>By Dany Chaker</span></small>
+			</p>
+	</div>
+
+	<div id="buttons-container"><a id="go-to-top" href="#top" title="Go to Top"><i class="icon"></i></a></div><div class="crt scanlines" aria-hidden="true">
+	<pre><code>       .       .
+            .  |  .
+             \ | /    +
+     *        \|/
+         --==&gt; * &lt;==--   &#39;
+        +     /|\   .
+             / | \
+     .      &#39;  |  &#39;       *
+               |
+         .     &#39;    .
+</code></pre>
+
+</div>
+<p>More than an year ago I developed a presentation summarizing all the practices,
+kindly named as <em>tips and tricks</em>, for maintaining and operating real-time
+machine learning models at the company I work for. This was first an internal
+presentation that turned into a meetup presentation that turned into an editted
+article. After more than one year of compiling this knowledge I decided to
+revisit them and record an updated version of this text in my own website.</p>
+<p>You can check the resources for the meetup talk, in portuguese, and the editted
+article, in portuguese and english.</p>
+<iframe
+	class="youtube-embed"
+	src="https://www.youtube-nocookie.com/embed/4xZUpwiiJ68"
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+	referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+<p><strong><a rel="external" href="https://building.nubank.com/practices-to-scale-machine-learning-operations/">Practices to scale Machine Learning operations</a></strong></p>
+<h1 id="the-real-time-subset-of-this-article">The real-time subset of this article</h1>
+<p>Real-time machine learning can represent various types of applications and
+due this wide range of possibilities I would like to precisely describe what
+I've been doing such that you can make the appropriate approximations
+to other contexts.</p>
+<p>I work with fraud prevention in a financial institution.
+This means that I work developing automated decision systems
+(not necessarily just machine learning models) that identify
+<em>events</em> that shouldn't happen, either by a legal violation or by a third party
+malicious action. The key element here is that to provide good customer
+experience and avoid tragedies is that we must identify the fraud in a given
+event at moment it is happening. At the exact "approval" time, otherwise money
+moves too fast for you to catch up later.</p>
+<p>The most obvious and direct example is a credit card transaction. Imagine you
+buying something at a sketchy online store, you know it is sketchy but
+the price is too good to not take. You buy the thing and it never arrives at
+your door. When you check the store again, it disappeared. A couple days later
+misterious purchases notifications reach you and you know exactly how your card
+numbers were leaked.</p>
+<p>Applying machine learning to this problem means that at the moment a credit
+card is getting our systems, real-time, you must decide to approve it or not.
+The challenges of maintaining such systems start with respecting the SLA,
+usually milliseconds or seconds, and applying this analysis to millions
+of customer and pontentially billions of transactions.</p>
+<p>My context is hyper focused in building models and systems that
+scale very well to millions of customers, billions of transactions, and
+can answer synchronously in milliseconds.</p>
+<h2 id="a-comparison-with-batch-models">A comparison with Batch models</h2>
+<p>To highlight the real-time elements of my context I like to compare with
+batch models which, in my experience, are the preferred first approach
+to any team trying to adopt automated decisions.</p>
+<p>Batch models usually run in a fixed schedule, every once in a day,
+a week, or a couple of hours. They take all the new instances that
+were generated in the last time window and apply their predictions
+to it. They are deployed in ETL/ELT systems and consume very big tables
+usually. Real-time models consume multiple one row tables in the
+other side.</p>
+<p>These input tables for batch models may be composed of multiple
+other tables and upstream sources that combined by a batch processing
+system like Spark, Pandas, Databricks, Big Query. Meanwhile, real-time
+models seek information in various forms, feature store like systems
+with pre-computed data, batch tables that were loaded in some form
+of fast database, the true source of the data in the form of a
+microservice and its APIs or other intermediate aggregation
+services that hold temporary, short-lived data, just for the purpose
+of building the features for a real-time model.</p>
+<p>You can see that batch models can take up to the interval time duration
+to finish its predicitions in this comparison. They have a lot more room
+to fail, you can retry multiple times, and failures are not directly or
+instantly forwarded to end customers.</p>
+<p>The real challenges of maintaining real-time models don't live in the
+model itself, there are challenges at optimizing model python code, but
+rather in retrieving all the features required for its usage.</p>
+<h2 id="one-possibility-for-building-micro-services-that-hold-models">One possibility for building micro services that hold models</h2>
+<p>The number of different possible way you could arange architectural
+components in order to having a functional decision making system is
+probably greater than the number of Rubik's cube states combined with
+the number of chess boards, specially when you consider how hard
+people's opinions are on various subsets of "systems architecture".</p>
+<p>In this section I will describe the particular choices made at the company
+I work and try to justify them. Some of these justifications will be
+completely local and historical to the company's context in time and space,
+so don't take them so hard.</p>
+<h3 id="the-other-language">The other language</h3>
+<p>I expressed very briefly my opinion that we don't get to choose any of the
+programming languages that we use professionaly or that just a very small
+group of people have the privilege of making this decision.</p>
+<p>In the company I work for it is no different. The weapon of choice was
+clojure! So, the first thing to keep in mind when design automated decision
+systems is that the entire company tooling, automated checks, native
+integrations were created for clojure micro services.</p>
+<p>This effect increases a lot the friction to break the clojure standard and
+the practicity to integrate with other platforms and solution is also
+greatly improved.</p>
+<p>As you can obviously imagine we are not deploying our machine learning models
+in clojure. We are developing, training and deploying them in python! The
+main reason is that there is just so much of machine learning work already
+done in public available packages and it is the standard of the industry.</p>
+<p>The outcome of these two elements is a two language design. There is the
+majority of services written in clojure and very few services holding
+machine learning models written in python.</p>
+<h3 id="the-design">The design</h3>
+<p>We choose to minimize the python "surface area" in the systems. Everything
+that can be done in clojure should be done in clojure. To be clear, retrieving
+data from other services, performing aggregations on historical data, and
+applying decisions to model predictions are all task that we decided to execute
+in clojure.</p>
+<p>What is left to "python" is just holding a thing layer of translation components
+and the model it self. We try to keep its interface as close as possible to a
+"feature vector" or a flat json schema from feature names to feature values.
+Still, there is a wrapper written in clojure that holds "common tasks" that
+all models should have like authentication, propagation of predictions to kafka
+and the ETL. This bundle is joined together in a Kubernetes pod applying the
+"side car" pattern.</p>
+<p>With this design we achieve:</p>
+<ul>
+<li>No python directly exposed to other services, just clojure.</li>
+<li>Minimal python deployment. Just the model, nothing else</li>
+<li>Anything that we need to apply to all deployed models
+can be included in the "wrapper" and instantly adopted.</li>
+</ul>
+<div class="crt scanlines" aria-hidden="true">
+	<pre><code>         ┌──────────────────────────────────────────────────────────┐
+         │ K8s Pod                                                  │
+         │ ┌────────────────────────┐           ┌─────────────────┐ │
+         │ │ Wrapper                │           │ Model           │ │
+Incoming │ │ (Clojure)              │ Forwarded │ (Python)        │ │
+Request  │ │                        │ Request   │                 │ │
+─────────┼→┼┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼──────────→│ ┌─────────────┐ │ │
+         │ │                        │           │ │  In Schema  │ │ │
+         │ │ - Standard             │           │ ├─────────────┤ │ │
+         │ │   Endpoints            │           │ │ In Adapter  │ │ │
+         │ │ - Authentication       │           │ ├─────────────┤ │ │
+         │ │ - Propagation          │           │ │    Model    │ │ │
+         │ │   to Kafka and         │           │ ├─────────────┤ │ │
+Outgoing │ │   the ETL              │ Forwarded │ │ Out Adapter │ │ │
+Response │ │                        │ Reponse   │ ├─────────────┤ │ │
+←────────┼─┼┄┄┄┄┄┄┄┄◌┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼←──────────│ │ Out Schema  │ │ │
+         │ │        ┆ Logs every    │           │ └─────────────┘ │ │
+         │ │        ┆ model         │           │                 │ │
+         │ │        ┆ prediction    │           │                 │ │
+         │ │        ┆ to the ETL    │           │                 │ │
+         │ └────────┼───────────────┘           └─────────────────┘ │
+         └──────────┼───────────────────────────────────────────────┘
+                    V
+</code></pre>
+
+</div>
+<p>There are downsides to this but I am not prepared yet to write about them.
+Soon, I will articulate the limitations of this design and what would be
+the next generation of this architecture for the next 10 years. Some
+of these limitations are already explained in my
+<a href="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/@blog/on-the-future-of-machine-learning/">"The future of Machine Learning"</a>
+article.</p>
+<h3 id="a-closer-look-at-the-model">A closer look at the Model</h3>
+<p>Let's discuss a bit more in focus what is happening in the model pipeline.
+With this minimalistic approach in mind, let's expand each section:</p>
+<h4 id="1-in-schema">1. <strong>In Schema</strong></h4>
+<p>The default format for inter service communication is json.
+The default choice for the input schema is flat structure with feature
+names as keys and feature values as values. There are other choices</p>
+<p>There are other choices to this like when you have to aggregate something
+to turn into a feautres, like when you want to count and sum the amount
+of a transaction list. You have two basic choices: to aggregate in the
+requesting service or to provide a the raw list and aggregate inside the
+in adapter or the model pipeline.</p>
+<p>Certainly, if you can do more work in the model pipeline the gap for
+discrepancies between batch results will be smaller but that can
+pontentially break one assumption that we like a lot: "n rows in, n rows out".</p>
+<p>This assumption is the assumption that if you send N instances of prediciton
+you must get back N instances with their predictions. In our practices
+it feels odd to send 10 rows in and get only one row back, specially when this
+work must be executed in the adapter because, for optimization purposes, you
+decided to aggregate this in a dataset or a datapipeline outside the model
+pipeline.</p>
+<p>Breaking this assumption also complicates the usage of the ETL
+logging machanisms, that also assume this. It requires you to start working
+with list values inside parquet tables and then reapplying the in-adapter in these
+values to reproduce what the model received. Awful thing.</p>
+<p>If you end up creating a big in-adapter you increase the gap for discrepancies
+and start doing a lot of work at a place we don't have the same tools to tackle
+problems. Python was notably bad at asynchronous features
+(*until 3.14 at least, let's see how things evolve) and tackling multiple
+heavy liffiting tasks in the in adapter seemed like an objective worse option
+than doing all the pre-aggragation tasks in the requesting service.</p>
+<p>So, in general we like:</p>
+<ul>
+<li>Flat schemas. <code>{"feature-name": value}</code></li>
+<li>One prediction instance in, one prediction instance out.</li>
+</ul>
+<h4 id="2-in-adapter">2. <strong>In Adapter</strong></h4>
+<p>Again, the default format for inter service communication is json.
+The first step of getting model predictions is to translate from json to
+something the model can understand. Our default choice is dataframes,
+Pandas dataframes.</p>
+<p>The first key element of this in-adapter approach is to keep the model interface
+uniform. The model is a sequence of steps that always gets a table as input
+and returns a table as output preserving the same input schema and values but
+adding new coluns to it: the raw prediction, some kind of calibrated prediction and
+fitted empirical cumulative distribution values (ECDF) are options.</p>
+<p>That's why keeping the flat schema is so convenient, it simplifies a lot the
+in-adapter.</p>
+<p>We turn this flat schema into a single row dataframe and forward it to the
+model. Even the assembly of all these components, in-schema, in-adapter,
+the model, out-adapter, and out-schema are not hand made. There is an
+assembler template that, if you are not going to do anything different
+from this pattern, automatically assemble the pipeline from a config file
+with default implementations.</p>
+<blockquote>
+<p>A Note on Pandas</p>
+<p>Pandas dataframes are notably slow. They set a historical mark when first
+released but now a days they feel outdated. With the recent advancements
+of the arrow backend you can mitigate performance issues but Polars was
+a true hit. Beyond providing a much performant implementation its API
+should be the standard API for dataframes for me.</p>
+</blockquote>
+<h4 id="3-model">3. <strong>Model</strong></h4>
+<p>The model is the serialized artifact generated by the training process.
+For this discussion you can assume we have a standard way of training
+and serializing the model, we use pickle, that can later be referenced
+at deploy time and dynamically loaded into the pipeline temapled mentioned
+in the in-adapter section.</p>
+<p>What is important to highlight is that the model pipeline it self is
+another sequence of steps with the "table in, table out" interface.</p>
+<h5 id="short-detour-fklearn"><strong>short detour: fklearn</strong></h5>
+<p>This "table in, table out" is the interface introduced by fklearn,
+a functional inspired interface for machine learning pipelines. It
+is open sourced and the details of its creations can be checked in
+this two part post in the company's blog:</p>
+<ul>
+<li><a rel="external" href="https://building.nubank.com/introducing-fklearn-nubanks-machine-learning-library-part-i-2/">fklearn part 1</a></li>
+<li><a rel="external" href="https://building.nubank.com/introducing-fklearn-nubanks-machine-learning-library-part-ii/">fklearn part 2</a></li>
+</ul>
+<p>You can also check:</p>
+<ul>
+<li><a rel="external" href="https://github.com/nubank/fklearn">fklearn github repo</a></li>
+<li><a rel="external" href="https://pypi.org/project/fklearn/">fklearn pypi page</a></li>
+</ul>
+<p>fklearn introduces a bunch of wrappers to usual sklearn, xgboost,
+lightbm, catboost and tensorflow packages that always follow the same
+API:</p>
+<pre><code data-lang="python">                                
+@curry                      
+def learner(
+    df: DataFrame,
+    **kwargs  # this kwargs can be any hyper parameters of you learner
+) -&gt; tuple[Callable[[...], DataFrame], DataFrame, dict]:
+  # train the model first
+  model = train(df, **kwargs)
+
+  # then inject the state in a function
+  def apply_fn(df: DataFrame) -&gt; DataFrame:
+    return model(df)
+
+  # return:
+  # 1. the function with the injected state for future application
+  # 2. the function applied to the training data
+  # 3. arbitrary &quot;logs&quot;, data that may be useful
+  return apply_fn, apply_fn(df), logs
+</code></pre>
+<p>This uniform API let's us create uniform pipelines without concerning of their
+own methods and representation, basically every machine learning framework has
+its own data type. We just translate in, train, and translate out and we can
+work confident that any fklearn building block will respect this API.</p>
+<p>This is an extremelly powerful abstraction that simplifies a lot the
+construction of complex model pipelines, specially when you need to
+do more after work after training the "main" model. Still may not
+work for LLMs but extremelly convenient for building medium and large
+scale models.
+(<em>I make a comment about model size in my
+<a href="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/@blog/on-the-future-of-machine-learning/">"The future of Machine Learning"</a></em>)</p>
+<p>The usual practice, when testing and adopting new frameworks, is to simply
+wrap them in the fklearn interface and introduce in a existing
+model pipeline or swap a previous implementation.
+You can see that in this description
+absolutely everthing remains constant, which improves a lot productivity
+in the experimentation, prototyping and deployment phases.</p>
+<h5 id="back-to-model-pipelines"><strong>Back to model pipelines</strong></h5>
+<p>With the fklearn mode of building models loaded let's break down the model
+pipeline as a simple sequence of steps:</p>
+<p>Let's call the "model" as "model pipeline" and call the main
+predictor/learner in the pipeline as the "model":</p>
+<div class="crt scanlines" aria-hidden="true">
+	<pre><code>               ┌─────────────────────────────────────┐ 
+               │ Model Service                       │ 
+               │ (Python)                            │ 
+               │                                     │ 
+               │ ┌─────────────────────────────────┐ │ 
+               │ │ In Schema                       │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ In Adapter                      │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Model Pipeline (pickled thing)  │ │ 
+               │ │ ┌─────────────────────────────┐ │ │ 
+               │ │ │ categorical trucation       │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ categorical encoder         │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ fillers and imputators      │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ main predictor, the &quot;model&quot; │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ calibration                 │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ ecdf mapping                │ │ │ 
+               │ │ └─────────────────────────────┘ │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Out Adapter                     │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Out Schema                      │ │ 
+               │ └─────────────────────────────────┘ │ 
+               └─────────────────────────────────────┘ 
+
+layers and layers and layers, they never end
+</code></pre>
+
+</div>
+<p>This is the heart of the entire prediction process and the step that should
+take the most of the prediction time. It was a true suprise when some people
+started profilling various sections of the pipeline to realize the requests
+were 80%+ of their total time in the schemas and adapters!</p>
+<h4 id="4-out-adapter">4. <strong>Out Adapter</strong></h4>
+<p>After we get the single row output dataframe, we translate it back to a dictionary
+form in other to serialize it back again to json. In the output adapter we usally
+throw away most of the features and keep just what is important for taking downstream
+decisions. When it is absolutely necessary to keep the all the output, we build two
+top level keys: what is relevant to the requesting service and what is only
+relevant for the etl propagation.</p>
+<p>Coercing types back to something that is json serializable is one of the most boring
+tasks I have done in my machine learning engineer life.</p>
+<h4 id="5-out-schema">5. <strong>Out Schema</strong></h4>
+<p>Finally we validate the structure of the output of the out adapter as sanity
+check. If it fails we return a 500 and that is life. Usually, we can prevent
+most of the serialization issues in the adapter but who knows what can happen.</p>
+<p>The other services have a very interesting contract
+(check this article on how they done it:
+<a rel="external" href="https://building.nubank.com/why-we-killed-our-end-to-end-test-suite/">Why We Killed Our End-to-End Test Suite</a>)
+based testing tool but, as mentioned, it only works for clojure services.
+We hope to use such structure in the future but not possible for now.</p>
+<h4 id="summary-on-the-model-deployment-structure">Summary on the model deployment structure</h4>
+<p>This is a very uniform and standard way of approaching the deployment of
+machine learning models inside services. I will disclose and discuss a bit
+more the technology choices of all these stages but what is important to
+know is that if you are building a "standard" model, i.e. a model that
+can fit the described structure, you get the entire deployment almost for
+free with just minor configuration stages. This yields a great uniformity
+over all real-time models and great productivity for both Data Scientists
+and Machine Learning Engineers.</p>
+<p>Without more blabla,
+<em>Let's begin the tips and tricks!</em></p>
+<h1 id="the-techniques">The techniques</h1>
+<h2 id="cost-optimization-or-just-doing-less">Cost optimization, or just doing less</h2>
+<h3 id="remember-of-unnecessary-redundancy">Remember of unnecessary redundancy</h3>
+<p>One of the strategies to scale adopted by the company was to apply sharding,
+not just for databases
+(<a rel="external" href="https://building.nubank.com/managing-cloud-limits/">Managing Cloud Limits</a>) but
+for everything, including services, kafka and models.</p>
+<p>The issue with sharding is that although it works very well for scaling databases
+it may introduce unnecessary redundancy for shareable workloads specially
+statless services like model services. Given that shards are relatively independent
+and that, in order to keep high availability, we required a minimum of 2 independent
+work units (pods in Kubernetes), if we have 20 shards we already starts with a minimum of
+40 working units.</p>
+<p>For many usecases even using fractions of resources was already a lot making the
+bottom of costs very high just to start. Besides that, tasks that operates with
+a shard bias would be under utilized in low load shards and under pressure in high
+load shards (there is the possibility to make different resource allocations per
+shard but we took an even better approach). We observed many times models going
+down because of hicups in resource allocation, one pode goes down, the other
+gets overloaded and model down.</p>
+<p>The strategy to overcome that was to get rid of sharded model deployment. Take a global
+deployment setting where requests from all shards goes to a single global set of model
+pods. This reduced the minimum, since now we can keep the minimum at a global level,
+and reduced the under utilization buffer since shard bias didn't matter anymore.</p>
+<p>This was also good to improve mini batching efficiency since we could keep latency
+relatively the same value but increasing the through put.</p>
+<h3 id="filter-as-much-as-possible">Filter as much as possible</h3>
+<p>Just doing less is the best optimization possible. The trick we employ is,
+when possible, to create some kind of rough filter, often called "pre policy"
+to control model eligibility and pontentially save precious units of work.</p>
+<p>If a given customer or transaction can be considered "not applicable" from
+other fast acquiring features and in simple logic form we can return a
+preliminary, simpler, result and not waste all the resources required
+to run a model. Otherwise, we proceed to a regular model scoring.</p>
+<p>The effect is dramatic. Here are some examples (as of October 2024):</p>
+<ul>
+<li>The identity fraud model that runs in various events
+gets reduce from a raw count of events of 2800 events per second to
+only <strong>20 events per second</strong>.</li>
+<li>The theft model is designed to work in the same events. With its
+filter we can reduce to only <strong>200 events per second</strong>.</li>
+</ul>
+<p>This technique is not always possible to be applied. Sometimes you
+are trying to identify exactly what you designed your model for and
+if a pre-policy was possible to be done you wouldn't be building the
+model in the first place.</p>
+<ul>
+<li>The credit card transaction model can't use a pre policy.</li>
+<li>The mule accounts model can't use a pre policy.</li>
+</ul>
+<h3 id="optimize-your-dependencies-graph">Optimize your dependencies graph</h3>
+<p>Dependencies graphs can be the source of countless problems and headaches.</p>
+<p>This is one typical dependency graph from one of the models that run in my
+company:
+<div class="crt scanlines" aria-hidden="true">
+	<pre><code>Inputs
+id-1              id-2  id-3   id-4
+─┼─────────────────┼─────┼──────┼───
+ ├─┬───┬──┬──┬─┬─┐ │     ├─┐    │
+ │ ●   ●  │  ● ● ● │     ● ●    ●
+ │ │   │  │  │ │ └─●
+ │ ●   ●  │  │ │
+ │     ├──●  │ ├─┬─┬─┬─┐
+ │     ●     │ ● ● ● ● ●
+ ├─┬─┐ ├─┬─┐ ├─┬─┬─┬─┬─┬─┬─┐
+ ● ● ● ● ● ● ● ● ● ● ● ● ● ●
+</code></pre>
+
+</div>
+</p>
+<p>In this ascii art we see a representation dependency graph. Each circle
+represents a request to an external service to fetch information required
+to build the final set of features. We start from the top, with imediately
+available information like the <code>id-1</code>, <code>id-2</code>, <code>id-3</code>, <code>id-4</code>, and we proceed
+down reaching out for features. The lines represent dependencies, so if a circle
+comes above it must finish before we can execute a circle below.
+In some cases some intermediate information is required before we can reach
+to the information we want. This is typical to cases where you have a secondary
+identifier and you need to get the primary identifier to then query the
+main table for the features. Some times you need two identifiers,
+only the combination of them fully identifies the entity you are looking for,
+to find the desired features.</p>
+<p>As you can see, there are 32 requests to external services to fetch
+features. The longest dependency chain has 4 requests in sequence.
+As we you may imagine, if we execute these requests in sequence, and
+each one of them takes 100 milliseconds to complete, we would wait
+a total of 3200 milliseconds to get all features ready. In this
+particular case the model was required to answer in less than 700
+milliseconds.</p>
+<p>In order to achieve that, we paralelize all the requests with
+native clojure async features, future and delays. This way the total
+time to retrieve all features gets bounded by the longest chain, 400
+milliseconds in this case, leaving 300 milliseconds for the additional
+model request and the logic that turns model predictions into actions.</p>
+<h4 id="keep-your-controllers-simple">Keep your controllers simple</h4>
+<p>But building this type of controller gets complicated really fast and your logic start to
+get completely filled with deref operators and keeping track of errors in deep chains of
+dependencies becomes a hard task. Also, sometimes you need to transform previously
+fetched information into a new representation in order to call the next service, which
+interperse you controller with impure side effects pure logic computations, making really
+hard to test the full behavior and map all corner cases.</p>
+<p>Recently, the company open sourced <a rel="external" href="https://github.com/nubank/nodely">nodely</a>, a tool
+built exactly to tackle these complex graphs and assist separating effectful
+computations from pure logic, providing a simpler mental model and better interception
+points for testing. It topologically sorts the graph and optimally executes it for you.
+Maintaining nodely graphs is still hard, as it is to build and represent the entire
+computational graph, but much simpler than hand crafting them from vanilla clojure
+(future and delay), or <code>core.async</code> building blocks. One of the nice features of nodely
+is that it supports many backends and styles of actually exectuing the graph.</p>
+<p>If you are also building complex feature or dependency graphs consider taking a look at
+it, not just for the library itself but it also presents a comparison with similar work
+and the differences between them.</p>
+<h4 id="use-as-much-as-possible-asynchronous-techniques">Use as much as possible asynchronous techniques</h4>
+<h4 id="keep-tight-control-of-timeouts">Keep tight control of timeouts</h4>
+<h4 id="use-something-clever-to-do-the-hard-work-for-you">Use something clever to do the hard work for you</h4>
+<h4 id="monitor-them-closely">Monitor them closely</h4>
+<h4 id="go-beyond-your-borders-for-optimal-performance">Go beyond your borders for optimal performance</h4>
+<h3 id="optimize-the-model-service-and-the-model-pipeline">Optimize the model service and the model pipeline</h3>
+<h2 id="simplicity-is-the-key-to-success-or-how-to-avoig-being-overwhelmed-by-your-own-complexity">Simplicity is the key to success, or how to avoig being overwhelmed by your own complexity</h2>
+<h3 id="split-long-term-and-short-term-features">Split long term and short term features</h3>
+<h3 id="rely-on-know-tools-systems-and-sources">Rely on know tools, systems and sources</h3>
+<h3 id="reduce-the-feature-engineering-implementation-gap">Reduce the feature engineering implementation gap</h3>
+<h3 id="just-when-valuable-build-your-own-thing-to-store-data">Just when valuable, build your own thing to store data</h3>
+<h2 id="tests-and-ergonomy">Tests and ergonomy</h2>
+<h3 id="good-integration-tests-make-cents">Good integration tests make cents</h3>
+<h3 id="test-in-production-always-but-mitigating-risks">Test in production always! But mitigating risks</h3>
+<h1 id="final-thoughts-and-conclusion">Final thoughts and conclusion</h1>
+<h2 id="one-size-doesn-t-fit-all">One size doesn't fit all</h2>
+<h2 id="references-used">References used</h2>
+<p><a rel="external" href="https://www.asciiart.eu/space/stars"><em>Stars</em></a></p>
+
+</article><hr />
+	<nav id="post-nav"><a class="post-nav-item post-nav-prev" href="https:&#x2F;&#x2F;sdragonex.github.io&#x2F;Divocak-Systems&#x2F;blog&#x2F;on-the-future-of-machine-learning&#x2F;">
+				<div class="nav-arrow">Previous</div>
+				<span class="post-title">The future of Machine Learning</span>
+			</a></nav>
+	</main>
+	<footer id="site-footer">
+		<nav>
+			<ul>
+					<li>
+						<a href="https://sdragonex.github.io/Divocak-Systems/about/">About Me</a>
+					</li>
+					<li>
+						<a href="https://sdragonex.github.io/Divocak-Systems/blog/">Blog</a>
+					</li>
+			</ul>
+		</nav>
+			<p>&copy; Dany Chaker, 2026</p>
+		<ul id="socials">
+				<li>
+					<a href="https://linkedin.com/in/otaviocv" rel=" me" title="LinkedIn">
+						<i class="icon" style='--icon: url("data:image/svg+xml,%3Csvg height=&#x27;200px&#x27; width=&#x27;200px&#x27; version=&#x27;1.1&#x27; id=&#x27;Layer_1&#x27; xmlns=&#x27;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&#x27; xmlns:xlink=&#x27;http:&#x2F;&#x2F;www.w3.org&#x2F;1999&#x2F;xlink&#x27; viewBox=&#x27;0 0 382 382&#x27; xml:space=&#x27;preserve&#x27; fill=&#x27;%23000000&#x27;%3E%3Cg id=&#x27;SVGRepo_bgCarrier&#x27; stroke-width=&#x27;0&#x27;%3E%3C&#x2F;g%3E%3Cg id=&#x27;SVGRepo_tracerCarrier&#x27; stroke-linecap=&#x27;round&#x27; stroke-linejoin=&#x27;round&#x27;%3E%3C&#x2F;g%3E%3Cg id=&#x27;SVGRepo_iconCarrier&#x27;%3E%3Cpath style=&#x27;fill:%230077B7;&#x27; d=&#x27;M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z&#x27;%3E%3C&#x2F;path%3E%3C&#x2F;g%3E%3C&#x2F;svg%3E%0A")'></i>
+						<span>LinkedIn</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/sdragonex" rel=" me" title="GitHub">
+						<i class="icon" style='--icon: url("data:image/svg+xml,%3Csvg role=&#x27;img&#x27; viewBox=&#x27;0 0 24 24&#x27; xmlns=&#x27;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&#x27;%3E%3Ctitle%3EGitHub%3C&#x2F;title%3E%3Cpath d=&#x27;M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12&#x27;&#x2F;%3E%3C&#x2F;svg%3E")'></i>
+						<span>GitHub</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://mastodon.social/@otaviocv" rel=" me" title="Mastodon">
+						<i class="icon" style='--icon: url("data:image/svg+xml,%3Csvg role=&#x27;img&#x27; viewBox=&#x27;0 0 24 24&#x27; xmlns=&#x27;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&#x27;%3E%3Ctitle%3EMastodon%3C&#x2F;title%3E%3Cpath d=&#x27;M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z&#x27;&#x2F;%3E%3C&#x2F;svg%3E")'></i>
+						<span>Mastodon</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/sdragonex" rel=" me" title="Twitter">
+						<i class="icon" style='--icon: url("data:image/svg+xml,%3Csvg role=&#x27;img&#x27; viewBox=&#x27;0 0 24 24&#x27; xmlns=&#x27;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&#x27;%3E%3Ctitle%3ETwitter%3C&#x2F;title%3E%3Cpath d=&#x27;M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148 13.98 13.98 0 0 0 11.82 8.292a4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z&#x27;&#x2F;%3E%3C&#x2F;svg%3E")'></i>
+						<span>Twitter</span>
+					</a>
+				</li>
+		</ul>
+</footer>
+
+	
+<span id="search-index" class="hidden">https://sdragonex.github.io/Divocak-Systems/search_index.en.json</span>
+	<span id="more-matches-text" class="hidden">$MATCHES more matches</span>
+
+	<style type="text/css">
+	:root {
+		--alert-note-text: "Note";
+		--alert-tip-text: "Tip";
+		--alert-important-text: "Important";
+		--alert-warning-text: "Warning";
+		--alert-caution-text: "Caution";
+	}
+</style>
+
+
+</body>
+</html>

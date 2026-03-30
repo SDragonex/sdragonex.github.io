@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Dany Chaker</title>
+    <subtitle>Personal website of Dany Chaker</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://sdragonex.github.io/Divocak-Systems/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-12-06T00:00:00+00:00</updated>
+    <id>https://sdragonex.github.io/Divocak-Systems/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Real-time machine learning: tips and tricks</title>
+        <published>2025-12-06T00:00:00+00:00</published>
+        <updated>2025-12-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/real-time-machine-learning-tips-and-tricks/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;       .       .
+            .  |  .
+             \ | &#x2F;    +
+     *        \|&#x2F;
+         --==&amp;gt; * &amp;lt;==--   &amp;#39;
+        +     &#x2F;|\   .
+             &#x2F; | \
+     .      &amp;#39;  |  &amp;#39;       *
+               |
+         .     &amp;#39;    .
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;More than an year ago I developed a presentation summarizing all the practices,
+kindly named as &lt;em&gt;tips and tricks&lt;&#x2F;em&gt;, for maintaining and operating real-time
+machine learning models at the company I work for. This was first an internal
+presentation that turned into a meetup presentation that turned into an editted
+article. After more than one year of compiling this knowledge I decided to
+revisit them and record an updated version of this text in my own website.&lt;&#x2F;p&gt;
+&lt;p&gt;You can check the resources for the meetup talk, in portuguese, and the editted
+article, in portuguese and english.&lt;&#x2F;p&gt;
+&lt;iframe
+	class=&quot;youtube-embed&quot;
+	src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;4xZUpwiiJ68&quot;
+	allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot;
+	referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;
+&lt;&#x2F;iframe&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;practices-to-scale-machine-learning-operations&#x2F;&quot;&gt;Practices to scale Machine Learning operations&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-real-time-subset-of-this-article&quot;&gt;The real-time subset of this article&lt;&#x2F;h1&gt;
+&lt;p&gt;Real-time machine learning can represent various types of applications and
+due this wide range of possibilities I would like to precisely describe what
+I&#x27;ve been doing such that you can make the appropriate approximations
+to other contexts.&lt;&#x2F;p&gt;
+&lt;p&gt;I work with fraud prevention in a financial institution.
+This means that I work developing automated decision systems
+(not necessarily just machine learning models) that identify
+&lt;em&gt;events&lt;&#x2F;em&gt; that shouldn&#x27;t happen, either by a legal violation or by a third party
+malicious action. The key element here is that to provide good customer
+experience and avoid tragedies is that we must identify the fraud in a given
+event at moment it is happening. At the exact &quot;approval&quot; time, otherwise money
+moves too fast for you to catch up later.&lt;&#x2F;p&gt;
+&lt;p&gt;The most obvious and direct example is a credit card transaction. Imagine you
+buying something at a sketchy online store, you know it is sketchy but
+the price is too good to not take. You buy the thing and it never arrives at
+your door. When you check the store again, it disappeared. A couple days later
+misterious purchases notifications reach you and you know exactly how your card
+numbers were leaked.&lt;&#x2F;p&gt;
+&lt;p&gt;Applying machine learning to this problem means that at the moment a credit
+card is getting our systems, real-time, you must decide to approve it or not.
+The challenges of maintaining such systems start with respecting the SLA,
+usually milliseconds or seconds, and applying this analysis to millions
+of customer and pontentially billions of transactions.&lt;&#x2F;p&gt;
+&lt;p&gt;My context is hyper focused in building models and systems that
+scale very well to millions of customers, billions of transactions, and
+can answer synchronously in milliseconds.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-comparison-with-batch-models&quot;&gt;A comparison with Batch models&lt;&#x2F;h2&gt;
+&lt;p&gt;To highlight the real-time elements of my context I like to compare with
+batch models which, in my experience, are the preferred first approach
+to any team trying to adopt automated decisions.&lt;&#x2F;p&gt;
+&lt;p&gt;Batch models usually run in a fixed schedule, every once in a day,
+a week, or a couple of hours. They take all the new instances that
+were generated in the last time window and apply their predictions
+to it. They are deployed in ETL&#x2F;ELT systems and consume very big tables
+usually. Real-time models consume multiple one row tables in the
+other side.&lt;&#x2F;p&gt;
+&lt;p&gt;These input tables for batch models may be composed of multiple
+other tables and upstream sources that combined by a batch processing
+system like Spark, Pandas, Databricks, Big Query. Meanwhile, real-time
+models seek information in various forms, feature store like systems
+with pre-computed data, batch tables that were loaded in some form
+of fast database, the true source of the data in the form of a
+microservice and its APIs or other intermediate aggregation
+services that hold temporary, short-lived data, just for the purpose
+of building the features for a real-time model.&lt;&#x2F;p&gt;
+&lt;p&gt;You can see that batch models can take up to the interval time duration
+to finish its predicitions in this comparison. They have a lot more room
+to fail, you can retry multiple times, and failures are not directly or
+instantly forwarded to end customers.&lt;&#x2F;p&gt;
+&lt;p&gt;The real challenges of maintaining real-time models don&#x27;t live in the
+model itself, there are challenges at optimizing model python code, but
+rather in retrieving all the features required for its usage.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;one-possibility-for-building-micro-services-that-hold-models&quot;&gt;One possibility for building micro services that hold models&lt;&#x2F;h2&gt;
+&lt;p&gt;The number of different possible way you could arange architectural
+components in order to having a functional decision making system is
+probably greater than the number of Rubik&#x27;s cube states combined with
+the number of chess boards, specially when you consider how hard
+people&#x27;s opinions are on various subsets of &quot;systems architecture&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;In this section I will describe the particular choices made at the company
+I work and try to justify them. Some of these justifications will be
+completely local and historical to the company&#x27;s context in time and space,
+so don&#x27;t take them so hard.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-other-language&quot;&gt;The other language&lt;&#x2F;h3&gt;
+&lt;p&gt;I expressed very briefly my opinion that we don&#x27;t get to choose any of the
+programming languages that we use professionaly or that just a very small
+group of people have the privilege of making this decision.&lt;&#x2F;p&gt;
+&lt;p&gt;In the company I work for it is no different. The weapon of choice was
+clojure! So, the first thing to keep in mind when design automated decision
+systems is that the entire company tooling, automated checks, native
+integrations were created for clojure micro services.&lt;&#x2F;p&gt;
+&lt;p&gt;This effect increases a lot the friction to break the clojure standard and
+the practicity to integrate with other platforms and solution is also
+greatly improved.&lt;&#x2F;p&gt;
+&lt;p&gt;As you can obviously imagine we are not deploying our machine learning models
+in clojure. We are developing, training and deploying them in python! The
+main reason is that there is just so much of machine learning work already
+done in public available packages and it is the standard of the industry.&lt;&#x2F;p&gt;
+&lt;p&gt;The outcome of these two elements is a two language design. There is the
+majority of services written in clojure and very few services holding
+machine learning models written in python.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-design&quot;&gt;The design&lt;&#x2F;h3&gt;
+&lt;p&gt;We choose to minimize the python &quot;surface area&quot; in the systems. Everything
+that can be done in clojure should be done in clojure. To be clear, retrieving
+data from other services, performing aggregations on historical data, and
+applying decisions to model predictions are all task that we decided to execute
+in clojure.&lt;&#x2F;p&gt;
+&lt;p&gt;What is left to &quot;python&quot; is just holding a thing layer of translation components
+and the model it self. We try to keep its interface as close as possible to a
+&quot;feature vector&quot; or a flat json schema from feature names to feature values.
+Still, there is a wrapper written in clojure that holds &quot;common tasks&quot; that
+all models should have like authentication, propagation of predictions to kafka
+and the ETL. This bundle is joined together in a Kubernetes pod applying the
+&quot;side car&quot; pattern.&lt;&#x2F;p&gt;
+&lt;p&gt;With this design we achieve:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;No python directly exposed to other services, just clojure.&lt;&#x2F;li&gt;
+&lt;li&gt;Minimal python deployment. Just the model, nothing else&lt;&#x2F;li&gt;
+&lt;li&gt;Anything that we need to apply to all deployed models
+can be included in the &quot;wrapper&quot; and instantly adopted.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;         ┌──────────────────────────────────────────────────────────┐
+         │ K8s Pod                                                  │
+         │ ┌────────────────────────┐           ┌─────────────────┐ │
+         │ │ Wrapper                │           │ Model           │ │
+Incoming │ │ (Clojure)              │ Forwarded │ (Python)        │ │
+Request  │ │                        │ Request   │                 │ │
+─────────┼→┼┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼──────────→│ ┌─────────────┐ │ │
+         │ │                        │           │ │  In Schema  │ │ │
+         │ │ - Standard             │           │ ├─────────────┤ │ │
+         │ │   Endpoints            │           │ │ In Adapter  │ │ │
+         │ │ - Authentication       │           │ ├─────────────┤ │ │
+         │ │ - Propagation          │           │ │    Model    │ │ │
+         │ │   to Kafka and         │           │ ├─────────────┤ │ │
+Outgoing │ │   the ETL              │ Forwarded │ │ Out Adapter │ │ │
+Response │ │                        │ Reponse   │ ├─────────────┤ │ │
+←────────┼─┼┄┄┄┄┄┄┄┄◌┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┼←──────────│ │ Out Schema  │ │ │
+         │ │        ┆ Logs every    │           │ └─────────────┘ │ │
+         │ │        ┆ model         │           │                 │ │
+         │ │        ┆ prediction    │           │                 │ │
+         │ │        ┆ to the ETL    │           │                 │ │
+         │ └────────┼───────────────┘           └─────────────────┘ │
+         └──────────┼───────────────────────────────────────────────┘
+                    V
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;There are downsides to this but I am not prepared yet to write about them.
+Soon, I will articulate the limitations of this design and what would be
+the next generation of this architecture for the next 10 years. Some
+of these limitations are already explained in my
+&lt;a href=&quot;https:&#x2F;&#x2F;sdragonex.github.io&#x2F;Divocak-Systems&#x2F;blog&#x2F;real-time-machine-learning-tips-and-tricks&#x2F;@blog&#x2F;on-the-future-of-machine-learning&#x2F;&quot;&gt;&quot;The future of Machine Learning&quot;&lt;&#x2F;a&gt;
+article.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-closer-look-at-the-model&quot;&gt;A closer look at the Model&lt;&#x2F;h3&gt;
+&lt;p&gt;Let&#x27;s discuss a bit more in focus what is happening in the model pipeline.
+With this minimalistic approach in mind, let&#x27;s expand each section:&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;1-in-schema&quot;&gt;1. &lt;strong&gt;In Schema&lt;&#x2F;strong&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;The default format for inter service communication is json.
+The default choice for the input schema is flat structure with feature
+names as keys and feature values as values. There are other choices&lt;&#x2F;p&gt;
+&lt;p&gt;There are other choices to this like when you have to aggregate something
+to turn into a feautres, like when you want to count and sum the amount
+of a transaction list. You have two basic choices: to aggregate in the
+requesting service or to provide a the raw list and aggregate inside the
+in adapter or the model pipeline.&lt;&#x2F;p&gt;
+&lt;p&gt;Certainly, if you can do more work in the model pipeline the gap for
+discrepancies between batch results will be smaller but that can
+pontentially break one assumption that we like a lot: &quot;n rows in, n rows out&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;This assumption is the assumption that if you send N instances of prediciton
+you must get back N instances with their predictions. In our practices
+it feels odd to send 10 rows in and get only one row back, specially when this
+work must be executed in the adapter because, for optimization purposes, you
+decided to aggregate this in a dataset or a datapipeline outside the model
+pipeline.&lt;&#x2F;p&gt;
+&lt;p&gt;Breaking this assumption also complicates the usage of the ETL
+logging machanisms, that also assume this. It requires you to start working
+with list values inside parquet tables and then reapplying the in-adapter in these
+values to reproduce what the model received. Awful thing.&lt;&#x2F;p&gt;
+&lt;p&gt;If you end up creating a big in-adapter you increase the gap for discrepancies
+and start doing a lot of work at a place we don&#x27;t have the same tools to tackle
+problems. Python was notably bad at asynchronous features
+(*until 3.14 at least, let&#x27;s see how things evolve) and tackling multiple
+heavy liffiting tasks in the in adapter seemed like an objective worse option
+than doing all the pre-aggragation tasks in the requesting service.&lt;&#x2F;p&gt;
+&lt;p&gt;So, in general we like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flat schemas. &lt;code&gt;{&quot;feature-name&quot;: value}&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;One prediction instance in, one prediction instance out.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;2-in-adapter&quot;&gt;2. &lt;strong&gt;In Adapter&lt;&#x2F;strong&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Again, the default format for inter service communication is json.
+The first step of getting model predictions is to translate from json to
+something the model can understand. Our default choice is dataframes,
+Pandas dataframes.&lt;&#x2F;p&gt;
+&lt;p&gt;The first key element of this in-adapter approach is to keep the model interface
+uniform. The model is a sequence of steps that always gets a table as input
+and returns a table as output preserving the same input schema and values but
+adding new coluns to it: the raw prediction, some kind of calibrated prediction and
+fitted empirical cumulative distribution values (ECDF) are options.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s why keeping the flat schema is so convenient, it simplifies a lot the
+in-adapter.&lt;&#x2F;p&gt;
+&lt;p&gt;We turn this flat schema into a single row dataframe and forward it to the
+model. Even the assembly of all these components, in-schema, in-adapter,
+the model, out-adapter, and out-schema are not hand made. There is an
+assembler template that, if you are not going to do anything different
+from this pattern, automatically assemble the pipeline from a config file
+with default implementations.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A Note on Pandas&lt;&#x2F;p&gt;
+&lt;p&gt;Pandas dataframes are notably slow. They set a historical mark when first
+released but now a days they feel outdated. With the recent advancements
+of the arrow backend you can mitigate performance issues but Polars was
+a true hit. Beyond providing a much performant implementation its API
+should be the standard API for dataframes for me.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h4 id=&quot;3-model&quot;&gt;3. &lt;strong&gt;Model&lt;&#x2F;strong&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;The model is the serialized artifact generated by the training process.
+For this discussion you can assume we have a standard way of training
+and serializing the model, we use pickle, that can later be referenced
+at deploy time and dynamically loaded into the pipeline temapled mentioned
+in the in-adapter section.&lt;&#x2F;p&gt;
+&lt;p&gt;What is important to highlight is that the model pipeline it self is
+another sequence of steps with the &quot;table in, table out&quot; interface.&lt;&#x2F;p&gt;
+&lt;h5 id=&quot;short-detour-fklearn&quot;&gt;&lt;strong&gt;short detour: fklearn&lt;&#x2F;strong&gt;&lt;&#x2F;h5&gt;
+&lt;p&gt;This &quot;table in, table out&quot; is the interface introduced by fklearn,
+a functional inspired interface for machine learning pipelines. It
+is open sourced and the details of its creations can be checked in
+this two part post in the company&#x27;s blog:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;introducing-fklearn-nubanks-machine-learning-library-part-i-2&#x2F;&quot;&gt;fklearn part 1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;introducing-fklearn-nubanks-machine-learning-library-part-ii&#x2F;&quot;&gt;fklearn part 2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You can also check:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;nubank&#x2F;fklearn&quot;&gt;fklearn github repo&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;pypi.org&#x2F;project&#x2F;fklearn&#x2F;&quot;&gt;fklearn pypi page&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;fklearn introduces a bunch of wrappers to usual sklearn, xgboost,
+lightbm, catboost and tensorflow packages that always follow the same
+API:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;python&quot;&gt;                                
+@curry                      
+def learner(
+    df: DataFrame,
+    **kwargs  # this kwargs can be any hyper parameters of you learner
+) -&amp;gt; tuple[Callable[[...], DataFrame], DataFrame, dict]:
+  # train the model first
+  model = train(df, **kwargs)
+
+  # then inject the state in a function
+  def apply_fn(df: DataFrame) -&amp;gt; DataFrame:
+    return model(df)
+
+  # return:
+  # 1. the function with the injected state for future application
+  # 2. the function applied to the training data
+  # 3. arbitrary &amp;quot;logs&amp;quot;, data that may be useful
+  return apply_fn, apply_fn(df), logs
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This uniform API let&#x27;s us create uniform pipelines without concerning of their
+own methods and representation, basically every machine learning framework has
+its own data type. We just translate in, train, and translate out and we can
+work confident that any fklearn building block will respect this API.&lt;&#x2F;p&gt;
+&lt;p&gt;This is an extremelly powerful abstraction that simplifies a lot the
+construction of complex model pipelines, specially when you need to
+do more after work after training the &quot;main&quot; model. Still may not
+work for LLMs but extremelly convenient for building medium and large
+scale models.
+(&lt;em&gt;I make a comment about model size in my
+&lt;a href=&quot;https:&#x2F;&#x2F;sdragonex.github.io&#x2F;Divocak-Systems&#x2F;blog&#x2F;real-time-machine-learning-tips-and-tricks&#x2F;@blog&#x2F;on-the-future-of-machine-learning&#x2F;&quot;&gt;&quot;The future of Machine Learning&quot;&lt;&#x2F;a&gt;&lt;&#x2F;em&gt;)&lt;&#x2F;p&gt;
+&lt;p&gt;The usual practice, when testing and adopting new frameworks, is to simply
+wrap them in the fklearn interface and introduce in a existing
+model pipeline or swap a previous implementation.
+You can see that in this description
+absolutely everthing remains constant, which improves a lot productivity
+in the experimentation, prototyping and deployment phases.&lt;&#x2F;p&gt;
+&lt;h5 id=&quot;back-to-model-pipelines&quot;&gt;&lt;strong&gt;Back to model pipelines&lt;&#x2F;strong&gt;&lt;&#x2F;h5&gt;
+&lt;p&gt;With the fklearn mode of building models loaded let&#x27;s break down the model
+pipeline as a simple sequence of steps:&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s call the &quot;model&quot; as &quot;model pipeline&quot; and call the main
+predictor&#x2F;learner in the pipeline as the &quot;model&quot;:&lt;&#x2F;p&gt;
+&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;               ┌─────────────────────────────────────┐ 
+               │ Model Service                       │ 
+               │ (Python)                            │ 
+               │                                     │ 
+               │ ┌─────────────────────────────────┐ │ 
+               │ │ In Schema                       │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ In Adapter                      │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Model Pipeline (pickled thing)  │ │ 
+               │ │ ┌─────────────────────────────┐ │ │ 
+               │ │ │ categorical trucation       │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ categorical encoder         │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ fillers and imputators      │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ main predictor, the &amp;quot;model&amp;quot; │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ calibration                 │ │ │ 
+               │ │ ├─────────────────────────────┤ │ │ 
+               │ │ │ ecdf mapping                │ │ │ 
+               │ │ └─────────────────────────────┘ │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Out Adapter                     │ │ 
+               │ ├─────────────────────────────────┤ │ 
+               │ │ Out Schema                      │ │ 
+               │ └─────────────────────────────────┘ │ 
+               └─────────────────────────────────────┘ 
+
+layers and layers and layers, they never end
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;This is the heart of the entire prediction process and the step that should
+take the most of the prediction time. It was a true suprise when some people
+started profilling various sections of the pipeline to realize the requests
+were 80%+ of their total time in the schemas and adapters!&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;4-out-adapter&quot;&gt;4. &lt;strong&gt;Out Adapter&lt;&#x2F;strong&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;After we get the single row output dataframe, we translate it back to a dictionary
+form in other to serialize it back again to json. In the output adapter we usally
+throw away most of the features and keep just what is important for taking downstream
+decisions. When it is absolutely necessary to keep the all the output, we build two
+top level keys: what is relevant to the requesting service and what is only
+relevant for the etl propagation.&lt;&#x2F;p&gt;
+&lt;p&gt;Coercing types back to something that is json serializable is one of the most boring
+tasks I have done in my machine learning engineer life.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;5-out-schema&quot;&gt;5. &lt;strong&gt;Out Schema&lt;&#x2F;strong&gt;&lt;&#x2F;h4&gt;
+&lt;p&gt;Finally we validate the structure of the output of the out adapter as sanity
+check. If it fails we return a 500 and that is life. Usually, we can prevent
+most of the serialization issues in the adapter but who knows what can happen.&lt;&#x2F;p&gt;
+&lt;p&gt;The other services have a very interesting contract
+(check this article on how they done it:
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;why-we-killed-our-end-to-end-test-suite&#x2F;&quot;&gt;Why We Killed Our End-to-End Test Suite&lt;&#x2F;a&gt;)
+based testing tool but, as mentioned, it only works for clojure services.
+We hope to use such structure in the future but not possible for now.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;summary-on-the-model-deployment-structure&quot;&gt;Summary on the model deployment structure&lt;&#x2F;h4&gt;
+&lt;p&gt;This is a very uniform and standard way of approaching the deployment of
+machine learning models inside services. I will disclose and discuss a bit
+more the technology choices of all these stages but what is important to
+know is that if you are building a &quot;standard&quot; model, i.e. a model that
+can fit the described structure, you get the entire deployment almost for
+free with just minor configuration stages. This yields a great uniformity
+over all real-time models and great productivity for both Data Scientists
+and Machine Learning Engineers.&lt;&#x2F;p&gt;
+&lt;p&gt;Without more blabla,
+&lt;em&gt;Let&#x27;s begin the tips and tricks!&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-techniques&quot;&gt;The techniques&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;cost-optimization-or-just-doing-less&quot;&gt;Cost optimization, or just doing less&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;remember-of-unnecessary-redundancy&quot;&gt;Remember of unnecessary redundancy&lt;&#x2F;h3&gt;
+&lt;p&gt;One of the strategies to scale adopted by the company was to apply sharding,
+not just for databases
+(&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;managing-cloud-limits&#x2F;&quot;&gt;Managing Cloud Limits&lt;&#x2F;a&gt;) but
+for everything, including services, kafka and models.&lt;&#x2F;p&gt;
+&lt;p&gt;The issue with sharding is that although it works very well for scaling databases
+it may introduce unnecessary redundancy for shareable workloads specially
+statless services like model services. Given that shards are relatively independent
+and that, in order to keep high availability, we required a minimum of 2 independent
+work units (pods in Kubernetes), if we have 20 shards we already starts with a minimum of
+40 working units.&lt;&#x2F;p&gt;
+&lt;p&gt;For many usecases even using fractions of resources was already a lot making the
+bottom of costs very high just to start. Besides that, tasks that operates with
+a shard bias would be under utilized in low load shards and under pressure in high
+load shards (there is the possibility to make different resource allocations per
+shard but we took an even better approach). We observed many times models going
+down because of hicups in resource allocation, one pode goes down, the other
+gets overloaded and model down.&lt;&#x2F;p&gt;
+&lt;p&gt;The strategy to overcome that was to get rid of sharded model deployment. Take a global
+deployment setting where requests from all shards goes to a single global set of model
+pods. This reduced the minimum, since now we can keep the minimum at a global level,
+and reduced the under utilization buffer since shard bias didn&#x27;t matter anymore.&lt;&#x2F;p&gt;
+&lt;p&gt;This was also good to improve mini batching efficiency since we could keep latency
+relatively the same value but increasing the through put.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;filter-as-much-as-possible&quot;&gt;Filter as much as possible&lt;&#x2F;h3&gt;
+&lt;p&gt;Just doing less is the best optimization possible. The trick we employ is,
+when possible, to create some kind of rough filter, often called &quot;pre policy&quot;
+to control model eligibility and pontentially save precious units of work.&lt;&#x2F;p&gt;
+&lt;p&gt;If a given customer or transaction can be considered &quot;not applicable&quot; from
+other fast acquiring features and in simple logic form we can return a
+preliminary, simpler, result and not waste all the resources required
+to run a model. Otherwise, we proceed to a regular model scoring.&lt;&#x2F;p&gt;
+&lt;p&gt;The effect is dramatic. Here are some examples (as of October 2024):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The identity fraud model that runs in various events
+gets reduce from a raw count of events of 2800 events per second to
+only &lt;strong&gt;20 events per second&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;The theft model is designed to work in the same events. With its
+filter we can reduce to only &lt;strong&gt;200 events per second&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This technique is not always possible to be applied. Sometimes you
+are trying to identify exactly what you designed your model for and
+if a pre-policy was possible to be done you wouldn&#x27;t be building the
+model in the first place.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The credit card transaction model can&#x27;t use a pre policy.&lt;&#x2F;li&gt;
+&lt;li&gt;The mule accounts model can&#x27;t use a pre policy.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;optimize-your-dependencies-graph&quot;&gt;Optimize your dependencies graph&lt;&#x2F;h3&gt;
+&lt;p&gt;Dependencies graphs can be the source of countless problems and headaches.&lt;&#x2F;p&gt;
+&lt;p&gt;This is one typical dependency graph from one of the models that run in my
+company:
+&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;Inputs
+id-1              id-2  id-3   id-4
+─┼─────────────────┼─────┼──────┼───
+ ├─┬───┬──┬──┬─┬─┐ │     ├─┐    │
+ │ ●   ●  │  ● ● ● │     ● ●    ●
+ │ │   │  │  │ │ └─●
+ │ ●   ●  │  │ │
+ │     ├──●  │ ├─┬─┬─┬─┐
+ │     ●     │ ● ● ● ● ●
+ ├─┬─┐ ├─┬─┐ ├─┬─┬─┬─┬─┬─┬─┐
+ ● ● ● ● ● ● ● ● ● ● ● ● ● ●
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;In this ascii art we see a representation dependency graph. Each circle
+represents a request to an external service to fetch information required
+to build the final set of features. We start from the top, with imediately
+available information like the &lt;code&gt;id-1&lt;&#x2F;code&gt;, &lt;code&gt;id-2&lt;&#x2F;code&gt;, &lt;code&gt;id-3&lt;&#x2F;code&gt;, &lt;code&gt;id-4&lt;&#x2F;code&gt;, and we proceed
+down reaching out for features. The lines represent dependencies, so if a circle
+comes above it must finish before we can execute a circle below.
+In some cases some intermediate information is required before we can reach
+to the information we want. This is typical to cases where you have a secondary
+identifier and you need to get the primary identifier to then query the
+main table for the features. Some times you need two identifiers,
+only the combination of them fully identifies the entity you are looking for,
+to find the desired features.&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see, there are 32 requests to external services to fetch
+features. The longest dependency chain has 4 requests in sequence.
+As we you may imagine, if we execute these requests in sequence, and
+each one of them takes 100 milliseconds to complete, we would wait
+a total of 3200 milliseconds to get all features ready. In this
+particular case the model was required to answer in less than 700
+milliseconds.&lt;&#x2F;p&gt;
+&lt;p&gt;In order to achieve that, we paralelize all the requests with
+native clojure async features, future and delays. This way the total
+time to retrieve all features gets bounded by the longest chain, 400
+milliseconds in this case, leaving 300 milliseconds for the additional
+model request and the logic that turns model predictions into actions.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;keep-your-controllers-simple&quot;&gt;Keep your controllers simple&lt;&#x2F;h4&gt;
+&lt;p&gt;But building this type of controller gets complicated really fast and your logic start to
+get completely filled with deref operators and keeping track of errors in deep chains of
+dependencies becomes a hard task. Also, sometimes you need to transform previously
+fetched information into a new representation in order to call the next service, which
+interperse you controller with impure side effects pure logic computations, making really
+hard to test the full behavior and map all corner cases.&lt;&#x2F;p&gt;
+&lt;p&gt;Recently, the company open sourced &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;nubank&#x2F;nodely&quot;&gt;nodely&lt;&#x2F;a&gt;, a tool
+built exactly to tackle these complex graphs and assist separating effectful
+computations from pure logic, providing a simpler mental model and better interception
+points for testing. It topologically sorts the graph and optimally executes it for you.
+Maintaining nodely graphs is still hard, as it is to build and represent the entire
+computational graph, but much simpler than hand crafting them from vanilla clojure
+(future and delay), or &lt;code&gt;core.async&lt;&#x2F;code&gt; building blocks. One of the nice features of nodely
+is that it supports many backends and styles of actually exectuing the graph.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are also building complex feature or dependency graphs consider taking a look at
+it, not just for the library itself but it also presents a comparison with similar work
+and the differences between them.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;use-as-much-as-possible-asynchronous-techniques&quot;&gt;Use as much as possible asynchronous techniques&lt;&#x2F;h4&gt;
+&lt;h4 id=&quot;keep-tight-control-of-timeouts&quot;&gt;Keep tight control of timeouts&lt;&#x2F;h4&gt;
+&lt;h4 id=&quot;use-something-clever-to-do-the-hard-work-for-you&quot;&gt;Use something clever to do the hard work for you&lt;&#x2F;h4&gt;
+&lt;h4 id=&quot;monitor-them-closely&quot;&gt;Monitor them closely&lt;&#x2F;h4&gt;
+&lt;h4 id=&quot;go-beyond-your-borders-for-optimal-performance&quot;&gt;Go beyond your borders for optimal performance&lt;&#x2F;h4&gt;
+&lt;h3 id=&quot;optimize-the-model-service-and-the-model-pipeline&quot;&gt;Optimize the model service and the model pipeline&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;simplicity-is-the-key-to-success-or-how-to-avoig-being-overwhelmed-by-your-own-complexity&quot;&gt;Simplicity is the key to success, or how to avoig being overwhelmed by your own complexity&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;split-long-term-and-short-term-features&quot;&gt;Split long term and short term features&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;rely-on-know-tools-systems-and-sources&quot;&gt;Rely on know tools, systems and sources&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;reduce-the-feature-engineering-implementation-gap&quot;&gt;Reduce the feature engineering implementation gap&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;just-when-valuable-build-your-own-thing-to-store-data&quot;&gt;Just when valuable, build your own thing to store data&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;tests-and-ergonomy&quot;&gt;Tests and ergonomy&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;good-integration-tests-make-cents&quot;&gt;Good integration tests make cents&lt;&#x2F;h3&gt;
+&lt;h3 id=&quot;test-in-production-always-but-mitigating-risks&quot;&gt;Test in production always! But mitigating risks&lt;&#x2F;h3&gt;
+&lt;h1 id=&quot;final-thoughts-and-conclusion&quot;&gt;Final thoughts and conclusion&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;one-size-doesn-t-fit-all&quot;&gt;One size doesn&#x27;t fit all&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;references-used&quot;&gt;References used&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.asciiart.eu&#x2F;space&#x2F;stars&quot;&gt;&lt;em&gt;Stars&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The future of Machine Learning</title>
+        <published>2025-10-27T00:00:00+00:00</published>
+        <updated>2025-10-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/on-the-future-of-machine-learning/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/on-the-future-of-machine-learning/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/on-the-future-of-machine-learning/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;
+      `-._\ &#x2F;     `~~&amp;quot;--.,_
+     ------&amp;gt;|              `~~&amp;quot;--.,_
+ jgs  _.-&amp;#39;&#x2F; &amp;#39;.____,,,,----&amp;quot;&amp;quot;&amp;quot;~~```&amp;#39;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;This is a text that I&#x27;ve been long waiting to write. After long reflections with my self
+and probing various friends and coworkers I will give it a chance of becoming something.
+I want to talk about the vision of a different future, a future where my life is easier
+at training and deploying machine learning models.&lt;&#x2F;p&gt;
+&lt;p&gt;I though of many titles for this post: &lt;em&gt;How to make my life less miserable?&lt;&#x2F;em&gt;,
+&lt;em&gt;Machine learning for the rest of us?&lt;&#x2F;em&gt;, &lt;em&gt;Interoperable and scalable machine learning&lt;&#x2F;em&gt;.
+Pick the one you find the best.&lt;&#x2F;p&gt;
+&lt;p&gt;In this post I will introduce a few issues that I could observe from my year of experience.
+These are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;[Small, Medium and Large. But not Huge]&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;the-diagnosis&quot;&gt;The diagnosis&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;1-small-medium-and-large-but-not-huge&quot;&gt;1. Small, Medium and Large. But not Huge&lt;&#x2F;h2&gt;
+&lt;p&gt;In the past few year LLMs got a lot of attention and put Artificial Intelligence in the
+spot light. I don&#x27;t deny the importance of LLMs and their wonderful applications but I
+will argue that not a lot of people are building these massive language models at absurd
+massive scale.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Just recently it was announced by OpenAI a &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;openai.com&#x2F;index&#x2F;five-new-stargate-sites&#x2F;&quot;&gt;500 billion investment&lt;&#x2F;a&gt;
+in this Stargate data center. I can&#x27;t even magine how much computational power such system can
+hold.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;What I am mostly concerned is what I am going to call Small, Medium and Large scale
+machine learning.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s think about all of us, ordinary machine learning engineers and data scientists,
+trying to build all sorts of specialized models. We can think of insurance models,
+credit models, all sorts of text and image classification models, the list is long but
+the common factor is that even the most complicated specialized image models are not
+even near the billions of parameters that LLMs are building.&lt;&#x2F;p&gt;
+&lt;p&gt;We are deploying these models are batch jobs, simple http services, inside streaming
+applications or even in low power hardware like Raspberry PIs and ESP32.&lt;&#x2F;p&gt;
+&lt;p&gt;Is it ok to think about training these models in my notebook? Using some simple
+interoperability to deploy these models in other infrastructures and follow my life
+without getting worried that these models are too expensive? Or that they are going
+to wake me up at night?&lt;&#x2F;p&gt;
+&lt;p&gt;I will claim, based on nothing, that the majority of the machine learning practitioners
+are building small, medium and large models. But not huge. We have scikit-learn, all
+the boosting libraries, we have a lot of new work in new deep learning frameworks but
+at the end, did our lives got easier in the past ten years?&lt;&#x2F;p&gt;
+&lt;p&gt;The company I work for kinded of sorted out a way to minimize friction on pickling and
+deplicking stuff, controlling environments and requirements. But I heard still companies
+using massive monorepos of models with requirements fully pinned. Batch jobs still have
+miserable slow performances and are way more wasteful than they need to be
+(&lt;em&gt;are you loading your entire inference dataset in the memory to apply an old model?&lt;&#x2F;em&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;It is clear that pinning requirements is not a sustainable solution, but if you are not
+doing that, how are you managing legacy models? It is good to reproduce some old predictions
+to compare historical stand points but then we need to keep storing legacy code that must
+pair with these legacy pickles and&#x2F;or serialized weights.&lt;&#x2F;p&gt;
+&lt;p&gt;This doesn&#x27;t seem practical neither conveninent. So, in order to tackle this &quot;bellow huge scale
+models&quot;, I will propose a new model (not a machine learning model) of deploying these decision
+machines that take the usual reality of the industry into consideration: &lt;strong&gt;the machine learning
+model interoperability&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2-why-do-we-need-interoperability&quot;&gt;2. Why do we need interoperability?&lt;&#x2F;h2&gt;
+&lt;p&gt;I don&#x27;t believe all the machine learning practitioners feel that Python is the best programming
+language for everything. The main reason why Python is the &quot;AI Language&quot; is because it became
+popular before anything else. Python is going to last for ever but I believe it will remain
+for a log time still, at least more 20 years.&lt;&#x2F;p&gt;
+&lt;p&gt;But that doesn&#x27;t preven us from chosing a better language for everything else, right? I can pick
+my good and old Java, or Go, or Elixir, or whatever is trending right now. The thing is that as soon
+as you want to integrate automated decisions backed by machine learning models (that definetely
+are going to be developed in Python) you will need to break your language choice. Beyond that
+just a small set of machine learning engineers get to pick their data pipeline language or their
+backend language, these are decisions left often to founders at very early stage in companies.
+In older companies and bigger enterprise you just can&#x27;t throw in a new language.&lt;&#x2F;p&gt;
+&lt;p&gt;So, most of us don&#x27;t chose the language the find the best for the problem but whatever
+language chose year before.&lt;&#x2F;p&gt;
+&lt;p&gt;If we want to make our life simple and easy we must find a way to take the trained models
+and embed them in other programming languages, either for batch processess, streaming
+applications, backend services, games or whatever you are builidng.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;duckdb-a-little-digression-with-a-spark&quot;&gt;DuckDB: a little digression with a spark&lt;&#x2F;h3&gt;
+&lt;p&gt;I recently started testing DuckDB from clojure environments. I was attempting to replicate
+dataframe based feature engineering pipelines in clojure and DuckDB, through the Ibis Project,
+seemed like an approachable alternative.&lt;&#x2F;p&gt;
+&lt;p&gt;While reading the documentation and understanding how it could work I saw that DuckDB could
+be integrated in the JVM environment using a single binary! Using the C foreign function
+interface.&lt;&#x2F;p&gt;
+&lt;p&gt;I copy the binary in my project, dynamically link it in runtime, and we get DuckDB running!
+Super fast, simple and easy. This experience was so refreshing that a spark happened in my
+brain.&lt;&#x2F;p&gt;
+&lt;p&gt;Why can&#x27;t I distribute machine learning models as stand alone binaries?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;stand-alone-binaries-as-the-main-distribution-format-of-machine-learning-models&quot;&gt;Stand alone binaries as the main distribution format of machine learning models&lt;&#x2F;h3&gt;
+&lt;p&gt;If we can stablish a universal inference API, with a universal in memory table inter process
+layout, we could make predictions without even copying any data and without relying on any type
+of serialization.&lt;&#x2F;p&gt;
+&lt;p&gt;There are projects like ONNX and Safe Tensors that try to map all sorts of neural networks
+layers and dags but at the end the spec must be always at pace with what is possible
+to describe in the deep learning frameworks. If I am an academic, could I write my new
+trendy and cool neural network layer and make it instantly available by just compiling it?&lt;&#x2F;p&gt;
+&lt;p&gt;For sure the compiled models would still be limited by what is possible to compile but
+if we introduce a more high level standard API that libraries could built upon we could
+start a platform of more interchangeable decision systems.&lt;&#x2F;p&gt;
+&lt;p&gt;Stand alone binaries are completely detached from their training code, making possible
+to keep legacy stuff without storing environments or keeping control of multiple
+moving parts.&lt;&#x2F;p&gt;
+&lt;p&gt;Dynamically linking could be combined with &quot;model managers&quot; that can perform smooth rollouts,
+A&#x2F;B tests. MLEs can choose if they deploy a model with dedicated resources, or they are so light
+that they can be embedded in other services to keep complexity low. In device deployment
+becomes struggle free. IOT devices and limited hardware can pick special compilation flags
+to prune as much as possible of the final executable.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;3-the-historical-split-between-deep-and-classical-learning&quot;&gt;3. The historical split between deep and classical learning&lt;&#x2F;h2&gt;
+&lt;p&gt;I don&#x27;t know why, but machine learning frameworks have been divided into big categories:
+classical frameworks (scikit-learn and boosting libraries) and deep learning frameworks
+(tensorflow, pytorch, jax).&lt;&#x2F;p&gt;
+&lt;p&gt;This is an annoying reality for me because frequently I find my self trying to mix and
+match these tools. For me it seems completely reasonable to make simples feature engineering
+to my standard features before jumping to the complex neural network. Like, simple
+regex features work and I don&#x27;t need fancy text encodings or embeddings. But couldn&#x27;t we just
+have a uniform estimator API that can join classical and deep learning frameworks
+in a single cohesive ecosystem?&lt;&#x2F;p&gt;
+&lt;p&gt;The place I work for, Nubank, has very interesting machine learning library called fklearn.
+This library adresses this very critical inconvenience of having multiple data standards.
+It wraps all the common builidng blocks of machine learning, including deep learning,
+with a uniform Pandas interface. Any estimator has an interface of data in, state out.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Training Function[Pandas DataFrame, Hyperparameters] -&amp;gt; Trained Estimator, Estimator applyied to DataFrame, Logs
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;But as already described, it is just a wrapper, it keeps translating from Pandas to the internal
+data model of each framework:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Numpy for scikit-learn&lt;&#x2F;li&gt;
+&lt;li&gt;Propietary data format for boosting&lt;&#x2F;li&gt;
+&lt;li&gt;Weird tensors for pytorch and tensorflow&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;scikit-learn-comment-on-data&quot;&gt;Scikit-learn comment on data&lt;&#x2F;h3&gt;
+&lt;p&gt;I followed scikit-learn project from development versions from &lt;code&gt;0.19.0&lt;&#x2F;code&gt; up to its first major release.
+The drama along either supporting or not Pandas dataframes reduced its ability to become the
+standard for anything else. Its API had limitations to incorporate early-stopping techniques
+and a lot of potential was left.&lt;&#x2F;p&gt;
+&lt;p&gt;I understand the dilema of including an unknown dependency to the project and
+widening the data api to a whole new format but that said DataFrames are
+the entrypoint for analytical jobs today.&lt;&#x2F;p&gt;
+&lt;p&gt;Anyone that is building a model will start by loading data in a dataframe.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;back-to-unifying-machine-learning-frameworks&quot;&gt;Back to unifying machine learning frameworks&lt;&#x2F;h3&gt;
+&lt;p&gt;Could we have all machine learning libraries built on top a single unified
+data format, with a unified top level API, that let us mix and match
+any kind of estimator and custom implementations from multiple libraries?&lt;&#x2F;p&gt;
+&lt;p&gt;Why not store tensors as usual DataFrame columns? And use them as regular
+feature values for models? Can you imagine a dataframe column with a datatype
+&quot;Video&quot;? Is that too crazy?&lt;&#x2F;p&gt;
+&lt;p&gt;If these memory standard can be spread beyond the Python ecosystem, we get our
+inference API from simple reasoning.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;4-unlocking-the-potential-of-modern-hardware&quot;&gt;4. Unlocking the potential of modern hardware&lt;&#x2F;h2&gt;
+&lt;p&gt;The Rust revolution arived the big data world leaving nothing behind. But not just Rust,
+Zig and old C&#x2F;C++ for those willing to let go modern features.
+The world of low level optimization and the practice of squeezing every inch of performance
+from chips and leveraging GPU technologies is making Spark and Parquet looking like a
+2014 Honda Civic near an acessible ultrafast EV.&lt;&#x2F;p&gt;
+&lt;p&gt;All sorts of projects like DataFusion, DuckDB, Polars, Arrow, Vortex, Feldera, IceBerg, TigerBeetle
+are acomplishing things never imagined 10 years ago by reimagining specialized domains
+and leaving behind legacy constraints.&lt;&#x2F;p&gt;
+&lt;p&gt;Could we take the learnings and practices from these projects, levereging their discoveries,
+and apply to the next machine learning library? Seeking a middle ground between academic
+development and industry strength solutions? What was the ground breaking thing
+in machine learning libraries in the last 10 years? Certainly pytorch,
+tensorflow and scikit-learn itself. But what is going to be the next one?&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-dream-of-a-new-machine-learning-library&quot;&gt;The dream of a new machine learning library&lt;&#x2F;h1&gt;
+&lt;p&gt;Given this diagnose elements I will try to design a new machine learning
+library that can potentially be the breakthrough of machine learning
+practitioners in the next 10 years.&lt;&#x2F;p&gt;
+&lt;p&gt;The requirements are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python is non negotiable. It is the standard for practitioners, almost the front end
+of model builders. Anything for the future must, at least, expose a Python API.&lt;&#x2F;li&gt;
+&lt;li&gt;A uniform memory model that cuts the necessity of multiple translation steps. Once
+data is ready to be trained only incremental changes are required. The current standard
+for analytical in memory data representation is the Arrow Project.&lt;&#x2F;li&gt;
+&lt;li&gt;Performance is non negotiable. Whatever is going to be built must be strongly
+benchmarked and the most efficient algorithm and implementation.&lt;&#x2F;li&gt;
+&lt;li&gt;A high level API that simplify composition from heterogeneous estimators. No DAGs, just
+a sequence of steps. Parallelism can be handled at row chunks level.&lt;&#x2F;li&gt;
+&lt;li&gt;A uniform exposition of hyperparameters space for automatic hyperparameter tunning
+algorithms.&lt;&#x2F;li&gt;
+&lt;li&gt;A compile API that exports JIT models as stand alone binaries, completely detached from their
+training code. This can also include optinal interface systems like streaming apis, http apis,
+batch inference apis.&lt;&#x2F;li&gt;
+&lt;li&gt;Clients in various programming language ecosystems to save as much time as possible from our
+future users.&lt;&#x2F;li&gt;
+&lt;li&gt;Rust is our weapon of choice for low level implementation and guaranteer of the following requirements.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;the-break-in&quot;&gt;The break in&lt;&#x2F;h2&gt;
+&lt;p&gt;We must start somewhere. My proposition will be to build a custom implementation for fast frugal trees,
+a model class that I recently got in touch for work and can be an example to sort out the details
+of these requirements.&lt;&#x2F;p&gt;
+&lt;p&gt;Thank you!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;ascii.co.uk&#x2F;art&#x2F;carrot&quot;&gt;&lt;em&gt;Carrot&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>The challenge to be viewed</title>
+        <published>2025-10-21T00:00:00+00:00</published>
+        <updated>2025-10-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/releasing-the-blog/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/releasing-the-blog/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/releasing-the-blog/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;                    _(_)_                          wWWWw   _  
+        @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_
+       @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)
+        @@@@  (___)     `|&#x2F;    Y    (_)@(_)  @@@@   \|&#x2F;   (_)\
+         &#x2F;      Y       \|    \|&#x2F;    &#x2F;(_)    \|      |&#x2F;      |
+      \ |     \ |&#x2F;       | &#x2F; \ | &#x2F;  \|&#x2F;       |&#x2F;    \|      \|&#x2F;
+      \\|&#x2F;&#x2F;   \\|&#x2F;&#x2F;&#x2F;  \\\|&#x2F;&#x2F;\\\|&#x2F;&#x2F;&#x2F; \|&#x2F;&#x2F;&#x2F;  \\\|&#x2F;&#x2F;  \\|&#x2F;&#x2F;  \\\|&#x2F;&#x2F;
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;It has been a while since I started thinking on building a webstie, a blog, a form of digital presence that is
+out of social media or the closed internet. Since the release of &lt;em&gt;GitHub Pages&lt;&#x2F;em&gt; this desire exists and since this day
+I involved myself in the development of multiple prototypes of &lt;em&gt;websites&lt;&#x2F;em&gt; with countless differente frameworks:
+jekyll, hugo, react and svelte, using Vercel, Netlify... and now Zola. I can&#x27;t remember how many times I deleted and
+recreated my &lt;code&gt;sdragonex.github.io&lt;&#x2F;code&gt; repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Many of these attempts didn&#x27;t come to life for various reasons, I didn&#x27;t like the themes,
+I wished multilanguage support, katex, having nothing to say or just the embarassement of exposing yourself.
+After much internal thinking, noting that newer frameworks enable a much simpler and pratical website and
+letting go of an aesthetic ideal this website comes to the world.&lt;&#x2F;p&gt;
+&lt;p&gt;It is built with &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zola&lt;&#x2F;a&gt; and the &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;duckquill.daudix.one&#x2F;&quot;&gt;Duckquill&lt;&#x2F;a&gt; theme,
+it has an interesting aesthetics, support to many languages and
+comments using Mastodon. One of the reasons of this introductory post is to test this integration.&lt;&#x2F;p&gt;
+&lt;p&gt;Today, my necessity to have a space to speak is greater than never and I believe to be able to say things
+that matter to other people. The modern times required, also, a constant showcase and personal brand, a professional
+aesthetics, that emulates the form of producing content for social media. This website intends to be all these things
+besids also being a big index to all stuff I do.&lt;&#x2F;p&gt;
+&lt;p&gt;Without artificial intelligence, I hope that here becomes a place of authenticity, learning and discussion.
+See you there!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;loveascii.com&#x2F;flowershtm.html&quot;&gt;&lt;em&gt;Flowers&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Inside Revolut Engineering: Banking at Hyperscale</title>
+        <published>2025-01-25T00:00:00+00:00</published>
+        <updated>2025-01-25T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/revolut-engineering/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/revolut-engineering/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/revolut-engineering/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;  ____  ____  ____  ____ 
+ &#x2F; ___|&#x2F; ___||  _ \| __ )
+ \___ \\___ \| |_) |  _ \
+  ___) |___) |  _ &amp;lt;| |_) |
+ |____&#x2F;|____&#x2F;|_| \_\____&#x2F;
+Revolut - Tech Stack 2025
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;Revolut processes &lt;strong&gt;$2T+ payments yearly&lt;&#x2F;strong&gt; with &amp;lt;50ms latency. How?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tech-stack-highlights&quot;&gt;Tech Stack Highlights&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;infrastructure-kubernetes-finagle&quot;&gt;Infrastructure: Kubernetes + Finagle&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;scala&quot;&gt;&#x2F;&#x2F; Finagle service (Scala)
+class PaymentService extends Service[Req, Resp] {
+  def apply(req: Req): Future[Resp] = {
+    for {
+      validated &amp;lt;- validator(req)
+      charged &amp;lt;- stripe.charge(validated)
+      notified &amp;lt;- notification.send(charged)
+    } yield SuccessResp
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;data-platform&quot;&gt;Data Platform&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Kafka Streams&lt;&#x2F;strong&gt; for real-time fraud&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;ClickHouse&lt;&#x2F;strong&gt; for analytics (1PB+)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Vitess&lt;&#x2F;strong&gt; for MySQL sharding&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;engineering-culture&quot;&gt;Engineering Culture&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Weekly Tech Talks&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Rust for payments infra&lt;&#x2F;li&gt;
+&lt;li&gt;WASM for micro-frontends&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Open Source&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;revolut-engineering&quot;&gt;REngine&lt;&#x2F;a&gt; – Kotlin coroutines framework&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;challenges-solved&quot;&gt;Challenges Solved&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;99.999% Uptime&lt;&#x2F;strong&gt;: Chaos engineering with Litmus&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Regulatory Compliance&lt;&#x2F;strong&gt;: GDPR + PCI-DSS automation&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Multi-Cloud&lt;&#x2F;strong&gt;: GCP + AWS hybrid&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;blockquote class=&quot;markdown-alert-important&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Key Lesson&lt;&#x2F;strong&gt;: Monolith → Microservices → Platform Engineering.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;careers-revolut-tech&quot;&gt;Careers @ Revolut Tech&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;400+ engineers, 50 nationalities&lt;&#x2F;li&gt;
+&lt;li&gt;Remote-first (post-COVID policy)&lt;&#x2F;li&gt;
+&lt;li&gt;Stack: Scala, Kotlin, Go, Rust&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Follow &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;RevolutEng&quot;&gt;@RevolutEngineering&lt;&#x2F;a&gt; for deep dives.&lt;&#x2F;p&gt;
+&lt;p&gt;[&lt;em&gt;Data from Revolut Tech Blog 2024&lt;&#x2F;em&gt;]&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Axiom: Modern Incident Management for Engineers</title>
+        <published>2025-01-15T00:00:00+00:00</published>
+        <updated>2025-01-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/axiom-overview/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/axiom-overview/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/axiom-overview/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;  __   __    _    _ 
+ &#x2F; _\ &#x2F; _\  (_)  (_)
+ \ \  \ \   _   _ 
+  \_\ \_\ (_) (_)
+Axiom - Logs. Metrics. Traces. Alerts.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;&lt;strong&gt;Axiom&lt;&#x2F;strong&gt; is a next-generation observability platform that&#x27;s gaining traction among engineering teams tired of traditional tools like Splunk or ELK stack. Unlike legacy log aggregators, Axiom combines logs, metrics, traces, and alerts in a single, high-performance system optimized for cloud-native workloads.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-axiom&quot;&gt;Why Axiom?&lt;&#x2F;h2&gt;
+&lt;blockquote class=&quot;markdown-alert-tip&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Key Advantage&lt;&#x2F;strong&gt;: Axiom stores raw events (not pre-aggregated indices), enabling arbitrary queries at petabyte scale with sub-second latency.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;1-ultra-fast-search-analytics&quot;&gt;1. &lt;strong&gt;Ultra-Fast Search &amp;amp; Analytics&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1 PB free forever&lt;&#x2F;strong&gt; for development teams&lt;&#x2F;li&gt;
+&lt;li&gt;SQL-like query language with full-text search&lt;&#x2F;li&gt;
+&lt;li&gt;Real-time dashboards with live tailing&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-unified-observability&quot;&gt;2. &lt;strong&gt;Unified Observability&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code&gt;Logs → Metrics → Traces → Alerts → All in one dataset
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;No more siloed tools. Query across everything:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;sql&quot;&gt;-- Find slow API endpoints correlated with errors
+select * from logs 
+where service=&amp;quot;api&amp;quot; and duration &amp;gt; 2s 
+and trace_id is not null
+join traces on trace_id 
+limit 100
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;3-developer-first-features&quot;&gt;3. &lt;strong&gt;Developer-First Features&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Live Tail&lt;&#x2F;strong&gt;: &lt;code&gt;tail -f &#x2F;path&#x2F;to&#x2F;logs&lt;&#x2F;code&gt; for cloud infra.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CLI with jq-like processing&lt;&#x2F;strong&gt;: &lt;code&gt;axiom query &#x27;service=api&#x27; | jq&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;GitOps workflows&lt;&#x2F;strong&gt;: Deploy dashboards via YAML&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OpenTelemetry native&lt;&#x2F;strong&gt; integration&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;hands-on-quick-start&quot;&gt;Hands-On: Quick Start&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install CLI&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;curl -sSfL https:&#x2F;&#x2F;axiom.co&#x2F;install.sh | sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Ingest Logs&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;echo &amp;#39;{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;message&amp;quot;:&amp;quot;Hello Axiom&amp;quot;}&amp;#39; | axiom ingest --dataset=myapp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Query&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;axiom query &amp;#39;level=error&amp;#39;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;advanced-custom-processing&quot;&gt;Advanced: Custom Processing&lt;&#x2F;h2&gt;
+&lt;p&gt;Axiom&#x27;s &lt;strong&gt;Datasets&lt;&#x2F;strong&gt; let you define processing pipelines:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;yaml&quot;&gt;dataset:
+  name: &amp;quot;processed-logs&amp;quot;
+  source: &amp;quot;raw-logs&amp;quot;
+  transform:
+    - parse_json(message)
+    - add_field(&amp;quot;parsed_level&amp;quot;, level)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;comparison-matrix&quot;&gt;Comparison Matrix&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Feature&lt;&#x2F;th&gt;&lt;th&gt;Axiom&lt;&#x2F;th&gt;&lt;th&gt;Datadog&lt;&#x2F;th&gt;&lt;th&gt;New Relic&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Raw Storage&lt;&#x2F;td&gt;&lt;td&gt;1PB free&lt;&#x2F;td&gt;&lt;td&gt;Limited&lt;&#x2F;td&gt;&lt;td&gt;Sampled&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Query Cost&lt;&#x2F;td&gt;&lt;td&gt;Pay per GB queried&lt;&#x2F;td&gt;&lt;td&gt;Pay per host&lt;&#x2F;td&gt;&lt;td&gt;Pay per user&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;SQL Support&lt;&#x2F;td&gt;&lt;td&gt;Full&lt;&#x2F;td&gt;&lt;td&gt;Limited&lt;&#x2F;td&gt;&lt;td&gt;Basic&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;CLI&lt;&#x2F;td&gt;&lt;td&gt;Rich&lt;&#x2F;td&gt;&lt;td&gt;Basic&lt;&#x2F;td&gt;&lt;td&gt;None&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h2 id=&quot;when-to-choose-axiom&quot;&gt;When to Choose Axiom?&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cost-sensitive teams&lt;&#x2F;strong&gt; scaling logs &amp;gt;1TB&#x2F;day&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Kubernetes-native&lt;&#x2F;strong&gt; environments (Helm charts ready)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Query-heavy&lt;&#x2F;strong&gt; workflows (ad-hoc analysis)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Trade-off&lt;&#x2F;strong&gt;: Still young (2023 launch), ecosystem smaller than incumbents.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;resources&quot;&gt;Resources&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;axiom.co&#x2F;docs&quot;&gt;Axiom Docs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;axiomhq&#x2F;axiom&quot;&gt;GitHub Repo&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;axiom.co&#x2F;pricing&quot;&gt;Pricing&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Experiment with their free tier – it&#x27;s genuinely impressive for debugging complex systems.&lt;&#x2F;p&gt;
+&lt;p&gt;[&lt;em&gt;ASCII Art via textart.io&lt;&#x2F;em&gt;]&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Axiom Trade: Meme Coin Trading a DEX Insights Platform</title>
+        <published>2025-01-15T00:00:00+00:00</published>
+        <updated>2025-01-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/blog/axiom-trade-platform/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/blog/axiom-trade-platform/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/blog/axiom-trade-platform/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;  ____  ____ 
+ &#x2F; ___||  _ \
+ \___ \| |_) |
+ ___) |  _ &amp;lt;
+|____&#x2F;|_| \_\ 
+Axiom - Trade. DEX. Memecoins.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;&lt;strong&gt;Axiom Trade&lt;&#x2F;strong&gt; je revoluční platforma pro trading meme coinů s vestavěným DEX screenerem. Zapomeňte na Pump.fun a Dexscreener – Axiom kombinuje real-time data, AI signály a snadný swap v jednom.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;proc-axiom-trade&quot;&gt;Proč Axiom Trade?&lt;&#x2F;h2&gt;
+&lt;blockquote class=&quot;markdown-alert-tip&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Klíčová výhoda&lt;&#x2F;strong&gt;: Real-time DEX data z Solana&#x2F;Base s AI predikcemi volatility meme coinů.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;1-dex-screener-pro&quot;&gt;1. &lt;strong&gt;DEX Screener Pro&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Snížení FDV (Fully Diluted Value) tracking&lt;&#x2F;li&gt;
+&lt;li&gt;Liquidity pool analýza (honeypot detekce)&lt;&#x2F;li&gt;
+&lt;li&gt;Wallet tracking top traders&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-meme-coin-radar&quot;&gt;2. &lt;strong&gt;Meme Coin Radar&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code&gt;Top Gainers | New Pairs | Rug Risk Score
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;javascript&quot;&gt;&#x2F;&#x2F; AI Rug Risk Score
+const score = axiom.ai.analyze(contract, {
+  liquidity: &amp;#39;$10k+&amp;#39;,
+  holders: 500,
+  socials: &amp;#39;verified&amp;#39;
+})
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;3-instant-swaps&quot;&gt;3. &lt;strong&gt;Instant Swaps&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;0.1% fee, MEV protection&lt;&#x2F;li&gt;
+&lt;li&gt;Limit orders + DCA bots&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;hands-on-quick-trade&quot;&gt;Hands-On: Quick Trade&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Připoj wallet&lt;&#x2F;strong&gt; (Phantom&#x2F;Metamask)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Screener&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code&gt;Search &amp;quot;PEPE&amp;quot; → See pools on Raydium&#x2F;Jupiter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Buy&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;axiom swap PEPE-ABC123 SOL --amount 1 --slippage 5%
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;ai-features&quot;&gt;AI Features&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pump Probability&lt;&#x2F;strong&gt;: ML model na Twitter volume + liquidity&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Rug Alert&lt;&#x2F;strong&gt;: Smart contract audit v reálném čase&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;comparison&quot;&gt;Comparison&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Feature&lt;&#x2F;th&gt;&lt;th&gt;Axiom Trade&lt;&#x2F;th&gt;&lt;th&gt;Dexscreener&lt;&#x2F;th&gt;&lt;th&gt;Pump.fun&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;AI Signals&lt;&#x2F;td&gt;&lt;td&gt;✅&lt;&#x2F;td&gt;&lt;td&gt;❌&lt;&#x2F;td&gt;&lt;td&gt;❌&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Built-in Swap&lt;&#x2F;td&gt;&lt;td&gt;✅&lt;&#x2F;td&gt;&lt;td&gt;❌&lt;&#x2F;td&gt;&lt;td&gt;✅&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Rug Score&lt;&#x2F;td&gt;&lt;td&gt;✅&lt;&#x2F;td&gt;&lt;td&gt;❌&lt;&#x2F;td&gt;&lt;td&gt;❌&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Multi-DEX&lt;&#x2F;td&gt;&lt;td&gt;Raydium+Jupiter&lt;&#x2F;td&gt;&lt;td&gt;Read-only&lt;&#x2F;td&gt;&lt;td&gt;Single&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Riziko&lt;&#x2F;strong&gt;: Meme coiny = gambling. DYOR!&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Nová éra tradingu meme coinů začíná na Axiom. &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;axiom.trade&quot;&gt;axiom.trade&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;[&lt;em&gt;Data z Dune Analytics 2025&lt;&#x2F;em&gt;]&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

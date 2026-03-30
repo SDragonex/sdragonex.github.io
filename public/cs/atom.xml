@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="cs">
+    <title>Dany Chaker</title>
+    <subtitle>Osobní stránka Danyho Chakera</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://sdragonex.github.io/Divocak-Systems/cs/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-03-24T00:00:00+00:00</updated>
+    <id>https://sdragonex.github.io/Divocak-Systems/cs/atom.xml</id>
+    <entry xml:lang="cs">
+        <title>Revolut: Digitální banka, která redefinuje finance</title>
+        <published>2026-03-24T00:00:00+00:00</published>
+        <updated>2026-03-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/cs/blog/revolut-engineering/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/cs/blog/revolut-engineering/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/cs/blog/revolut-engineering/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;                                                                         
+ ______     ______     __   __   ______     __         __  __     ______ 
+&#x2F;\  == \   &#x2F;\  ___\   &#x2F;\ \ &#x2F; &#x2F;  &#x2F;\  __ \   &#x2F;\ \       &#x2F;\ \&#x2F;\ \   &#x2F;\__  _\
+\ \  __&amp;lt;   \ \  __\   \ \ \&amp;#39;&#x2F;   \ \ \&#x2F;\ \  \ \ \____  \ \ \_\ \  \&#x2F;_&#x2F;\ \&#x2F;
+ \ \_\ \_\  \ \_____\  \ \__|    \ \_____\  \ \_____\  \ \_____\    \ \_\
+  \&#x2F;_&#x2F; &#x2F;_&#x2F;   \&#x2F;_____&#x2F;   \&#x2F;_&#x2F;      \&#x2F;_____&#x2F;   \&#x2F;_____&#x2F;   \&#x2F;_____&#x2F;     \&#x2F;_&#x2F;
+                                                                         
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;Revolut se stal synonymem pro moderní digitální bankovnictví. Z fintech startupu vyrostl v globální platformu, která kombinuje &lt;strong&gt;banking, investice, kryptoměny i analytiku&lt;&#x2F;strong&gt; – vše v jediné aplikaci.&lt;&#x2F;p&gt;
+&lt;blockquote class=&quot;markdown-alert-important&quot;&gt;
+	&lt;p&gt;Revolut dnes obsluhuje desítky milionů uživatelů a zpracovává transakce v řádu &lt;strong&gt;bilionů dolarů ročně&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;compass-historie-a-evoluce&quot;&gt;🧭 Historie a evoluce&lt;&#x2F;h2&gt;
+&lt;p&gt;Revolut byl založen v roce 2015 s jednoduchým cílem: odstranit skryté poplatky ve finančních službách.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;rocket-klicove-milniky&quot;&gt;🚀 Klíčové milníky&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Rok&lt;&#x2F;th&gt;&lt;th&gt;Událost&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;2015&lt;&#x2F;td&gt;&lt;td&gt;Založení Revolutu&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2017&lt;&#x2F;td&gt;&lt;td&gt;1M uživatelů&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2020&lt;&#x2F;td&gt;&lt;td&gt;Expanzní vstup do USA&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2023&lt;&#x2F;td&gt;&lt;td&gt;Rozšíření investičních produktů&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2025+&lt;&#x2F;td&gt;&lt;td&gt;Globální škálování + super app strategie&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+	&lt;p&gt;Revolut dnes není jen banka – je to &lt;strong&gt;finanční operační systém pro jednotlivce i firmy&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;credit-card-produkty-a-sluzby&quot;&gt;💳 Produkty a služby&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;bank-bankovni-funkce&quot;&gt;🏦 Bankovní funkce&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Multiměnové účty&lt;&#x2F;li&gt;
+&lt;li&gt;Virtuální a fyzické karty&lt;&#x2F;li&gt;
+&lt;li&gt;Okamžité převody&lt;&#x2F;li&gt;
+&lt;li&gt;Lokální bankovní integrace&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;currency-exchange-smeny-men&quot;&gt;💱 Směny měn&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Mezibankovní kurzy&lt;&#x2F;li&gt;
+&lt;li&gt;Podpora 30+ měn&lt;&#x2F;li&gt;
+&lt;li&gt;Automatické směny&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;chart-with-upwards-trend-investice&quot;&gt;📈 Investice&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Kategorie&lt;&#x2F;th&gt;&lt;th&gt;Možnosti&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Akcie&lt;&#x2F;td&gt;&lt;td&gt;USA + EU trhy&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;ETF&lt;&#x2F;td&gt;&lt;td&gt;Diverzifikované fondy&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Krypto&lt;&#x2F;td&gt;&lt;td&gt;BTC, ETH a další&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Komodity&lt;&#x2F;td&gt;&lt;td&gt;Zlato, stříbro&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h3 id=&quot;receipt-finance-management&quot;&gt;🧾 Finance management&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Real-time notifikace&lt;&#x2F;li&gt;
+&lt;li&gt;AI kategorizace výdajů&lt;&#x2F;li&gt;
+&lt;li&gt;Budgeting nástroje&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;gear-technologie-engineering-pohled&quot;&gt;⚙️ Technologie (Engineering pohled)&lt;&#x2F;h2&gt;
+&lt;p&gt;Revolut je postaven jako &lt;strong&gt;high-performance distributed system&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;bricks-architektura&quot;&gt;🧱 Architektura&lt;&#x2F;h3&gt;
+&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code data-lang=&quot;scala&quot;&gt;&#x2F;&#x2F; Zjednodušený payment flow (Scala + Finagle styl)
+class PaymentService extends Service[Request, Response] {
+  def apply(req: Request): Future[Response] = {
+    for {
+      validated &amp;lt;- validate(req)
+      processed &amp;lt;- process(validated)
+      logged &amp;lt;- audit(processed)
+    } yield Response.ok
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;h3 id=&quot;jigsaw-stack-prehled&quot;&gt;🧩 Stack přehled&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Vrstva&lt;&#x2F;th&gt;&lt;th&gt;Technologie&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Backend&lt;&#x2F;td&gt;&lt;td&gt;Scala, Kotlin, Go&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Infra&lt;&#x2F;td&gt;&lt;td&gt;Kubernetes&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Networking&lt;&#x2F;td&gt;&lt;td&gt;Finagle&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Data streaming&lt;&#x2F;td&gt;&lt;td&gt;Kafka&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Databáze&lt;&#x2F;td&gt;&lt;td&gt;MySQL (Vitess), ClickHouse&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;bar-chart-data-platforma&quot;&gt;📊 Data platforma&lt;&#x2F;h2&gt;
+&lt;p&gt;Revolut pracuje s extrémními objemy dat.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;mag-pouziti-dat&quot;&gt;🔍 Použití dat&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fraud detection (real-time)&lt;&#x2F;li&gt;
+&lt;li&gt;Risk scoring&lt;&#x2F;li&gt;
+&lt;li&gt;Personalizace produktů&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;package-technologie&quot;&gt;📦 Technologie&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Kafka Streams&lt;&#x2F;strong&gt; → stream processing&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;ClickHouse&lt;&#x2F;strong&gt; → analytika (PB scale)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Vitess&lt;&#x2F;strong&gt; → horizontální škálování MySQL&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote class=&quot;markdown-alert-important&quot;&gt;
+	&lt;p&gt;Fraud detection běží v reálném čase s latencí v řádu &lt;strong&gt;milisekund&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;closed-lock-with-key-bezpecnost-a-compliance&quot;&gt;🔐 Bezpečnost a compliance&lt;&#x2F;h2&gt;
+&lt;p&gt;Fintech bez bezpečnosti neexistuje.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;shield-standardy&quot;&gt;🛡️ Standardy&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;GDPR&lt;&#x2F;li&gt;
+&lt;li&gt;PCI-DSS&lt;&#x2F;li&gt;
+&lt;li&gt;KYC &#x2F; AML&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;gear-pristup&quot;&gt;⚙️ Přístup&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Automatizované compliance pipelines&lt;&#x2F;li&gt;
+&lt;li&gt;Interní monitoring systémy&lt;&#x2F;li&gt;
+&lt;li&gt;Audit logy pro každou operaci&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;earth-africa-globalni-skalovani&quot;&gt;🌍 Globální škálování&lt;&#x2F;h2&gt;
+&lt;p&gt;Revolut operuje globálně s hybridním cloudem.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;cloud-cloud-strategie&quot;&gt;☁️ Cloud strategie&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Provider&lt;&#x2F;th&gt;&lt;th&gt;Role&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;AWS&lt;&#x2F;td&gt;&lt;td&gt;Core infra&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;GCP&lt;&#x2F;td&gt;&lt;td&gt;Data &amp;amp; ML workloads&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h3 id=&quot;globe-with-meridians-vyhody&quot;&gt;🌐 Výhody&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Vysoká dostupnost&lt;&#x2F;li&gt;
+&lt;li&gt;Geo-redundance&lt;&#x2F;li&gt;
+&lt;li&gt;Low latency routing&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;adult-computer-engineering-kultura&quot;&gt;🧑‍💻 Engineering kultura&lt;&#x2F;h2&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+	&lt;p&gt;Revolut staví na principu: &lt;strong&gt;&quot;You build it, you own it.&quot;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;brain-charakteristiky&quot;&gt;🧠 Charakteristiky&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Silný ownership&lt;&#x2F;li&gt;
+&lt;li&gt;Rychlé iterace&lt;&#x2F;li&gt;
+&lt;li&gt;Data-driven rozhodování&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;microphone-interni-aktivity&quot;&gt;🎤 Interní aktivity&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Weekly tech talks&lt;&#x2F;li&gt;
+&lt;li&gt;Experimenty s Rust, WASM&lt;&#x2F;li&gt;
+&lt;li&gt;Open-source iniciativy&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;crossed-swords-konkurence&quot;&gt;⚔️ Konkurence&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Společnost&lt;&#x2F;th&gt;&lt;th&gt;Silná stránka&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Wise&lt;&#x2F;td&gt;&lt;td&gt;Mezinárodní převody&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;N26&lt;&#x2F;td&gt;&lt;td&gt;UX a jednoduchost&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Monzo&lt;&#x2F;td&gt;&lt;td&gt;Komunitní přístup&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Tradiční banky&lt;&#x2F;td&gt;&lt;td&gt;Stabilita&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+	&lt;p&gt;Revolut má náskok ve funkcích, ale čelí tlaku regulace a lokálních bank.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;bar-chart-vyhody-vs-nevyhody&quot;&gt;📊 Výhody vs nevýhody&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;white-check-mark-vyhody&quot;&gt;✅ Výhody&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Nízké poplatky&lt;&#x2F;li&gt;
+&lt;li&gt;Moderní UX&lt;&#x2F;li&gt;
+&lt;li&gt;Rychlé inovace&lt;&#x2F;li&gt;
+&lt;li&gt;All-in-one platforma&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;x-nevyhody&quot;&gt;❌ Nevýhody&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Customer support škáluje obtížně&lt;&#x2F;li&gt;
+&lt;li&gt;Regulace podle regionu&lt;&#x2F;li&gt;
+&lt;li&gt;Občasné limity funkcí&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;crystal-ball-budoucnost&quot;&gt;🔮 Budoucnost&lt;&#x2F;h2&gt;
+&lt;p&gt;Revolut směřuje k modelu &lt;strong&gt;finanční superaplikace&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;rocket-ocekavany-vyvoj&quot;&gt;🚀 Očekávaný vývoj&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;AI finanční asistenti&lt;&#x2F;li&gt;
+&lt;li&gt;Rozšíření lending produktů&lt;&#x2F;li&gt;
+&lt;li&gt;Globální bankovní licence&lt;&#x2F;li&gt;
+&lt;li&gt;Embedded finance&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;brain-shrnuti&quot;&gt;🧠 Shrnutí&lt;&#x2F;h2&gt;
+&lt;blockquote class=&quot;markdown-alert-important&quot;&gt;
+	&lt;p&gt;Revolut není jen banka. Je to &lt;strong&gt;technologická platforma, která redefinuje, jak lidé pracují s penězi&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;pushpin-tl-dr&quot;&gt;📌 TL;DR&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Revolut = fintech + platforma&lt;&#x2F;li&gt;
+&lt;li&gt;Microservices + cloud-native architektura&lt;&#x2F;li&gt;
+&lt;li&gt;Obrovský důraz na data a performance&lt;&#x2F;li&gt;
+&lt;li&gt;Směřuje k finanční &quot;super appce&quot;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="cs">
+        <title>Real-time machine learning v reálném čase: tipy a triky</title>
+        <published>2025-12-06T00:00:00+00:00</published>
+        <updated>2025-12-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/cs/blog/real-time-machine-learning-tips-and-tricks/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/cs/blog/real-time-machine-learning-tips-and-tricks/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/cs/blog/real-time-machine-learning-tips-and-tricks/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;       .       .
+            .  |  .
+             \ | &#x2F;    +
+     *        \|&#x2F;
+         --==&amp;gt; * &amp;lt;==--   &amp;#39;
+        +     &#x2F;|\   .
+             &#x2F; | \
+     .      &amp;#39;  |  &amp;#39;       *
+               |
+         .     &amp;#39;    .
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;Před více než rokiem jsem vyvinul prezentaci shrnující všechny praktiky, nazvané laskavě &lt;em&gt;tipy a triky&lt;&#x2F;em&gt;, pro údržbu a provoz modelů strojového učení v reálném čase ve firmě, kde pracuji. Nejprve to byla interní prezentace, která se změnila v prezentaci na meetupu a poté v upravený článek. Po více než jednom roce shromažďování těchto znalostí jsem se rozhodl je revidovat a zaznamenat aktualizovanou verzi tohoto textu na svých vlastních webových stránkách.&lt;&#x2F;p&gt;
+&lt;p&gt;Můžete si prohlédnout zdroje pro meetup talk v portugalštině a upravený článek v portugalštině a angličtině.&lt;&#x2F;p&gt;
+&lt;iframe
+	class=&quot;youtube-embed&quot;
+	src=&quot;https:&#x2F;&#x2F;www.youtube-nocookie.com&#x2F;embed&#x2F;4xZUpwiiJ68&quot;
+	allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot;
+	referrerpolicy=&quot;strict-origin-when-cross-origin&quot; allowfullscreen&gt;
+&lt;&#x2F;iframe&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;building.nubank.com&#x2F;practices-to-scale-machine-learning-operations&#x2F;&quot;&gt;Praktiky pro škálování operací strojového učení&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;realny-casovy-podmnozina-tohoto-clanku&quot;&gt;Reálný časový podmnožina tohoto článku&lt;&#x2F;h1&gt;
+&lt;p&gt;Strojové učení v reálném čase může představovat různé typy aplikací a vzhledem k široké škále možností bych rád přesně popsal, co jsem dělal, abyste mohli udělat odpovídající aproximace do jiných kontextů.&lt;&#x2F;p&gt;
+&lt;p&gt;Pracuji s prevencí podvodů ve finanční instituci. To znamená, že vyvíjím automatizované rozhodovací systémy (ne nutně jen modely strojového učení), které identifikují &lt;em&gt;události&lt;&#x2F;em&gt;, které by se neměly stát, buď právním porušením nebo zlomyslnou akcí třetí strany. Klíčovým prvkem je, že abychom zajistili dobrý zákaznický zážitek a zabránili tragédiím, musíme identifikovat podvod v dané události v okamžiku jejího dění. V přesném „času schválení“, jinak se peníze pohybují příliš rychle, než aby se dalo dohnat později.&lt;&#x2F;p&gt;
+&lt;p&gt;Nejjasnějším a přímým příkladem je transakce kreditní kartou. Představte si, že kupujete něco v podezřelém online obchodě, víte, že je podezřelý, ale cena je příliš dobrá na to, aby se to vynechalo. Koupíte věc a nikdy se k vám nedostane. Když znovu zkontrolujete obchod, zmizel. O pár dní později vás dosáhnou zprávy o tajemních nákupech a přesně víte, jak unikla vaše čísla karet.&lt;&#x2F;p&gt;
+&lt;p&gt;Aplikace strojového učení na tento problém znamená, že v okamžiku, kdy kreditní karta vstupuje do našich systémů v reálném čase, musíte rozhodnout, zda ji schválit nebo ne. Výzvy udržování takových systémů začínají respektováním SLA, obvykle milisekundy nebo sekundy, a aplikací této analýzy na miliony zákazníků a potenciálně miliardy transakcí.&lt;&#x2F;p&gt;
+&lt;p&gt;Můj kontext je hyperzaměřený na budování modelů a systémů, které se škálují velmi dobře na miliony zákazníků, miliardy transakcí a mohou odpovídat synchronně v milisekundách.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;srovnani-s-batch-modely&quot;&gt;Srovnání s Batch modely&lt;&#x2F;h2&gt;
+&lt;p&gt;Abyste zvýraznili prvky reálného času v mém kontextu, rád porovnávám s batch modely, které jsou podle mých zkušeností preferovaným prvním přístupem pro každý tým, který se snaží přijmout automatizovaná rozhodnutí.&lt;&#x2F;p&gt;
+&lt;p&gt;Batch modely obvykle běží na pevném plánu, jednou denně, týdně nebo každých pár hodin. Vybírají všechny nové instance, které byly generovány v posledním časovém okně, a aplikují na ně své predikce. Jsou nasazeny v ETL&#x2F;ELT systémech a obvykle spotřebovávají velmi velké tabulky. Modely v reálném čase spotřebovávají více jednoriadkových tabulek na druhé straně.&lt;&#x2F;p&gt;
+&lt;p&gt;Tyto vstupní tabulky pro batch modely mohou být složeny z více jiných tabulek a upstream zdrojů, které kombinuje batch processing systém jako Spark, Pandas, Databricks, Big Query. Mezitím modely v reálném čase hledají informace v různých formách, systémy podobné feature store s předvýpočítanými daty, batch tabulky načtené do nějaké formy rychlé databáze, pravý zdroj dat ve formě mikroslužby a jejích API nebo jiných intermediárních agregacích služeb, které drží dočasná, krátkodobá data pouze pro účely budování feature pro model v reálném čase.&lt;&#x2F;p&gt;
+&lt;p&gt;Vidíte, že batch modely mohou trvat až do délky časového intervalu na dokončení svých predikcí v tomto porovnání. Mají mnohem více prostoru na chyby, můžete je opakovat vícekrát a chyby nejsou přímo nebo okamžitě předávány koncovým zákazníkům.&lt;&#x2F;p&gt;
+&lt;p&gt;Skutečné výzvy udržování modelů v reálném čase nežijí v modelu samotném, existují výzvy v optimalizaci python kódu modelu, ale spíše v získávání všech potřebných feature pro jeho použití.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="cs">
+        <title>Budoucnost strojového učení</title>
+        <published>2025-10-27T00:00:00+00:00</published>
+        <updated>2025-10-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/cs/blog/on-the-future-of-machine-learning/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/cs/blog/on-the-future-of-machine-learning/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/cs/blog/on-the-future-of-machine-learning/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;
+      `-._\ &#x2F;     `~~&amp;quot;--.,_
+     ------&amp;gt;|              `~~&amp;quot;--.,_
+ jgs  _.-&amp;#39;&#x2F; &amp;#39;.____,,,,----&amp;quot;&amp;quot;&amp;quot;~~```&amp;#39;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;Toto je text, na který jsem dlouho čekal, než jsem ho napsal. Po dlouhých reflexích sám se sebou a sondování různých přátel a kolegy dám mu šanci stát se něčím. Chci mluvit o vizi jiná budoucnost, budoucnost, kde je můj život jednodušší při tréninku a nasazování modelů strojového učení.&lt;&#x2F;p&gt;
+&lt;p&gt;Přemýšlel jsem o mnoha názvech pro tento příspěvek: &lt;em&gt;Jak si usnadnit život?&lt;&#x2F;em&gt;, &lt;em&gt;Strojové učení pro nás ostatní?&lt;&#x2F;em&gt;, &lt;em&gt;Interoperabilní a škálovatelné strojové učení&lt;&#x2F;em&gt;. Vyberte si ten nejlepší.&lt;&#x2F;p&gt;
+&lt;p&gt;V tomto příspěvku uvedu několik problémů, které jsem pozoroval během mého roku zkušeností. Jsou to:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;[Malé, Střední a Velké. Ale ne Obří]&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;diagnoza&quot;&gt;Diagnóza&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;1-male-stredni-a-velke-ale-ne-obri&quot;&gt;1. Malé, Střední a Velké. Ale ne Obří&lt;&#x2F;h2&gt;
+&lt;p&gt;V posledních několika letech získaly LLM hodně pozornosti a umělou inteligenci dostaly do centra pozornosti. Nezapírám důležitost LLM a jejich úžasných aplikací, ale budu argumentovat, že ne mnoho lidí staví tyto masivní jazykové modely v absurdně masivním měřítku.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nedávno bylo oznámeno OpenAI investicí &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;openai.com&#x2F;index&#x2F;five-new-stargate-sites&#x2F;&quot;&gt;500 miliard dolarů&lt;&#x2F;a&gt; do tohoto datového centra Stargate. Nedokážu si ani představit, kolik výpočetního výkonu takový systém může mít.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Co mě nejvíce zajímá, je to, čemu říkám Malé, Střední a Velké měřítko strojového učení.&lt;&#x2F;p&gt;
+&lt;p&gt;Přemýšlejte o nás všech, běžných inženýrech strojového učení a datových vědcích, kteří se snaží budovat různé specializované modely. Můžeme myslet na modely pojištění, kreditní modely, různé textové a obrazové klasifikační modely, seznam je dlouhý, ale společným faktorem je, že i ty nejsložitější specializované obrazové modely nejsou ani blízko miliardám parametrů, které LLM staví.&lt;&#x2F;p&gt;
+&lt;p&gt;Nasazujeme tyto modely jako batch joby, jednoduché http služby, uvnitř streamovacích aplikací nebo dokonce na hardware s nízkým výkonem jako Raspberry PI a ESP32.&lt;&#x2F;p&gt;
+&lt;p&gt;Je v pořádku myslet na trénink těchto modelů v mém notebooku? Používat nějakou jednoduchou interoperabilitu k nasazení těchto modelů do jiných infrastruktur a žít svůj život bez starostí, že tyto modely jsou příliš drahé? Nebo že mě budou budit v noci?&lt;&#x2F;p&gt;
+&lt;p&gt;Budu tvrdit, na základě ničeho, že většina praktiků strojového učení staví malé, střední a velké modely. Ale ne obří. Máme scikit-learn, všechny boosting knihovny, máme hodně nové práce v nových frameworkách hlubokého učení, ale na konci, zjednodušil se nám život v posledních deseti letech?&lt;&#x2F;p&gt;
+&lt;p&gt;Společnost, kde pracuji, nějak vyřešila způsob minimalizace tření při picklingu a deplickingu věcí, řízení prostředí a požadavků. Ale slyšel jsem, že některé společnosti stále používají masivní monorepa modelů s plně připnutými požadavky. Batch joby stále mají mizerné pomalé výkony a jsou mnohem plýtivější, než potřebují (&lt;em&gt;načítáte celý dataset inferencí do paměti pro aplikaci starého modelu?&lt;&#x2F;em&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Je jasné, že připnutí požadavků není udržitelným řešením, ale pokud to neděláte, jak řídíte staré modely? Je dobré reprodukovat nějaké staré predikce pro porovnání historických stanovisek, ale pak musíme uchovávat starý kód, který musí ladit s těmito starými pickles a&#x2F;nebo serializovanými váhami.&lt;&#x2F;p&gt;
+&lt;p&gt;To se nezdá praktické ani pohodlné. Takže abychom řešili tyto „pod obří měřítko modely“, navrhnu nový model (ne model strojového učení) nasazení těchto rozhodovacích strojů, který bere obvyklou realitu průmyslu v úvahu: &lt;strong&gt;interoperabilita modelů strojového učení&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="cs">
+        <title>Výzva být vidět</title>
+        <published>2025-10-21T00:00:00+00:00</published>
+        <updated>2025-10-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/cs/blog/releasing-the-blog/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/cs/blog/releasing-the-blog/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/cs/blog/releasing-the-blog/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;                    _(_)_                          wWWWw   _  
+        @@@@       (_)@(_)   vVVVv     _     @@@@  (___) _(_)_
+       @@()@@ wWWWw  (_)\    (___)   _(_)_  @@()@@   Y  (_)@(_)
+        @@@@  (___)     `|&#x2F;    Y    (_)@(_)  @@@@   \|&#x2F;   (_)\
+         &#x2F;      Y       \|    \|&#x2F;    &#x2F;(_)    \|      |&#x2F;      |
+      \ |     \ |&#x2F;       | &#x2F; \ | &#x2F;  \|&#x2F;       |&#x2F;    \|      \|&#x2F;
+      \\|&#x2F;&#x2F;   \\|&#x2F;&#x2F;&#x2F;  \\\|&#x2F;&#x2F;\\\|&#x2F;&#x2F;&#x2F; \|&#x2F;&#x2F;&#x2F;  \\\|&#x2F;&#x2F;  \\|&#x2F;&#x2F;  \\\|&#x2F;&#x2F;
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;Nepamatuji si, kolikrát jsem smazal a znovu vytvořil svůj repozitář &lt;code&gt;sdragonex.github.io&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Mnoho těchto pokusů nedošlo k životu z různých důvodů, nelíbily se mi témata, přál jsem si podporu více jazyků, katex, nemít co říct nebo jen stud se vystavit. Po mnoha vnitřních úvahách, s poznáním, že novější frameworky umožňují mnohem jednodušší a praktický web a pouštění se estetického ideálu, tento web vychází na svět.&lt;&#x2F;p&gt;
+&lt;p&gt;Je postavený s &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;&quot;&gt;Zolou&lt;&#x2F;a&gt; a tématem &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;duckquill.daudix.one&#x2F;&quot;&gt;Duckquill&lt;&#x2F;a&gt;, má zajímavou estetiku, podporu mnoha jazyků a komentáře pomocí Mastodon. Jeden z důvodů tohoto úvodního příspěvku je otestovat tuto integraci.&lt;&#x2F;p&gt;
+&lt;p&gt;Dnes je moje potřeba mít prostor k promluvě větší než kdy dřív a věřím, že budu schopen říkat věci, které mají pro ostatní význam. Moderní doby vyžadují také neustálou vitrínu a osobní značku, profesionální estetiku, která napodobuje formu tvorby obsahu pro sociální sítě. Tento web chce být vším tímto a navíc velkým indexem všech věcí, které dělám.&lt;&#x2F;p&gt;
+&lt;p&gt;Bez umělé inteligence doufám, že zde se stane místem autenticity, učení a diskuse.
+Uvidíme se tam!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;external&quot; href=&quot;http:&#x2F;&#x2F;loveascii.com&#x2F;flowershtm.html&quot;&gt;&lt;em&gt;Květiny&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="cs">
+        <title>Axiom: Moderní řízení incidentů pro inženýry</title>
+        <published>2025-01-15T00:00:00+00:00</published>
+        <updated>2025-01-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Dany Chaker
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://sdragonex.github.io/Divocak-Systems/cs/blog/axiom-overview/"/>
+        <id>https://sdragonex.github.io/Divocak-Systems/cs/blog/axiom-overview/</id>
+        
+        <content type="html" xml:base="https://sdragonex.github.io/Divocak-Systems/cs/blog/axiom-overview/">&lt;div class=&quot;crt scanlines&quot; aria-hidden=&quot;true&quot;&gt;
+	&lt;pre&gt;&lt;code&gt;  __   __    _    _ 
+ &#x2F; _\ &#x2F; _\  (_)  (_)
+ \ \  \ \   _   _ 
+  \_\ \_\ (_) (_)
+Axiom - Logy. Metriky. Traces. Alerting.
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;&#x2F;div&gt;
+&lt;p&gt;&lt;strong&gt;Axiom&lt;&#x2F;strong&gt; je platforma observability další generace, která získává popularitu mezi engineering týmy unavenými tradičními nástroji jako Splunk nebo ELK stack. Na rozdíl od starých log aggregatorů kombinuje logy, metriky, traces a alerty v jediném výkonném systému optimalizovaném pro cloud-native workloads.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;proc-axiom&quot;&gt;Proč Axiom?&lt;&#x2F;h2&gt;
+&lt;blockquote class=&quot;markdown-alert-tip&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Klíčová výhoda&lt;&#x2F;strong&gt;: Axiom ukládá raw events (ne pre-agregované indexy), umožňující libovolné dotazy na petabyte škále s latencí pod sekundu.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;h3 id=&quot;1-ultra-rychle-hledani-analytics&quot;&gt;1. &lt;strong&gt;Ultra-rychlé hledání &amp;amp; analytics&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;1 PB zdarma navždy&lt;&#x2F;strong&gt; pro development týmy&lt;&#x2F;li&gt;
+&lt;li&gt;SQL-like query jazyk s full-text search&lt;&#x2F;li&gt;
+&lt;li&gt;Real-time dashboardy s live tailingem&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-unifikovana-observability&quot;&gt;2. &lt;strong&gt;Unifikovaná observability&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;pre&gt;&lt;code&gt;Logs → Metrics → Traces → Alerts → Vše v jednom datasetu
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Žádné silované nástroje. Dotazovat napříč vším:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;sql&quot;&gt;-- Najdi pomalé API endpoints korelované s errorem
+select * from logs 
+where service=&amp;quot;api&amp;quot; and duration &amp;gt; 2s 
+and trace_id is not null
+join traces on trace_id 
+limit 100
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;3-developer-first-features&quot;&gt;3. &lt;strong&gt;Developer-first features&lt;&#x2F;strong&gt;&lt;&#x2F;h3&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Live Tail&lt;&#x2F;strong&gt;: &lt;code&gt;tail -f &#x2F;path&#x2F;to&#x2F;logs&lt;&#x2F;code&gt; pro cloud infra.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CLI s jq-like processing&lt;&#x2F;strong&gt;: &lt;code&gt;axiom query &#x27;service=api&#x27; | jq&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;GitOps workflows&lt;&#x2F;strong&gt;: Deploy dashboardů via YAML&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OpenTelemetry native&lt;&#x2F;strong&gt; integrace&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;hands-on-quick-start&quot;&gt;Hands-On: Quick Start&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Instalace CLI&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;curl -sSfL https:&#x2F;&#x2F;axiom.co&#x2F;install.sh | sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Ingest logů&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;echo &amp;#39;{&amp;quot;level&amp;quot;:&amp;quot;info&amp;quot;,&amp;quot;message&amp;quot;:&amp;quot;Hello Axiom&amp;quot;}&amp;#39; | axiom ingest --dataset=myapp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;&lt;strong&gt;Query&lt;&#x2F;strong&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;bash&quot;&gt;axiom query &amp;#39;level=error&amp;#39;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;advanced-custom-processing&quot;&gt;Advanced: Custom Processing&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Datasets&lt;&#x2F;strong&gt; umožňují definovat processing pipelines:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code data-lang=&quot;yaml&quot;&gt;dataset:
+  name: &amp;quot;processed-logs&amp;quot;
+  source: &amp;quot;raw-logs&amp;quot;
+  transform:
+    - parse_json(message)
+    - add_field(&amp;quot;parsed_level&amp;quot;, level)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;srovnani&quot;&gt;Srovnání&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Feature&lt;&#x2F;th&gt;&lt;th&gt;Axiom&lt;&#x2F;th&gt;&lt;th&gt;Datadog&lt;&#x2F;th&gt;&lt;th&gt;New Relic&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Raw Storage&lt;&#x2F;td&gt;&lt;td&gt;1PB free&lt;&#x2F;td&gt;&lt;td&gt;Limited&lt;&#x2F;td&gt;&lt;td&gt;Sampled&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Query Cost&lt;&#x2F;td&gt;&lt;td&gt;Pay per GB queried&lt;&#x2F;td&gt;&lt;td&gt;Pay per host&lt;&#x2F;td&gt;&lt;td&gt;Pay per user&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;SQL Support&lt;&#x2F;td&gt;&lt;td&gt;Full&lt;&#x2F;td&gt;&lt;td&gt;Limited&lt;&#x2F;td&gt;&lt;td&gt;Basic&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;CLI&lt;&#x2F;td&gt;&lt;td&gt;Rich&lt;&#x2F;td&gt;&lt;td&gt;Basic&lt;&#x2F;td&gt;&lt;td&gt;None&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h2 id=&quot;kdy-vybrat-axiom&quot;&gt;Kdy vybrat Axiom?&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cost-sensitive týmy&lt;&#x2F;strong&gt; s logy &amp;gt;1TB&#x2F;day&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Kubernetes-native&lt;&#x2F;strong&gt; prostředí (Helm ready)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Query-heavy&lt;&#x2F;strong&gt; workflows (ad-hoc analýza)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;blockquote class=&quot;markdown-alert-warning&quot;&gt;
+	&lt;p&gt;&lt;strong&gt;Trade-off&lt;&#x2F;strong&gt;: Stále mladý (launch 2023), ecosystem menší než u gigantů.&lt;&#x2F;p&gt;
+
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Experimentujte s free tier – opravdu impressive pro debug komplexních systémů.&lt;&#x2F;p&gt;
+&lt;p&gt;[&lt;em&gt;ASCII Art via textart.io&lt;&#x2F;em&gt;]&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>
