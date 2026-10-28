@@ -28,4 +28,4 @@ Dnes je moje potřeba mít prostor k promluvě větší než kdy dřív a věř�
 Bez umělé inteligence doufám, že zde se stane místem autenticity, učení a diskuse.
 Uvidíme se tam!
 
-[_Květiny_](http://loveascii.com/flowershtm.html)
+[_Květiny_](https://loveascii.com/flowershtm.html)
