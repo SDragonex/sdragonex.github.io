@@ -27,6 +27,7 @@ index_format = "fuse_json"
 accent_color = "#ED2100"
 accent_color_dark = "#ED2100"
 default_theme = "system"
+styles = ["projects.css"]
 
 [extra.nav]
 show_feed = false
@@ -35,15 +36,18 @@ icons = true
 links = [
   {name="Index", menu=[
     { url = "@/blog/_index.md", name = "Blog" },
+    { url = "@/projects/_index.md", name = "Projects" },
     { url = "@/about/_index.md", name = "About" },
     { url = "@/backlog/_index.md", name = "Backlog" },
     { url = "@/interesting/_index.md", name = "Interesting" },
   ]},
+  { url = "@/projects/_index.md", name = "Projects" },
   { url = "https://github.com/sdragonex", name = "GitHub" },
 ]
 
 [extra.footer]
 links = [
+  { url = "@/projects/_index.md", name = "Projects" },
   { url = "@/about/_index.md", name = "About" },
 	{ url = "@/blog/_index.md", name = "Blog" },
 ]
