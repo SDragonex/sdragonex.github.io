@@ -53,7 +53,7 @@ The human nervous system was never calibrated to ingest breaking news of simulta
 
 How do we reclaim space for genuine contemplation?
 
-### 🛡️ Practical Tenets of Digital Silence
+### Practical Tenets of Digital Silence
 
 1. **Monotasking as a Superpower**: Embracing true deep work on a single problem, without dozens of open browser tabs or background pings.
 2. **Asynchronous Living**: Relinquishing the compulsion to reply instantly. Most communications that masquerade as urgent are merely loud.
