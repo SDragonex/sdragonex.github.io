@@ -95,7 +95,7 @@ class PaymentService extends Service[Request, Response] {
     } yield Response.ok
   }
 }
-````
+```
 
 {% end %}
 
