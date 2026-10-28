@@ -147,8 +147,13 @@ function initSearch() {
 
 	var initIndex = async function () {
 		if (index === undefined) {
-			let searchIndex = document.getElementById("search-index").textContent;
+			let searchIndex = document.getElementById("search-index").textContent.trim();
+			searchIndex = searchIndex.replace(/([^:]\/)\/+/g, "$1");
 			index = fetch(searchIndex)
+				.catch(async () => {
+					const fallback = searchIndex.replace(/\/[a-z]{2}\/search_index/, "/search_index");
+					return fetch(fallback);
+				})
 				.then(
 					async function (response) {
 						return await elasticlunr.Index.load(await response.json());
