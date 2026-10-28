@@ -26,11 +26,11 @@ Today, Revolut serves tens of millions of active users worldwide and processes t
 
 ---
 
-## 🧭 History and Evolution
+## History and Evolution
 
 Revolut was founded in 2015 by Nikolay Storonsky and Vlad Yatsenko with a clear, disruptive goal: eliminate opaque foreign transaction fees and predatory exchange rate markups.
 
-### 🚀 Key Milestones
+### Key Milestones
 
 | Year | Milestone |
 |------|-----------|
@@ -46,22 +46,22 @@ Revolut is no longer just a digital bank — it has evolved into a comprehensive
 
 ---
 
-## 💳 Products and Services
+## Products and Services
 
-### 🏦 Core Banking Features
+### Core Banking Features
 
 - Multi-currency accounts (holding 30+ currencies simultaneously)
 - Physical, virtual, and single-use disposable debit cards for online fraud prevention
 - Instant peer-to-peer (P2P) transfers with zero fees
 - Seamless local banking rails integration (SEPA Instant, Faster Payments, ACH)
 
-### 💱 Foreign Exchange (FX)
+### Foreign Exchange (FX)
 
 - Real-time interbank foreign exchange rates
 - Support for over 30 fiat currencies with weekend fee transparency
 - Automated recurring and target-rate currency exchanges
 
-### 📈 Wealth & Investment
+### Wealth & Investment
 
 | Category | Available Instruments |
 |----------|-----------------------|
@@ -70,7 +70,7 @@ Revolut is no longer just a digital bank — it has evolved into a comprehensive
 | Crypto | Direct exposure to BTC, ETH, and dozens of digital assets |
 | Commodities | Precious metals including Gold, Silver, and Platinum |
 
-### 🧾 Financial Management & Intelligence
+### Financial Management & Intelligence
 
 - Real-time transaction push notifications with vendor categorisation
 - AI-assisted expenditure tracking and predictive cash flow
@@ -78,11 +78,11 @@ Revolut is no longer just a digital bank — it has evolved into a comprehensive
 
 ---
 
-## ⚙️ Technology: The Engineering Perspective
+## Technology: The Engineering Perspective
 
 Under the hood, Revolut is engineered as a **high-performance, fault-tolerant distributed system** capable of handling intense peak transaction loads with sub-50ms latencies.
 
-### 🧱 Architecture
+### Architecture
 
 The backend ecosystem avoids monolithic constraints in favour of loosely-coupled, domain-driven microservices:
 
@@ -101,7 +101,7 @@ class PaymentService extends Service[Request, Response] {
 ```
 {% end %}
 
-### 🧩 Technology Stack Overview
+### Technology Stack Overview
 
 | Layer | Primary Technologies |
 |-------|----------------------|
@@ -113,17 +113,17 @@ class PaymentService extends Service[Request, Response] {
 
 ---
 
-## 📊 Data Platform & Real-Time Processing
+## Data Platform & Real-Time Processing
 
 Operating at financial hyperscale requires processing billions of telemetry and transaction events every single day.
 
-### 🔍 Core Data Capabilities
+### Core Data Capabilities
 
 * **Real-time Fraud Detection**: Evaluating risk scoring models across thousands of behavioral parameters while transactions are in-flight.
 * **Credit & Risk Assessment**: Instant evaluation of creditworthiness for lending and overdraft limits.
 * **Smart Personalisation**: Real-time product recommendations and financial health insights.
 
-### 📦 Platform Components
+### Platform Components
 
 * **Kafka Streams**: High-throughput distributed stream processing.
 * **ClickHouse**: Petabyte-scale columnar storage delivering sub-second analytical aggregations.
@@ -135,17 +135,17 @@ Automated fraud detection algorithms evaluate transactional context and risk vec
 
 ---
 
-## 🔐 Security, Compliance & Governance
+## Security, Compliance & Governance
 
 In the regulated financial sector, security and compliance are paramount foundational requirements.
 
-### 🛡️ Industry Standards
+### Industry Standards
 
 * GDPR (strict European data privacy and encryption at rest/transit)
 * PCI-DSS Level 1 (payment card data protection)
 * Automated KYC (Know Your Customer) and AML (Anti-Money Laundering) checks
 
-### ⚙️ Engineering Implementation
+### Engineering Implementation
 
 * Fully automated compliance pipelines integrated into CI/CD workflows
 * Real-time automated auditing with tamper-evident immutable log stores
@@ -153,18 +153,18 @@ In the regulated financial sector, security and compliance are paramount foundat
 
 ---
 
-## 🌍 Global Hyperscaling: Multi-Cloud Strategy
+## Global Hyperscaling: Multi-Cloud Strategy
 
 Revolut operates globally by leveraging a resilient multi-cloud architecture.
 
-### ☁️ Cloud Strategy
+### Cloud Strategy
 
 | Provider | Strategic Responsibility |
 |----------|--------------------------|
 | AWS | Core transactional infrastructure, payment gateways, and VPCs |
 | GCP | Data warehouse, machine learning training, and analytics pipelines |
 
-### 🌐 Key Architectural Benefits
+### Key Architectural Benefits
 
 * **Resilience & High Availability**: Independent failover paths mitigate provider-level outages.
 * **Geo-Redundancy**: Localised points-of-presence (PoPs) ensure strict data residency compliance.
@@ -172,19 +172,19 @@ Revolut operates globally by leveraging a resilient multi-cloud architecture.
 
 ---
 
-## 🧑‍💻 Engineering Culture & Philosophy
+## Engineering Culture & Philosophy
 
 {% alert(note=true) %}
 Revolut operates on the engineering doctrine: **"You build it, you own it."**
 {% end %}
 
-### 🧠 Cultural Pillars
+### Cultural Pillars
 
 * **Extreme Ownership**: Engineers have full operational responsibility for the services they ship to production.
 * **Rapid Iteration**: High deployment frequency powered by mature trunk-based development and automated test suites.
 * **Data-Driven Decision Making**: Every architectural choice and product feature is backed by empirical metrics.
 
-### 🎤 Community & Innovation
+### Community & Innovation
 
 * Weekly internal engineering tech talks sharing insights across cross-functional squads.
 * Active experimentation with low-overhead runtimes (Rust, WebAssembly).
@@ -192,7 +192,7 @@ Revolut operates on the engineering doctrine: **"You build it, you own it."**
 
 ---
 
-## ⚔️ Competitive Landscape
+## Competitive Landscape
 
 | Institution | Distinct Competitive Advantage |
 |-------------|--------------------------------|
@@ -207,16 +207,16 @@ While Revolut leads in feature velocity and breadth, it faces ongoing regulatory
 
 ---
 
-## 📊 Strengths vs. Challenges
+## Strengths vs. Challenges
 
-### ✅ Key Strengths
+### Key Strengths
 
 * Extremely competitive, transparent exchange rates and fee structures
 * Polished, modern mobile-first user experience
 * Unmatched feature delivery velocity and rapid feature expansion
 * True "all-in-one" single financial portal
 
-### ❌ Persistent Challenges
+### Persistent Challenges
 
 * Scaling high-touch human customer support across dozens of regulatory jurisdictions
 * Divergent regulatory compliance requirements across Europe, the US, and Asia-Pacific
@@ -224,11 +224,11 @@ While Revolut leads in feature velocity and breadth, it faces ongoing regulatory
 
 ---
 
-## 🔮 The Future: The Super-App Horizon
+## The Future: The Super-App Horizon
 
 Revolut is continuously accelerating toward the vision of a **global financial super-app**.
 
-### 🚀 Strategic Trajectory
+### Strategic Trajectory
 
 * **AI Financial Copilots**: Agentic personal assistants automating bill negotiations and investment rebalancing.
 * **Extended Credit & Lending**: Broader rollout of mortgages, credit cards, and SME loans.
@@ -237,13 +237,13 @@ Revolut is continuously accelerating toward the vision of a **global financial s
 
 ---
 
-## 🧠 Summary
+## Summary
 
 {% alert(important=true) %}
 Revolut is fundamentally not just a bank — it is a **technology platform redefining humanity's relationship with money**.
 {% end %}
 
-## 📌 TL;DR
+## TL;DR
 
 * Revolut = Fintech agility + distributed systems platform scale
 * Powered by Scala, Finagle, Kafka, ClickHouse, and Vitess
