@@ -53,7 +53,7 @@ Mozek se nevyvinul k tomu, aby zpracovával zprávy o globálních krizích z ce
 
 Jak v sobě obnovit prostor pro myšlení?
 
-### 🛡️ Praktické zásady digitálního ticha
+### Praktické zásady digitálního ticha
 
 1. **Monotasking jako luxus**: Hluboká práce (*deep work*) na jednom projektu, bez 30 otevřených panelů a notifikací.
 2. **Asynchronní život**: Nemusíte odpovídat okamžitě. Většina věcí, které se tváří jako urgentní, jsou jen hlučné.
