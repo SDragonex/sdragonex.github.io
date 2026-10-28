@@ -63,6 +63,7 @@
 					</li>
 				{%- endif %}
 			{%- endfor -%}
+			<li class="divider"></li>
 			{%- if config.build_search_index %}
 				<li id="search">
 					<button id="search-toggle" class="circle" title="{{ macros_translate::translate(key='search', default='Search', language_strings=language_strings) }}">
