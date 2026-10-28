@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-Allow: /
-Sitemap: https://sdragonex.github.io/Divocak-Systems/sitemap.xml
