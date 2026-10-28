@@ -15,7 +15,7 @@ title: Dany Chaker
                                                                     
 ```
 {% end %}
-</br>
+<br />
 
 Hi! I am **Dany Chaker**, I am from **Czechia** and I think a lot.  
 I am interested in technology, programming, electronics, and creative projects.  
