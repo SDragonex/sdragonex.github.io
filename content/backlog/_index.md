@@ -6,7 +6,7 @@ The place to store the spark before it fades away... Planned topics spanning sof
 
 ---
 
-## 🧠 Psychology, Mental Health & Hope-Core
+## Psychology, Mental Health & Hope-Core
 
 ### 1. `Draft Ready` The Architecture of Inner Peace
 - Cognitive hygiene, digital silence, and reclaiming attention in an era of infinite feeds.
@@ -24,7 +24,7 @@ The place to store the spark before it fades away... Planned topics spanning sof
 
 ---
 
-## 💻 Technology & Software Engineering
+## Technology & Software Engineering
 
 ### 1. `2025-10-26` Variant Sudoku Solver
 I spend a lot of time watching [Cracking The Cryptic](https://www.youtube.com/c/CrackingTheCryptic)
