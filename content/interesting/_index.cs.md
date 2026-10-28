@@ -2,9 +2,9 @@
 title: Zajímavé věci, které jsem našel
 ---
 
-Následuje myšlenku [malého webu](https://ar.al/2020/08/07/what-is-the-small-web/)
-a udržování malého seznamu referencí, které mě ovlivňují, toto je _mentální log_
-který ukládá to, co sdílím se svou rodinou, přáteli, kolegy a nyní i vámi.
+V duchu myšlenky [malého webu](https://ar.al/2020/08/07/what-is-the-small-web/)
+a udržování osobního seznamu zdrojů, které mě inspirují – toto je _mentální log_
+toho, co sdílím s rodinou, přáteli, kolegy a nyní i s vámi.
 
 # Podcasty
 
