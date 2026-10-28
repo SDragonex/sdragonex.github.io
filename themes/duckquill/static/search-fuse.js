@@ -5,10 +5,21 @@
 	async function initIndex() {
 		if (searchSetup) return;
 
-		const url = document.getElementById("search-index").textContent;
-		const response = await fetch(url);
+		let url = document.getElementById("search-index").textContent.trim();
+		url = url.replace(/([^:]\/)\/+/g, "$1");
+		let response = await fetch(url);
 
-		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+		if (!response.ok) {
+			const fallbackUrl = url.replace(/\/[a-z]{2}\/search_index/, "/search_index");
+			if (fallbackUrl !== url) {
+				response = await fetch(fallbackUrl);
+			}
+		}
+
+		if (!response.ok) {
+			console.error(`Search index could not be loaded (${response.status}) from ${url}`);
+			return;
+		}
 
 		const options = {
 			includeScore: false,
@@ -60,6 +71,7 @@
 		let currentTerm = "";
 
 		searchBar.addEventListener("keyup", (e) => {
+			if (!fuse) return;
 			const searchVal = searchBar.value.trim();
 			const results = fuse.search(searchVal, { limit: MAX_ITEMS });
 
