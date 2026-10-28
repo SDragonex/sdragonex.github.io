@@ -1,8 +1,9 @@
 <head>
 	<!-- {{ now() | date(format='%F %a %R') }} -->
 	<meta charset="UTF-8" />
-	<meta name="description" content="{{ config.description }}" />
+	<meta name="description" content="{% include 'partials/description.html' %}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 	<meta name="google-site-verification" content="Z3MCNlM8JOHpfQW6532coh0Uhu5f9SuElZEMO5NQuwc" />
 	<meta name="theme-color" content="{{ config.extra.accent_color | default(value='#9a9996') | safe }}" />
 	{%- if config.extra.accent_color_dark %}
@@ -13,6 +14,17 @@
 	{%- endif %}
 	<title>{% include "partials/title.html" %}</title>
 	<link rel="canonical" href="{{ current_url | default(value='/') | safe }}" />
+	{%- if page.translations %}
+		<link rel="alternate" hreflang="{{ page.lang | default(value=config.default_language) }}" href="{{ current_url | safe }}" />
+		{%- for tr in page.translations %}
+			<link rel="alternate" hreflang="{{ tr.lang }}" href="{{ tr.permalink | safe }}" />
+		{%- endfor %}
+	{%- elif section.translations %}
+		<link rel="alternate" hreflang="{{ section.lang | default(value=config.default_language) }}" href="{{ current_url | safe }}" />
+		{%- for tr in section.translations %}
+			<link rel="alternate" hreflang="{{ tr.lang }}" href="{{ tr.permalink | safe }}" />
+		{%- endfor %}
+	{%- endif %}
 
 	{%- if config.extra.comments %}
 		<link rel="me" href="https://{{ config.extra.comments.host }}/@{{ config.extra.comments.user }}" />
@@ -124,4 +136,25 @@
 		<meta property="og:image" content="{% include 'partials/card.html' %}" />
 	{%- endif -%}
 	<meta property="og:locale" content="{{ macros_translate::translate(key='date_locale', default='en_US', language_strings=language_strings) }}" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="{% include 'partials/title.html' %}" />
+	<meta name="twitter:description" content="{% include 'partials/description.html' %}" />
+	<meta name="twitter:site" content="@sdragonex" />
+	<meta name="twitter:creator" content="@sdragonex" />
+	{%- if config.extra.card is not defined or config.extra.card != false -%}
+		<meta name="twitter:image" content="{% include 'partials/card.html' %}" />
+	{%- endif -%}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Dany Chaker",
+		"url": "{{ config.base_url | safe }}",
+		"sameAs": [
+			"https://github.com/sdragonex",
+			"https://linkedin.com/in/danychaker",
+			"https://twitter.com/sdragonex"
+		]
+	}
+	</script>
 </head>
