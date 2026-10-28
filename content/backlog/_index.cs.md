@@ -6,7 +6,7 @@ Místo pro uchování jiskry, než se vytratí... Plánovaná témata z oblasti 
 
 ---
 
-## 🧠 Psychologie, duševní zdraví & Hope-core
+## Psychologie, duševní zdraví & Hope-core
 
 ### 1. `Draft připraven` Architektura vnitřního klidu
 - O duševním zdraví, kognitivní hygieně a digitálním tichu v době nekonečných feedů.
@@ -24,7 +24,7 @@ Místo pro uchování jiskry, než se vytratí... Plánovaná témata z oblasti 
 
 ---
 
-## 💻 Technologie & Softwarové inženýrství
+## Technologie & Softwarové inženýrství
 
 ### 1. `2025-10-26` Řešič variant Sudoku
 Trávím hodně času sledováním [Cracking The Cryptic](https://www.youtube.com/c/CrackingTheCryptic),
