@@ -10,6 +10,27 @@
   --container-width: 56rem;
 }
 
+/* --- CRT Centering & Responsive Framing --- */
+.crt {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 1.75rem auto !important;
+  box-sizing: border-box;
+}
+
+.crt pre {
+  margin: 0 !important;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.crt pre code {
+  display: inline-block !important;
+  text-align: left;
+  margin: 0 auto;
+}
+
 /* --- SVG Icons --- */
 .svg-icon {
   display: inline-block;
