@@ -41,13 +41,11 @@ links = [
     { url = "@/backlog/_index.md", name = "Backlog" },
     { url = "@/interesting/_index.md", name = "Interesting" },
   ]},
-  { url = "@/projects/_index.md", name = "Projects" },
   { url = "https://github.com/sdragonex", name = "GitHub" },
 ]
 
 [extra.footer]
 links = [
-  { url = "@/projects/_index.md", name = "Projects" },
   { url = "@/about/_index.md", name = "About" },
 	{ url = "@/blog/_index.md", name = "Blog" },
 ]
