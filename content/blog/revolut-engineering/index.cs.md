@@ -25,11 +25,11 @@ Revolut dnes obsluhuje desítky milionů uživatelů a zpracovává transakce v 
 
 ---
 
-## 🧭 Historie a evoluce
+## Historie a evoluce
 
 Revolut byl založen v roce 2015 s jednoduchým cílem: odstranit skryté poplatky ve finančních službách.
 
-### 🚀 Klíčové milníky
+### Klíčové milníky
 
 | Rok | Událost |
 |-----|--------|
@@ -45,22 +45,22 @@ Revolut dnes není jen banka – je to **finanční operační systém pro jedno
 
 ---
 
-## 💳 Produkty a služby
+## Produkty a služby
 
-### 🏦 Bankovní funkce
+### Bankovní funkce
 
 - Multiměnové účty
 - Virtuální a fyzické karty
 - Okamžité převody
 - Lokální bankovní integrace
 
-### 💱 Směny měn
+### Směny měn
 
 - Mezibankovní kurzy
 - Podpora 30+ měn
 - Automatické směny
 
-### 📈 Investice
+### Investice
 
 | Kategorie | Možnosti |
 |----------|----------|
@@ -69,7 +69,7 @@ Revolut dnes není jen banka – je to **finanční operační systém pro jedno
 | Krypto | BTC, ETH a další |
 | Komodity | Zlato, stříbro |
 
-### 🧾 Finance management
+### Finance management
 
 - Real-time notifikace
 - AI kategorizace výdajů
@@ -77,11 +77,11 @@ Revolut dnes není jen banka – je to **finanční operační systém pro jedno
 
 ---
 
-## ⚙️ Technologie (Engineering pohled)
+## Technologie (Engineering pohled)
 
 Revolut je postaven jako **high-performance distributed system**.
 
-### 🧱 Architektura
+### Architektura
 
 {% crt() %}
 ```scala
@@ -96,10 +96,9 @@ class PaymentService extends Service[Request, Response] {
   }
 }
 ```
-
 {% end %}
 
-### 🧩 Stack přehled
+### Stack přehled
 
 | Vrstva         | Technologie                |
 | -------------- | -------------------------- |
@@ -111,17 +110,17 @@ class PaymentService extends Service[Request, Response] {
 
 ---
 
-## 📊 Data platforma
+## Data platforma
 
 Revolut pracuje s extrémními objemy dat.
 
-### 🔍 Použití dat
+### Použití dat
 
 * Fraud detection (real-time)
 * Risk scoring
 * Personalizace produktů
 
-### 📦 Technologie
+### Technologie
 
 * **Kafka Streams** → stream processing
 * **ClickHouse** → analytika (PB scale)
@@ -133,17 +132,17 @@ Fraud detection běží v reálném čase s latencí v řádu **milisekund**.
 
 ---
 
-## 🔐 Bezpečnost a compliance
+## Bezpečnost a compliance
 
 Fintech bez bezpečnosti neexistuje.
 
-### 🛡️ Standardy
+### Standardy
 
 * GDPR
 * PCI-DSS
 * KYC / AML
 
-### ⚙️ Přístup
+### Přístup
 
 * Automatizované compliance pipelines
 * Interní monitoring systémy
@@ -151,18 +150,18 @@ Fintech bez bezpečnosti neexistuje.
 
 ---
 
-## 🌍 Globální škálování
+## Globální škálování
 
 Revolut operuje globálně s hybridním cloudem.
 
-### ☁️ Cloud strategie
+### Cloud strategie
 
 | Provider | Role                |
 | -------- | ------------------- |
 | AWS      | Core infra          |
 | GCP      | Data & ML workloads |
 
-### 🌐 Výhody
+### Výhody
 
 * Vysoká dostupnost
 * Geo-redundance
@@ -170,19 +169,19 @@ Revolut operuje globálně s hybridním cloudem.
 
 ---
 
-## 🧑‍💻 Engineering kultura
+## Engineering kultura
 
 {% alert(note=true) %}
 Revolut staví na principu: **"You build it, you own it."**
 {% end %}
 
-### 🧠 Charakteristiky
+### Charakteristiky
 
 * Silný ownership
 * Rychlé iterace
 * Data-driven rozhodování
 
-### 🎤 Interní aktivity
+### Interní aktivity
 
 * Weekly tech talks
 * Experimenty s Rust, WASM
@@ -190,7 +189,7 @@ Revolut staví na principu: **"You build it, you own it."**
 
 ---
 
-## ⚔️ Konkurence
+## Konkurence
 
 | Společnost     | Silná stránka       |
 | -------------- | ------------------- |
@@ -205,16 +204,16 @@ Revolut má náskok ve funkcích, ale čelí tlaku regulace a lokálních bank.
 
 ---
 
-## 📊 Výhody vs nevýhody
+## Výhody vs nevýhody
 
-### ✅ Výhody
+### Výhody
 
 * Nízké poplatky
 * Moderní UX
 * Rychlé inovace
 * All-in-one platforma
 
-### ❌ Nevýhody
+### Nevýhody
 
 * Customer support škáluje obtížně
 * Regulace podle regionu
@@ -222,11 +221,11 @@ Revolut má náskok ve funkcích, ale čelí tlaku regulace a lokálních bank.
 
 ---
 
-## 🔮 Budoucnost
+## Budoucnost
 
 Revolut směřuje k modelu **finanční superaplikace**.
 
-### 🚀 Očekávaný vývoj
+### Očekávaný vývoj
 
 * AI finanční asistenti
 * Rozšíření lending produktů
@@ -235,13 +234,13 @@ Revolut směřuje k modelu **finanční superaplikace**.
 
 ---
 
-## 🧠 Shrnutí
+## Shrnutí
 
 {% alert(important=true) %}
 Revolut není jen banka. Je to **technologická platforma, která redefinuje, jak lidé pracují s penězi**.
 {% end %}
 
-## 📌 TL;DR
+## TL;DR
 
 * Revolut = fintech + platforma
 * Microservices + cloud-native architektura
