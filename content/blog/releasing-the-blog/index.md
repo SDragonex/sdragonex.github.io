@@ -41,4 +41,4 @@ besides also being a big index to all stuff I do.
 Without artificial intelligence, I hope that here becomes a place of authenticity, learning and discussion.
 See you there!
 
-[_Flowers_](http://loveascii.com/flowershtm.html)
+[_Flowers_](https://loveascii.com/flowershtm.html)
