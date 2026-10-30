@@ -18,8 +18,8 @@ weight: 30
   </div>
   <div class="project-meta-specs">
     <div>Architecture: <strong>Offline-First PWA (Zero-Framework)</strong></div>
-    <div>Stack: <strong>Vanilla JavaScript (ES6+), Service Worker, CSS Glassmorphism</strong></div>
-    <div>Version: <strong>v4.0 Production</strong></div>
+    <div>Stack: <strong>Vanilla JavaScript (ES6+), IndexedDB, Service Worker, CSS Glassmorphism</strong></div>
+    <div>Version: <strong>v4.0 / v4.1 Production</strong></div>
   </div>
 </div>
 
@@ -28,12 +28,12 @@ weight: 30
 Nutritional supplementation, nootropics, and human biohacking represent a multi-billion-dollar global commercial machine. A typical individual seeking to optimize sleep architecture, mental focus, athletic endurance, or metabolic health is met with **three fundamental challenges:**
 
 1. **Information Pollution & Commercial Bias:** The vast majority of online resources are commercial supplement storefronts or sponsored influencer endorsements engineered to peddle high-margin proprietary blends with sub-therapeutic doses.
-2. **Pharmacological Blind Spots & Drug Interactions:** Users frequently stack multiple bioactive compounds without understanding molecular receptor mechanics, biological elimination half-lives, or dangerous drug-drug interactions (e.g. co-administering serotonergic compounds with SSRIs risking serotonin syndrome).
+2. **Dangerous Interactions & Absorption Collisions:** Users frequently stack multiple bioactive compounds without understanding molecular receptor mechanics, biological half-lives, or gastrointestinal transport competition (e.g., co-administering zinc and iron which compete for the same DMT1 transporter, or stacking 5-HTP with stimulants/SSRIs risking serotonin syndrome).
 3. **Privacy Exploitation:** Health tracking platforms routinely demand account creation, harvest biomarker telemetry, and monetize sensitive health profiles across data brokers.
 
-**SuppleZ** was designed as an uncompromising antidote: a **transparent, evidence-based compendium and personal protocol journal**. It sells no physical products, runs zero advertisements, contains no telemetry beacons, and uses zero third-party tracking scripts.
+**SuppleZ** was designed as an uncompromising antidote: a **transparent, evidence-based compendium, interaction analyzer, and personal protocol journal**. It sells no physical products, runs zero advertisements, contains no telemetry beacons, and uses zero third-party tracking cookies.
 
-All personal logging, dosing stacks, and self-reported efficacy metrics remain **100% private and sandboxed strictly inside your local browser**.
+All personal logging, dosing stacks, and self-reported efficacy metrics remain **100% private and sandboxed strictly inside your local browser** via client-side IndexedDB persistence.
 
 ---
 
@@ -44,30 +44,34 @@ The application adheres strictly to a **Zero-Framework Architecture** philosophy
 | Layer | Chosen Technology | Architectural Rationale & Trade-offs |
 | :--- | :--- | :--- |
 | **Client Engine** | [Vanilla JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Zero third-party runtime frameworks (no React, Vue, or Angular overhead). Instant launch latency (< 30 ms), zero vulnerability footprint across dependencies |
-| **Offline Architecture** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | True Progressive Web App (PWA) installable on desktop and mobile home screens. Operates completely offline during transatlantic flights or underground gyms |
+| **Async Storage Engine** | IndexedDB & LocalStorage (`db.js`) | Robust asynchronous local database with automated schema migrations for personal stack entries and dosage history |
+| **Offline Architecture** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | True Progressive Web App (PWA) installable on desktop and mobile home screens. Cache-First for static assets, Network-First for database bundles; 100% offline capable |
 | **Visual Design** | CSS3 Custom Properties & Glassmorphism | Hardware-accelerated UI with seamless light/dark mode transitions, fluid CSS Grid layouts, and tactile micro-interactions |
-| **Data Normalization** | Normalized JSON (`database.json`) | Pharmacological schema with granular scientific evidence ratings and clinical risk triage indicators |
-| **Data Persistence** | Web Storage API (LocalStorage) | Fully isolated client storage for personal stack logs with instant JSON export and backup restoration |
+| **Data Normalization** | Normalized JSON (`supplements.bundle.json`) | Pharmacological schema with granular scientific evidence ratings and clinical risk triage indicators across 9 categories |
 
 ---
 
-## Pharmacological Schema & Scientific Evidence Grading
+## Core Engineering Modules
 
-Every compound in the database undergoes rigorous classification:
+### 1. Real-time Interaction Checker
+An intelligent client-side validation engine auditing substance combinations in user stacks:
+* **Synergistic Stacks:** Identifies proven biohacking pairings (e.g., *Caffeine + L-Theanine* for smooth jitters-free focus, *Vitamin D3 + K2 + Magnesium* for optimal calcium metabolism).
+* **Timing Competitions:** Alerts users to receptor and absorption bottlenecks in the digestive tract (e.g., *Zinc vs. Iron*, *Calcium vs. Magnesium*).
+* **Critical Contraindications:** Immediate red alert warnings for dangerous drug-drug interactions (e.g., *5-HTP + SSRIs*, *Yohimbine + potent sympathomimetics*).
 
+### 2. Circadian Phase Scheduling (4 Daily Blocks)
+Automatically computes pharmacokinetics and stratifies substances into four biological intake windows:
+1. **Fasted Morning:** High-bioavailability amino acids and peptides (e.g., *L-Tyrosine, B-Complex, BPC-157*).
+2. **Mid-Morning Meal:** Fat-soluble compounds requiring dietary lipids for lymphatic transport (e.g., *Vitamin D3 + K2, Omega 3 EPA/DHA*).
+3. **Pre-Workout / Afternoon Focus:** Hemodynamic vasodilators and cholinergic cognitive enhancers (e.g., *L-Citrulline, Caffeine, Alpha-GPC*).
+4. **Pre-Sleep Downtime:** GABAergic modulators supporting slow-wave deep sleep (e.g., *Magnesium Bisglycinate, Apigenin, Glycine*).
+
+### 3. Visual Peptide Reconstitution Calculator
+* Mathematical precision engine calculating compound concentrations, unit volume, and dosage yield per vial for research peptides (*BPC-157, TB-500, GHK-Cu, GLP-1*).
+* **Interactive Visual Syringe Canvas (U-100 & U-40):** Dynamically renders plunger travel and fluid displacement in real time, clearly highlighting measurement marks (IU/ticks) to eliminate dosing inaccuracies.
+
+### 4. Pharmacological Classification & Scientific Evidence Grading
 * **9 Specialized Categories:** Fundamental Health (100–199), Athletic Performance (200–299), Sleep & Recovery (300–399), Fat Loss & Thermogenesis (400–499), Hormonal Optimization (500–599), Cognitive Nootropics (600–699), Experimental Research Peptides (700–799), Anabolic Agents (800–899), Organ Protection & PCT (900–999).
-* **Evidence Quality Grading (Evidence Grade):**
-  * **Grade A:** Robust empirical evidence validated by multiple double-blind, randomized, placebo-controlled human trials and systematic meta-analyses.
-  * **Grade B:** Promising data supported by smaller human clinical cohorts or epidemiological research.
-  * **Grade C:** Preliminary findings from animal models, in-vitro assays, or empirical biohacker documentation requiring clinical validation.
-* **Safety & Risk Triage:**
-  * <span style="color: #2ecc71; font-weight: bold;">Green:</span> Benign compounds with extensive safety records at suggested clinical doses.
-  * <span style="color: #f1c40f; font-weight: bold;">Yellow:</span> Compounds demanding strict cycling, dosage vigilance, or routine bloodwork monitoring.
-  * <span style="color: #e74c3c; font-weight: bold;">Red:</span> High-risk compounds carrying narrow therapeutic margins, pronounced endocrine disruption, or significant cardiovascular strain.
-
----
-
-## Personal Logging & Protocol Management
-* Construct custom personalized stacks (e.g., *Caffeine-Free Deep Focus*, *Circadian Phase Alignment*, *Pre-Workout Neural Primer*).
-* Monitor subjective bioavailability and time dosing around biological elimination half-lives.
-* Uncompromised digital sovereignty: export complete personal records to an open JSON archive with a single click.
+* **Evidence Quality Grading:** Grade A (double-blind, placebo-controlled human randomized trials and systematic reviews), Grade B (smaller human clinical cohorts), Grade C (in-vitro and animal models).
+* **Safety Triage:** Green (benign compounds with wide therapeutic windows), Yellow (compounds demanding cycling and prudence), Red (high-risk agents requiring clinical supervision).
+* **Personal Protocol Journal:** Cycle tracking, timestamped logs, and zero-compromise JSON backup import/export.
