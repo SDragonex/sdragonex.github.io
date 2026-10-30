@@ -159,6 +159,13 @@
 	{%- if config.extra.card is not defined or config.extra.card != false -%}
 		<meta property="og:image" content="{% include 'partials/card.html' %}" />
 	{%- endif -%}
+	{%- if page is defined and page.date is defined %}
+	<meta property="og:type" content="article" />
+	<meta property="article:published_time" content="{{ page.date }}" />
+	<meta property="article:author" content="Dany Chaker" />
+	{%- else %}
+	<meta property="og:type" content="website" />
+	{%- endif %}
 	<meta property="og:locale" content="{{ macros_translate::translate(key='date_locale', default='en_US', language_strings=language_strings) }}" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="{% include 'partials/title.html' %}" />
@@ -174,6 +181,7 @@
 		"@type": "Person",
 		"name": "Dany Chaker",
 		"url": "{{ config.base_url | safe }}",
+		"jobTitle": "Software Engineer",
 		"sameAs": [
 			"https://github.com/sdragonex",
 			"https://linkedin.com/in/danychaker",
@@ -182,4 +190,32 @@
 		]
 	}
 	</script>
+	{%- if page is defined and page.date is defined %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": "{{ page.title | safe }}",
+		"description": "{% include 'partials/description.html' %}",
+		"datePublished": "{{ page.date }}",
+		{%- if page.updated %}
+		"dateModified": "{{ page.updated }}",
+		{%- endif %}
+		"author": {
+			"@type": "Person",
+			"name": "Dany Chaker",
+			"url": "{{ config.base_url | safe }}"
+		},
+		"publisher": {
+			"@type": "Person",
+			"name": "Dany Chaker",
+			"url": "{{ config.base_url | safe }}"
+		},
+		"mainEntityOfPage": {
+			"@type": "WebPage",
+			"@id": "{{ current_url | safe }}"
+		}
+	}
+	</script>
+	{%- endif %}
 </head>
