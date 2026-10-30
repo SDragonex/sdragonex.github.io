@@ -1,7 +1,7 @@
 base_url = "https://sdragonex.github.io/"
 theme = "duckquill"
 title = "Dany Chaker"
-description = "Personal website of Dany Chaker"
+description = "Personal website and engineering blog of Dany Chaker"
 
 author = "Dany Chaker"
 compile_sass = true
@@ -13,7 +13,7 @@ default_language = "en"
 
 [languages.cs]
 title = "Dany Chaker"
-description = "Osobní stránka Danyho Chakera"
+description = "Osobní web a inženýrský blog Danyho Chakera"
 generate_feeds = true
 build_search_index = true
 
