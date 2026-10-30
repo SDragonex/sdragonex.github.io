@@ -1,6 +1,6 @@
 ---
-title: "Maturita 2027: Studijní portál a znalostní báze"
-description: "Automatizovaný studijní portál a znalostní báze pro IT obor na SŠTE Brno s vlastním Python validačním pipeline a full-text vyhledávačem Pagefind."
+title: "Maturita: Studijní portál a znalostní báze"
+description: "Otevřený, průběžně aktualizovaný studijní portál a znalostní báze pro IT obor na SŠTE Brno s vlastním Python validačním pipeline a bleskovým vyhledávačem Pagefind."
 date: 2024-05-10
 weight: 20
 ---
@@ -19,49 +19,58 @@ weight: 20
   <div class="project-meta-specs">
     <div>Typ: <strong>Statický Jamstack portál</strong></div>
     <div>Stack: <strong>Zola, Pagefind, Python 3.12, SCSS</strong></div>
-    <div>Stav: <strong>V produkčním provozu</strong></div>
+    <div>Stav: <strong>Průběžně aktualizovaná báze</strong></div>
   </div>
 </div>
 
-## Přehled projektu
+## K čemu projekt slouží a jaký problém řeší
 
-**Maturita 2027** představuje komplexní, vysoce strukturovaný znalostní portál vyvinutý pro studenty maturitního ročníku oboru 18-20-M/01 Informační technologie na SŠTE Brno, Olomoucká. Projekt nahrazuje roztříštěné studijní materiály a PDF dokumenty moderním, verzovaným a plně prohledávatelným webovým rozhraním.
+Příprava na maturitní zkoušku v technických oborech trpí chronickým neduhem: **roztříštěností a zastaráváním materiálů**. Studenti jsou odkázáni na nesourodou směsici naskenovaných sešitů, starých školních prezentací z let 2012–2018, pochybných souborů na Ulož.to/Disku a chaotických Word dokumentů předávaných mezi ročníky. Tyto materiály často obsahují faktické chyby, zastaralé normy (např. předpotopní síťové topologie, zastaralé verze SQL) a neúplný kontext.
 
-Portál čítá celkem **169 detailně zpracovaných studijních stránek**, metodických návodů a praktických ukázek kódu.
+**Projekt Maturita** vznikl jako inženýrská odpověď na tento chaos. Jde o centralizovanou, otevřenou a verzovanou znalostní bázi, která pokrývá kompletní maturitní curriculum oboru 18-20-M/01 Informační technologie na SŠTE Brno, Olomoucká. 
+
+Nejedná se o jednorázový web pro jediný maturitní ročník — projekt je koncipován jako **živý, kontinuální otevřený repozitář**, který je průběžně aktualizován, revidován a doplňován o moderní technologické standardy (IPv6, moderní Docker, REST vs. GraphQL, novinky v C# a Pythonu).
+
+### Pro koho je portál určen
+* **Studenti IT oborů:** Získávají jediný ověřený zdroj pravdy s přesným členěním otázek, funkčními ukázkami kódu, síťovými topologiemi a modelovými scénáři.
+* **Budoucí ročníky:** Materiály nestárnou v šuplíku. Díky Git verzování může kdokoliv z komunity poslat Pull Request, opravit překlep nebo doplnit nové otázky.
+* **Zkoušející a vyučující:** Přehledná referenční osnova pro sjednocení požadavků na odborné znalosti absolventů.
 
 ---
 
-## Architektura a technické řešení
+## Architektura a technologický stack
 
-Web je postaven na principech moderního Jamstacku s důrazem na bleskovou rychlost načítání, nulové runtime závislosti a plně automatizovanou kontrolu kvality před každým nasazením.
+Portál je navržen na principech moderního Jamstacku s nulovými nároky na serverový runtime a maximální rychlostí doručení:
 
-| Oblast | Použitý nástroj | Význam pro projekt |
+| Vrstva | Zvolená technologie | Architektonické odůvodnění & Výhody |
 | :--- | :--- | :--- |
-| **Generátor statického webu** | Zola (Rust) | Bleskurychlá kompilace Markdownu a SCSS stylů |
-| **Klientské vyhledávání** | Pagefind (v1.5.2) | Full-textové indexování obsahu s okamžitou odezvou bez nutnosti backendového serveru |
-| **Build & Test Pipeline** | Python 3.12 (`scripts/build.py`) | Automatizovaná kontrola odkazů, syntaxe a integrity dat |
-| **CI/CD Automatizace** | GitHub Actions | Testování a publikace na GitHub Pages při každém pushi do hlavní větve |
-| **Typografie & Styly** | Vlastní SCSS | Optimalizováno pro dlouhé čtení technických textů a ukázek kódu |
+| **Generátor webu** | [Zola](https://www.getzola.org/) (Rust) | Bleskurychlá kompilace celého webu (stovky stránek za < 1 s), nativní podpora SCSS, nulové závislosti na npm |
+| **Vyhledávací engine** | [Pagefind](https://pagefind.app/) (v1.5.2) | Klientský full-text postavený na WebAssembly; statické indexové chunky se stahují na vyžádání bez backendu |
+| **Validační orchestrátor** | Python 3.12 (`scripts/build.py`) | Vlastní testovací pipeline kontrolující integritu odkazů, formát Markdownu a správnost struktury před každým buildem |
+| **CI/CD Pipeline** | GitHub Actions | Automatická validace, build a nasazení na GitHub Pages při každém commitu |
+| **Typografie & UI** | Čisté SCSS bez frameworků | Vysoký kontrast, přehledné kódové bloky se syntax highlightem, responsivní tabulky optimalizované pro studium |
 
 ---
 
 ## Rozsah a struktura obsahu
 
-| Předmět / Oblast | Počet témat | Obsahové zaměření |
+Portál čítá celkem **169 detailně zpracovaných témat**, rozčleněných do logických sekcí:
+
+| Oblast | Rozsah | Obsahové zaměření |
 | :--- | :--- | :--- |
-| **Počítačové sítě a programování** | 26 témat | Protokoly TCP/IP, směrování, spínání, OOP, algoritmy a datové struktury |
-| **Aplikační software** | 26 témat | Operační systémy, virtualizace, cloud, databázové systémy a systémová administrace |
-| **Český jazyk a literatura** | 97 děl | Kontextové rozbory literárních děl a literární historie dle školního seznamu |
-| **Anglický jazyk** | 20 okruhů | Odborná IT terminologie, gramatické struktury a modelové konverzační scénáře |
-| **Maturitní práce** | 7 oblastí | Metodika návrhu, implementace, technické dokumentace a úspěšné obhajoby |
+| **Počítačové sítě a programování** | 26 témat | Model OSI/ISO, TCP/IP, směrování (OSPF, BGP), spínání (VLAN, STP), OOP paradigmata, datové struktury a algoritmy |
+| **Aplikační software** | 26 témat | Správa Linux/Windows serverů, virtualizace (KVM, Proxmox), Docker kontejnery, SQL databáze, transakční zpracování |
+| **Český jazyk a literatura** | 97 děl | Komplexní literárně-historické rozbory děl světové i české literatury dle oficiálního školního kánonu |
+| **Anglický jazyk** | 20 okruhů | Odborná IT terminologie, hardwarová a softwarová témata, modelové konverzační situace |
+| **Maturitní práce** | 7 oblastí | Metodika návrhu architektury, implementace, technická dokumentace a zásady úspěšné obhajoby |
 
 ---
 
 ## Vlastní Build & Validation Pipeline (`scripts/build.py`)
 
-Klíčovým inženýrským prvkem projektu je vlastní validační orchestrátor napsaný v Pythonu. Před každým nasazením spouští sérii přísných kontrol:
+Klíčovým inženýrským prvkem projektu je vlastní validační orchestrátor v Pythonu. Před každým nasazením na produkci spouští automatizované testy kvality:
 
-1. **Kontrola integrity odkazů:** Ověřuje, zda žádný z tisíců interních křížových odkazů nevede na chybějící stránku nebo neexistující kotvu.
-2. **Statická analýza Markdownu:** Kontroluje konzistenci hlaviček (frontmatter), správnost syntaxe kódových bloků a formátování tabulek.
-3. **Generování a Pagefind indexace:** Po sestavení Zolou spustí npm Pagefind indexer, který vytvoří statické indexové chunky pro offline full-text.
-4. **Validace výstupního adresáře:** Kontrola vygenerovaných HTML souborů a statických aktiv před nahráním na produkční server.
+1. **Kontrola integrity odkazů (Zero Broken Links):** Prochází všechny Markdown soubory a ověřuje, že žádný z tisíců interních křížových odkazů a kotev `#` nevede do prázdna.
+2. **Statická analýza Markdown frontmatter:** Ověřuje přítomnost povinných metadat (titulek, váha řazení, kategorie).
+3. **Generování Pagefind WASM indexu:** Po sestavení Zolou spustí Pagefind indexaci, která vygeneruje kompaktní statické vyhledávací indexy pro offline vyhledávání.
+4. **Auditing artefaktů:** Kontroluje integritu finálních HTML souborů a statických aktiv v produkčním adresáři.
