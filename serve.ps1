@@ -19,4 +19,4 @@ Write-Host " Web bude dostupny na: http://127.0.0.1:1111/" -ForegroundColor Yell
 Write-Host " Ukoncit muzete stiskem Ctrl+C" -ForegroundColor Gray
 Write-Host "==========================================================" -ForegroundColor Green
 
-& $zolaExe serve --open
+& $zolaExe serve --drafts --open
