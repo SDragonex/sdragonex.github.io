@@ -21,16 +21,25 @@
 			return;
 		}
 
+		function removeDiacritics(str) {
+			return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+		}
+
 		const options = {
 			includeScore: false,
 			includeMatches: true,
 			ignoreLocation: true,
-			threshold: 0.15,
+			threshold: 0.35,
+			minMatchCharLength: 2,
 			keys: [
 				{ name: "title", weight: 3 },
 				{ name: "description", weight: 2 },
 				{ name: "body", weight: 1 }
-			]
+			],
+			getFn: (obj, path) => {
+				const val = Fuse.config.getFn(obj, path);
+				return typeof val === "string" ? removeDiacritics(val) : val;
+			}
 		};
 
 		fuse = new Fuse(await response.json(), options);
@@ -68,16 +77,24 @@
 		const MAX_ITEMS = 10;
 		const MAX_RESULTS = 4;
 
-		let currentTerm = "";
+		function removeDiacritics(str) {
+			return str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+		}
 
 		searchBar.addEventListener("keyup", (e) => {
 			if (!fuse) return;
-			const searchVal = searchBar.value.trim();
+			const rawVal = searchBar.value.trim();
+			if (!rawVal) {
+				searchResults.innerHTML = "";
+				searchResults.style.display = "none";
+				return;
+			}
+			const searchVal = removeDiacritics(rawVal);
 			const results = fuse.search(searchVal, { limit: MAX_ITEMS });
 
 			let html = "";
 			for (const result of results) {
-				html += makeTeaser(result, searchVal);
+				html += makeTeaser(result, rawVal);
 			}
 			searchResults.innerHTML = html;
 
@@ -88,29 +105,32 @@
 			}
 		});
 
-		function makeTeaser(result, searchVal) {
-			const TEASER_SIZE = 20;
-			let output = `<div class="search-result item"><a class="result-title" href=${result.item.url}>${result.item.title}</a>`;
+		function makeTeaser(result, rawVal) {
+			const TEASER_SIZE = 35;
+			let output = `<div class="search-result item"><a class="result-title" href="${result.item.url}">${result.item.title}</a>`;
 
-			for (const match of result.matches) {
-				if (match.key === "title") continue;
+			if (result.matches && result.matches.length > 0) {
+				for (const match of result.matches) {
+					if (match.key === "title") continue;
 
-				const indices = match.indices.sort((a, b) => Math.abs(a[1] - a[0] - searchVal.length) - Math.abs(b[1] - b[0] - searchVal.length)).slice(0, MAX_RESULTS);
-				const value = match.value;
+					const indices = match.indices.sort((a, b) => Math.abs(a[1] - a[0] - rawVal.length) - Math.abs(b[1] - b[0] - rawVal.length)).slice(0, MAX_RESULTS);
+					const value = match.value;
 
-				for (const ind of indices) {
-					const start = Math.max(0, ind[0] - TEASER_SIZE);
-					const end = Math.min(value.length - 1, ind[1] + TEASER_SIZE);
-					output += "<span>"
-						+ value.substring(start, ind[0])
-						+ `<strong>${value.substring(ind[0], ind[1] + 1)}</strong>`
-						+ value.substring(ind[1] + 1, end)
-						+ "</span>";
-				}
+					for (const ind of indices) {
+						const start = Math.max(0, ind[0] - TEASER_SIZE);
+						const end = Math.min(value.length - 1, ind[1] + TEASER_SIZE);
+						output += "<span>"
+							+ value.substring(start, ind[0])
+							+ `<strong>${value.substring(ind[0], ind[1] + 1)}</strong>`
+							+ value.substring(ind[1] + 1, end)
+							+ "</span>";
+					}
 
-				if (match.indices.length > 4) {
-                    const moreMatchesText = document.getElementById("more-matches-text").textContent;
-					output += `<span class="more-matches">${moreMatchesText}</span>`.replace("$MATCHES", `+${match.indices.length - MAX_RESULTS}`);
+					if (match.indices.length > MAX_RESULTS) {
+						const moreMatchesEl = document.getElementById("more-matches-text");
+						const moreMatchesText = moreMatchesEl ? moreMatchesEl.textContent : "+$MATCHES more";
+						output += `<span class="more-matches">${moreMatchesText}</span>`.replace("$MATCHES", `+${match.indices.length - MAX_RESULTS}`);
+					}
 				}
 			}
 			return output + "</div>";
