@@ -40,25 +40,27 @@ table {
   -webkit-overflow-scrolling: touch;
 }
 
-/* --- CRT Centering & Responsive Framing --- */
+/* --- CRT Panels: Full Width & Terminal Box --- */
 .crt {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
+  display: block;
+  width: 100% !important;
   max-width: 100% !important;
-  margin: 1.75rem auto !important;
+  margin: 2rem 0 !important;
   box-sizing: border-box;
 }
 
 .crt pre {
   margin: 0 !important;
-  text-align: center;
+  width: 100% !important;
+  box-sizing: border-box;
   overflow-x: auto;
 }
 
 .crt pre code {
-  display: inline-block !important;
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box;
   text-align: left;
-  margin: 0 auto;
 }
 
 /* --- SVG Icons --- */
