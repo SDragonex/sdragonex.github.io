@@ -1,6 +1,6 @@
 ---
-title: "Maturita 2027: Educational Knowledge Base"
-description: "An automated study portal and knowledge base for Information Technology students featuring a custom Python validation pipeline and instant Pagefind full-text search."
+title: "Maturita: IT Knowledge Base & Study Portal"
+description: "An open, continuously maintained study portal and IT knowledge base for SŠTE Brno featuring a custom Python validation pipeline and instant Pagefind full-text search."
 date: 2024-05-10
 weight: 20
 ---
@@ -19,49 +19,58 @@ weight: 20
   <div class="project-meta-specs">
     <div>Type: <strong>Static Jamstack Portal</strong></div>
     <div>Stack: <strong>Zola, Pagefind, Python 3.12, SCSS</strong></div>
-    <div>Status: <strong>Production Live</strong></div>
+    <div>Status: <strong>Continuously Maintained Knowledge Base</strong></div>
   </div>
 </div>
 
-## Project Overview
+## Purpose & Problem Statement
 
-**Maturita 2027** is a structured educational knowledge base engineered for final-year students of the Information Technology curriculum at SŠTE Brno. It replaces fragmented PDF notes, disparate docs, and legacy slides with a unified, version-controlled static documentation ecosystem.
+Preparation for secondary school technical graduation examinations (*Maturita*) frequently suffers from chronic fragmentation and obsolescence. Students are traditionally forced to navigate an unorganized patchwork of scanned notebooks, outdated PowerPoint presentations from 2012–2018, questionable files on shared drives, and unstructured Word documents passed down through student generations. These resources frequently contain factual inaccuracies, outdated network protocols, and deprecated language versions.
 
-The portal encompasses **169 detailed study pages**, code examples, and technical graduation project guides.
+**Project Maturita** was engineered as a robust solution to this educational disorder. It represents a centralized, open-source, version-controlled knowledge ecosystem covering the full curriculum of the 18-20-M/01 Information Technology specialization at SŠTE Brno.
+
+Rather than being a static artifact for a single graduation year, Maturita is conceived as an **evergreen, living repository**. It is continuously audited, updated, and extended with modern technological industry standards (IPv6, modern Docker workflows, REST vs. GraphQL, and modern C#/Python paradigms).
+
+### Target Audience & Impact
+* **IT Students:** A single, verified source of truth featuring structured topic breakdowns, production-grade code snippets, and network topologies.
+* **Future School Years:** Zero knowledge loss between student cohorts. The Git-based contribution model allows anyone to submit pull requests, fix typos, or append new technological modules.
+* **Faculty & Instructors:** A transparent benchmark harmonizing knowledge expectations for graduating technical specialists.
 
 ---
 
-## Architecture & Engineering
+## Architecture & Technology Stack
 
-The site implements modern Jamstack architectural principles: zero servers to maintain, static HTML pre-rendering, and pre-deployment continuous validation.
+The portal implements modern Jamstack architectural principles with zero server runtime overhead and lightning-fast content delivery:
 
-| Layer | Technology | Role & Architecture |
+| Layer | Chosen Technology | Architectural Rationale & Trade-offs |
 | :--- | :--- | :--- |
-| **Static Site Generator** | Zola (Rust) | High-speed compilation of Markdown sources and SCSS stylesheets |
-| **Client Search Engine** | Pagefind (v1.5.2) | Sub-millisecond full-text indexation performed directly in the client browser |
-| **Build Pipeline & Linter** | Python 3.12 (`scripts/build.py`) | Automated cross-link verification, frontmatter linting, and asset integrity |
-| **CI/CD Automation** | GitHub Actions | Automated regression tests, compilation, and zero-downtime deployment to GitHub Pages |
-| **Design System** | Custom SCSS | Tailored for extensive technical reading, responsive tables, and syntax code blocks |
+| **Static Site Generator** | [Zola](https://www.getzola.org/) (Rust) | Blazing compilation speed (< 1s for hundreds of Markdown pages), native SCSS pipeline, zero npm dependencies |
+| **Search Engine** | [Pagefind](https://pagefind.app/) (v1.5.2) | Client-side WebAssembly search engine; downloads lightweight static index chunks on demand without any server backend |
+| **Validation Orchestrator** | Python 3.12 (`scripts/build.py`) | Custom CI test harness verifying cross-link integrity, Markdown formatting, and frontmatter consistency |
+| **CI/CD Pipeline** | GitHub Actions | Automated regression testing, compilation, and zero-downtime deployment to GitHub Pages on every push |
+| **Design System** | Clean Vanilla SCSS | High-contrast typography, syntax-highlighted code blocks, and responsive tables tailored for deep study sessions |
 
 ---
 
 ## Curriculum Coverage
 
+The knowledge base encompasses **169 comprehensive study guides** divided into focused academic sections:
+
 | Domain | Topic Count | Technical Scope |
 | :--- | :--- | :--- |
-| **Computer Networks & Programming** | 26 topics | TCP/IP model, routing protocols, switching, OOP paradigms, algorithms, and data structures |
-| **Application Software** | 26 topics | Linux/Windows administration, virtualization, containerization, and relational databases |
-| **Literature & Cultural Context** | 97 works | Deep contextual analysis of literary works aligned with the official examination list |
-| **Technical English** | 20 modules | IT terminology, grammatical frameworks, and professional conversation drills |
-| **Graduation Thesis** | 7 domains | Methodology for system design, hardware/software implementation, documentation, and defense |
+| **Computer Networks & Programming** | 26 topics | OSI/ISO stack, TCP/IP, dynamic routing (OSPF, BGP), switching (VLAN, STP), OOP paradigms, data structures and algorithms |
+| **Application Software** | 26 topics | Linux & Windows administration, virtualization (KVM, Proxmox), Docker containers, SQL transaction management |
+| **Literature & Cultural Context** | 97 works | In-depth contextual analyses of Czech and world literary milestones aligned with the national examination canon |
+| **Technical English** | 20 modules | IT vocabulary, hardware/software specifications, and realistic conversational exam scenarios |
+| **Graduation Thesis** | 7 domains | System architecture design, implementation guidelines, technical documentation, and defense strategies |
 
 ---
 
 ## Custom Build & Validation Pipeline (`scripts/build.py`)
 
-A notable feature of the repository is the custom Python test harness. Prior to deployment, it enforces strict quality gates:
+A cornerstone of the repository's engineering rigor is the custom Python validation pipeline. Prior to deployment, it enforces strict quality gates:
 
-1. **Dead Link Detection:** Validates every internal relative link and section anchor across thousands of references.
-2. **Markdown Schema Validation:** Asserts frontmatter correctness, syntax highlight tags, and table formatting.
-3. **Automated Search Indexing:** Executes Pagefind to build static shard indexes for immediate client querying.
-4. **Build Artifact Auditing:** Verifies generated HTML bundles prior to publishing to production.
+1. **Zero Broken Links Guarantee:** Iterates through thousands of Markdown links and anchor identifiers (`#`) to prevent 404 dead ends.
+2. **Schema & Frontmatter Validation:** Validates required metadata fields across all content files.
+3. **Automated Pagefind WASM Indexing:** Runs the Pagefind indexer post-build to build static search shards for offline browser execution.
+4. **Artifact Integrity Audit:** Verifies generated HTML bundles and static assets before deployment to production.
