@@ -16,9 +16,9 @@
 
 @include theme-variables using ($theme) {
 	@if $theme == "dark" {
-		// COLORS
-		--bg-color: color-mix(in srgb, var(--accent-color) 10%, black);
-		--bg-overlay: linear-gradient(rgb(0 0 0 / 0.9), rgb(0 0 0 / 0.9));
+		// COLORS - Solid Black (decoupled from accent color)
+		--bg-color: rgb(0 0 0);
+		--bg-overlay: linear-gradient(rgb(0 0 0 / 0.96), rgb(0 0 0 / 0.96));
 		--fg-color: rgb(255 255 255);
 		--fg-contrast: rgb(0 0 0 / 0.8);
 		--fg-muted-1: rgb(255 255 255 / 0.05);
@@ -26,7 +26,7 @@
 		--fg-muted-3: rgb(255 255 255 / 0.2);
 		--fg-muted-4: rgb(255 255 255 / 0.5);
 		--fg-muted-5: rgb(255 255 255 / 0.6);
-		--glass-bg: rgb(25 25 25 / 0.7);
+		--glass-bg: rgb(12 12 12 / 0.85);
 		--blue-fg: rgb(153 193 241);
 		--brown-fg: rgb(205 171 143);
 		--green-fg: rgb(143 240 164);
@@ -38,9 +38,9 @@
 	}
 
 	@else {
-		// COLORS
-		--bg-color: color-mix(in srgb, var(--accent-color) 20%, white);
-		--bg-overlay: linear-gradient(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.8));
+		// COLORS - Milky Modern White (decoupled from accent color)
+		--bg-color: #faf9f6;
+		--bg-overlay: linear-gradient(rgb(250 249 246 / 0.9), rgb(250 249 246 / 0.9));
 		--fg-color: rgb(0 0 0 / 0.8);
 		--fg-contrast: rgb(255 255 255);
 		--fg-muted-1: rgb(0 0 0 / 0.05);
@@ -48,7 +48,7 @@
 		--fg-muted-3: rgb(0 0 0 / 0.2);
 		--fg-muted-4: rgb(0 0 0 / 0.5);
 		--fg-muted-5: rgb(0 0 0 / 0.6);
-		--glass-bg: rgb(242 242 242 / 0.7);
+		--glass-bg: rgb(250 249 246 / 0.85);
 		--accent-color-alpha: rgb(from var(--accent-color) r g b / var(--color-opacity));
 		--blue-bg: rgb(from var(--blue-fg) r g b / var(--color-opacity));
 		--blue-fg: rgb(53 132 228);
