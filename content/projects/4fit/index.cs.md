@@ -19,54 +19,58 @@ weight: 10
   </div>
 </div>
 
-## Přehled projektu
+## K čemu projekt slouží a jaký problém řeší
 
-**4Fit** je komerční mobilní platforma navržená pro transformaci vztahu mezi návštěvníky posiloven, certifikovanými trenéry a provozovateli fitness center. Tradiční fitness aplikace často selhávají v retenci uživatelů a postrádají přímé propojení s reálným prostředím posiloven. 4Fit tento problém řeší spojením discovery rozhraní, bezpečného in-app chatu a geolokačního gamifikačního systému.
+Klasické fitness aplikace se obvykle omezují na pasivní digitální záznamníky vah nebo generátory předtočených cvičebních videí. V reálném světě však fitness průmysl naráží na zásadní systémový problém: **vysokou míru předčasného ukončení cvičení (churn rate)** a naprostou roztříštěnost komunikace mezi třemi klíčovými aktéry:
 
-Aplikace stojí na čtyřech hlavních pilířích: **jednoduchost, přehlednost, retence a synergie** mezi cvičencem a trenérem.
+1. **Běžný návštěvník posilovny (Cvičenec):** Po počátečním lednovém nadšení ztrácí do 3 až 6 týdnů motivaci. Chybí mu vnější disciplína, závazek (accountability) a najít spolehlivého trenéra je složitý proces plný nejistoty ohledně kvalifikace, cen a přístupu.
+2. **Osobní trenér:** Tráví neúměrné množství času neplacenou administrativou — naháněním klientů ve zprávách na Instagramu či WhatsAppu, řešením omluv na poslední chvíli a chaotickým plánováním volných slotů.
+3. **Provozovatel fitness centra (Posilovna):** Bojuje s odlivem nových členů a nemá efektivní nástroj, jak návštěvníky dlouhodobě udržet a propojit je s kvalitními trenéry, kteří v jejich prostorách působí.
+
+**4Fit** překlenuje tuto propast jednotným digitálním ekosystémem postaveným na **čtyřech pilířích:**
+
+* **FitCheck (Geolokační retence):** Motivuje cvičence k pravidelnosti gamifikací podloženou fyzickou návštěvou posilovny.
+* **Trenérský Swipe Discovery:** Intuitivní matchmaking propojující klienty s ověřenými trenéry podle lokality, specializace a recenzí.
+* **Centralizovaný in-app kalendář & chat:** Konec nepřehledných soukromých zpráv — veškeré rezervace a tréninkové konzultace probíhají na jednom místě.
+* **Partnerský katalog gymů:** Přehledná mapa sportovišť s aktuálními ceníky, vybavením a seznamem akreditovaných trenérů.
 
 ---
 
 ## Architektura a technologický stack
 
-Projekt využívá moderní multiplatformní architekturu postavenou na frameworku Flutter pro mobilního klienta a cloudové platformě Supabase jako škálovatelném backendu.
+Projekt staví na moderní multiplatformní architektuře s důrazem na nativní plynulost uživatelského rozhraní a robustní cloudové zabezpečení:
 
-| Komponenta | Použitá technologie | Účel a funkce |
+| Vrstva | Zvolená technologie | Architektonické odůvodnění & Výhody |
 | :--- | :--- | :--- |
-| **Mobilní frontend** | Flutter (Dart) | Natívní výkon pro iOS i Android z jedné kódové báze |
-| **Backend & Databáze** | Supabase (PostgreSQL) | Správa uživatelů, autentizace, Row Level Security (RLS) a real-time data |
-| **Geolokace & Validace** | `geolocator` + Anti-Mocking | Detekce reálné přítomnosti uživatele v gymu do 100 metrů |
-| **Web Admin Panel** | Flutter Web / HTML5 | Schvalování certifikátů trenérů, správa gymů a analytika |
-| **Úložiště & Offline** | Local Cache & SQLite | Offline ukládání check-inů a synchronizace po obnovení připojení |
+| **Mobilní frontend** | [Flutter](https://flutter.dev/) (Dart) | Jediná kódová báze pro iOS i Android. Nativní výkon 60/120 fps díky enginu Impeller, deterministické vykreslování identického UI bez kompromisů |
+| **Backend & Autentizace** | [Supabase](https://supabase.com/) | Plnohodnotná PostgreSQL databáze namísto NoSQL. Bezpečnost garantovaná na úrovni řádků (Row Level Security), real-time WebSocket subscriptions pro instantní chat |
+| **Geolokační subsystém** | `geolocator` + Anti-Mocking | Precizní výpočet vzdálenosti Haversine algoritmem v perimetru 100 m s aktivní detekcí emulované polohy na systémové úrovni |
+| **Lokální mezipaměť (Offline)** | SQLite & Encrypted SharedPrefs | Zajišťuje uložení check-inů v suterénních posilovnách bez mobilního signálu s automatickou synchronizační frontou po obnovení spojení |
+| **Administrační rozhraní** | Flutter Web | Dedikovaný administrační portál pro schvalování trenérských licencí, správu profilů posiloven a analytiku |
 
 ---
 
-## Klíčové moduly platformy
+## Detailní inženýrská řešení modulů
 
-### 1. Trenérský Matchmaking (Swipe Discovery)
-* Intuitivní vyhledávání trenérů inspirované swipe mechanikou.
-* Uživatel si prohlíží profily trenérů, jejich specializace (silový trénink, rehabilitace, redukce tuku), dosažená osvědčení a hodnocení od reálných klientů.
-* Oboustranná shoda umožňuje přímé navázání kontaktu a plánování tréninků.
+### 1. Geolokační motor FitCheck & Prevence podvádění
+Gamifikační systém stojí na důvěryhodnosti návštěv. Pokud by bylo možné návštěvy falšovat, ztrácí streak svou motivační i soutěžní hodnotu.
+* **Geofencing na 100 metrů:** Algoritmus v reálném čase porovnává GPS souřadnice zařízení s polygonem nebo poloměrem partnerského fitness centra.
+* **Detekce Mock Locations:** Klient na úrovni operačního systému (Android `Location.isFromMockProvider()` a iOS core location flags) kontroluje, zda souřadnice nepocházejí z virtuálního GPS joysticku.
+* **Algoritmus férového streaku:** Zamezuje zneužití pravidlem, že v rámci jednoho kalendářního týdne lze získat maximálně 1 streak bod po dosažení předem definovaného týdenního cíle (např. 3 návštěvy týdně).
 
-### 2. Interaktivní mapa a katalog fitness center
-* Geografická mapa zobrazuje partnerské posilovny v okolí.
-* Každý záznam posilovny obsahuje fotografie, aktuální ceník vstupů i permanentek, vybavení a seznam trenérů, kteří v daném gymu oficiálně působí.
+### 2. Architektura zabezpečení dat (PostgreSQL Row Level Security)
+Vzhledem k přítomnosti osobních zdravotních dat a soukromé konverzace mezi klientem a trenérem je bezpečnost prioritou číslo jedna:
+* Data nejsou chráněna pouhou logikou v aplikaci, ale přímo na úrovni PostgreSQL databáze pomocí **RLS politik**.
+* Klient má kryptograficky garantovaný přístup pouze ke svým vlastním záznamům a zprávám v aktivních konverzacích.
+* Trenér vidí výhradně profily a tréninkové metriky těch uživatelů, kteří mu k tomu udělili výslovný souhlas přes oboustranný match.
 
-### 3. Modul FitCheck: Geolokační gamifikace a retence
-Problém většiny cvičenců spočívá v nepravidelnosti a ztrátě motivace. 4Fit integruje systém **FitCheck**:
-* **Geofencing do 100 metrů:** Uživatel může provést check-in pouze v případě, že se fyzicky nachází v perimetru partnerské posilovny.
-* **Ochrana proti Fake GPS:** Aktivní validace systémových příznaků zamezuje emulaci polohy (Mock Locations) v systému Android i iOS.
-* **Týdenní cíle a streaky:** Uživatel sbírá série úspěšných týdnů. Algoritmus zabraňuje zneužití striktním započítáváním maximálně jednoho streak bodu za splněný týdenní cíl.
-* **Offline Caching:** Pokud je uživatel v suterénní posilovně bez mobilního signálu, check-in se bezpečně zašifruje lokálně a automaticky odešle na server okamžitě po zachycení sítě.
-
-### 4. Komunikace a rezervační kalendář
-* Integrovaný real-time chat pro ladění tréninkových plánů a konzultace stravy.
-* Rezervační systém pro plánování konkrétních časových slotů v kalendáři trenéra přímo z mobilní aplikace.
+### 3. Trenérský Matchmaking (Swipe Discovery)
+* Klientská komponenta využívá hardwarově akcelerované gesturální karty.
+* Profil trenéra obsahuje ověřené certifikace, specializace (např. silový trojboj, náprava pohybového aparátu, kalisthenika), galerii a recenze ověřených klientů.
+* Propojení obou stran otevírá šifrovaný chat a sdílený rezervační kalendář.
 
 ---
 
-## Design a UI/UX
-
-* **AMOLED Dark Mode:** Hluboké tmavé pozadí optimalizované pro OLED displeje v kombinaci s neonově tyrkysovým akcentem (`#2596be`).
-* **Adaptivní ikony:** Připraveno pro Material You (Android 13+) a dynamické tónování ikon (iOS 18+).
-* **Dock navigace:** Pětisložková spodní lišta: Feed, Mapa, Trenéři (ústřední zvýrazněný prvek), Chat, Profil.
+## Designový systém a UX
+* **AMOLED Dark Mode:** Hluboká černá (`#000000`) optimalizovaná pro minimalizaci spotřeby baterie OLED displejů v posilovně, doplněná o neonový tyrkysový akcent (`#2596be`).
+* **Ergonomická navigace na jednu ruku:** Pětiprvkový plovoucí dock přizpůsobený pro snadné ovládání palcem během tréninku (Feed, Mapa, Trenéři, Chat, Profil).
