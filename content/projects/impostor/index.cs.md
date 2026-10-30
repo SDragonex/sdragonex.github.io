@@ -61,6 +61,7 @@ Impostor generuje veškeré zvuky **matematicky v reálném čase** pomocí vest
 
 * **Křupnutí voskové pečeti:** Nízkofrekvenční šumový impulz modulovaný rezonančním pásmovým filtrem (Bandpass) simulující fyzické prasknutí vosku pod tlakem pečeti.
 * **Šustění manilového papíru:** Generátor bílého šumu s exponenciálním útlumem a dynamickou změnou amplitudy simulující tření tvrdého papíru obálky.
+* **Dopad úředního razítka:** Nízkofrekvenční basový transient s rychlým decayem simulující úder dřevěného razítka do stolu.
 * **Tikot stopek a gong:** Sinusové oscilátory s velmi rychlým náběhem (attack) a přesně kalibrovaným harmonickým dozvukem (decay).
 * **Výsledek:** Okamžitá reakce na dotek prstu (< 5 ms) s nulovou spotřebou mobilních dat.
 
@@ -69,5 +70,8 @@ Impostor generuje veškeré zvuky **matematicky v reálném čase** pomocí vest
 ## Herní módy a psychologické mechaniky
 
 1. **Klasický Impostor:** Jeden či více agentů nezná tajné heslo. Ostatní hráči dávají jemné nápovědy. Vetřelec musí předstírat znalost tématu a splynout s davem, nebo z indicií heslo bleskově odvodit.
-2. **Režim Undercover (Sémantická disonance):** Vetřelec neobdrží prázdné pole, ale příbuzné slovo ze stejného taxonomického okruhu (např. *Káva vs. Čaj*, *Bitcoin vs. Zlato*, *Batman vs. Zorro*). Vetřelec zpočátku netuší, že má jinou roli, a teprve v průběhu diskuse dochází k dramatickému zjištění, že jeho nápovědy ostatním „nesedí“.
-3. **Výslechový protokol & Poslední šance:** Hlasováním odhalený hráč dostává finální šanci — pokud správně uhodne původní tajné slovo vyšetřovatelů, okamžitě obrací hru a vítězí.
+2. **Režim Undercover (Sémantická disonance):** Vetřelec neobdrží prázdné pole, ale příbuzné slovo ze stejného taxonomického okruhu (např. *Káva vs. Čaj*, *Minecraft vs. Roblox*, *Batman vs. Superman*). Vetřelec zpočátku netuší, že má jinou roli, a teprve v průběhu diskuse dochází k dramatickému zjištění, že jeho nápovědy ostatním „nesedí“.
+3. **Výslechový protokol & Poslední šance:** Hlasováním odhalený hráč čelí přímé výslechové sekvenci a dostává finální šanci — pokud správně uhodne původní tajné slovo vyšetřovatelů, okamžitě obrací hru a vítězí.
+4. **Správa týmu (Squad Manager):** Trvalé lokální ukládání jmen vyšetřovacího týmu pro opakované hraní + generátor stylových krycích jmen.
+5. **Chaos karty & Párty modifikátory:** Volitelná omezení nápověd pro každé kolo (např. *pouze jednoslovné nápovědy*, *rýmování*, *nápověda formou otázky*).
+6. **Editor vlastních balíčků & Celo-večerní Scoreboard:** Možnost tvořit interní vtipné slovníky přímo v aplikaci a sledovat průběžné skóre mezi Agenty a Impostory.
