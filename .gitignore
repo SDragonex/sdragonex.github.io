@@ -5,3 +5,6 @@ tools/
 /.github/agents
 /.github/hooks
 MEMORY.md
+/.agents
+/.claude
+/agent

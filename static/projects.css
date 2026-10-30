@@ -111,18 +111,56 @@ h1, h2, h3, h4, h5, h6, [id] {
 }
 
 hr {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   border: none !important;
-  border-top: 1px solid var(--fg-muted-2) !important;
-  margin: 2.5rem 0 !important;
+  margin: 3.25rem auto !important;
   width: 100% !important;
-  height: 0 !important;
+  height: 1.5rem !important;
   overflow: visible !important;
+  text-align: center !important;
+  position: relative !important;
+  background: transparent !important;
+}
+
+hr::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 50% !important;
+  height: 1px !important;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--fg-muted-2) 15%,
+    var(--fg-muted-2) 85%,
+    transparent
+  ) !important;
+  z-index: 0 !important;
 }
 
 hr::after {
-  display: none !important;
-  content: "" !important;
+  content: "❦" !important;
+  display: inline-block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  padding: 0 1rem !important;
+  background-color: var(--bg-color) !important;
+  color: var(--accent-color) !important;
+  font-size: 1.35rem !important;
+  line-height: 1 !important;
+  opacity: 0.9 !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  user-select: none;
 }
+
+hr:hover::after {
+  transform: scale(1.2);
+  opacity: 1 !important;
+}
+
 
 /* Subtle Scrollbars for Tables & Code Blocks */
 .table-wrapper::-webkit-scrollbar,

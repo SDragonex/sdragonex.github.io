@@ -18,7 +18,7 @@ NOTE: If the logic for pluralization is modified, it needs to be replicated on t
 Files: static/js/searchElasticlunr.js and its minified version at static/js/searchElasticlunr.min.js
 Function name: getPluralizationKey -#}
 {% macro translate(key, number=-1, language_strings="", default="", replace=true) %}
-	{%- set slavic_plural_languages = ["uk", "be", "bs", "hr", "ru", "sr"] -%}
+	{%- set slavic_plural_languages = ["uk", "be", "bs", "hr", "ru", "sr", "cs", "sk"] -%}
 
 	{%- set key_prefix = "" -%}
 	{#- `zero_` and `one_` are common cases. We handle "many" (plural) later, after language-specific pluralization -#}

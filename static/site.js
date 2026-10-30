@@ -13,4 +13,27 @@ document.addEventListener('DOMContentLoaded', function() {
       wrapper.appendChild(table);
     }
   });
+
+  // 2. Keyboard shortcut for search: "/" or "Ctrl+K" / "Cmd+K" to open, "Escape" to close
+
+  document.addEventListener('keydown', function(e) {
+    var searchBar = document.getElementById('search-bar');
+    var searchToggle = document.getElementById('search-toggle');
+    var searchContainer = document.getElementById('search-container');
+    
+    // Press "/" (when not typing in an input/textarea) or "Ctrl+K" / "Cmd+K"
+    var isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) || document.activeElement.isContentEditable;
+    if ((e.key === '/' && !isInput) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
+      e.preventDefault();
+      if (searchContainer && !searchContainer.classList.contains('active')) {
+        if (searchToggle) searchToggle.click();
+      } else if (searchBar) {
+        searchBar.focus();
+        searchBar.select();
+      }
+    } else if (e.key === 'Escape' && searchContainer && searchContainer.classList.contains('active')) {
+      if (searchToggle) searchToggle.click();
+    }
+  });
 });
+

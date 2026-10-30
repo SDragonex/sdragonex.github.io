@@ -61,10 +61,15 @@ last = "Poslední"
 load_comments = "Načíst komentáře"
 loading = "Načítání..."
 
+few_minutes_read = "$NUMBER minuty čtení"
 many_minutes_read = "$NUMBER minut čtení"
+few_posts = "$NUMBER články celkem"
 many_posts = "$NUMBER článků celkem"
+few_tags = "$NUMBER tagy celkem"
 many_tags = "$NUMBER tagů celkem"
 
+one_minutes_read = "$NUMBER minuta čtení"
+zero_minutes_read = "< 1 minuta čtení"
 minutes_read = "$NUMBER minuta čtení"
 more_matches = "$MATCHES dalších výsledků"
 

@@ -27,6 +27,8 @@ index_format = "fuse_json"
 accent_color = "#ED2100"
 accent_color_dark = "#ED2100"
 default_theme = "system"
+show_reading_time = true
+show_copy_button = true
 styles = ["projects.css"]
 scripts = ["site.js"]
 
