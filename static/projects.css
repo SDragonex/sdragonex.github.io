@@ -54,11 +54,11 @@ table {
   width: 100% !important;
   box-sizing: border-box;
   overflow-x: auto;
+  text-align: center;
 }
 
 .crt pre code {
-  display: block !important;
-  width: 100% !important;
+  display: inline-block !important;
   box-sizing: border-box;
   text-align: left;
 }
