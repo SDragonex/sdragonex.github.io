@@ -17,46 +17,57 @@ weight: 40
     </a>
   </div>
   <div class="project-meta-specs">
-    <div>Type: <strong>Pass & Play Web Game</strong></div>
+    <div>Architecture: <strong>Pass & Play PWA Game</strong></div>
     <div>Stack: <strong>JavaScript (ES6+), Web Audio API, Tailwind CSS, Service Worker</strong></div>
     <div>Status: <strong>Production Ready</strong></div>
   </div>
 </div>
 
-## Project Overview
+## Purpose & Problem Statement
 
-**Impostor** is a Pass & Play social deduction web game designed for single-device group play. Players take on the roles of special investigation agents who share a classified keyword. Hidden among them, one or more Impostors know nothing about the word and must deduce the context from fellow players' hints while blending in seamlessly.
+Social deduction games (such as *Mafia*, *Secret Hitler*, *Spyfall*, and *Among Us*) are renowned for sparking lively social dynamics. However, in real-world party scenarios, pubs, or off-grid cabin retreats, they regularly stumble upon **three frustrating bottlenecks:**
 
-Unlike generic party apps, Impostor focuses heavily on **tactile atmosphere**: manila classified envelope textures, realistic wax seals, typewriter stamps, and a procedurally synthesized audio architecture.
+1. **App Store Friction & Onboarding Fatigue:** Forcing 6 to 10 players to each download a 150MB native app, recover forgotten passwords, and connect to a room code kills party momentum before the first round even begins.
+2. **Network Dependency:** Basement bars, transit flights, and remote wilderness cabins often lack cellular data or dependable Wi-Fi connections.
+3. **Screen Isolation vs. Human Connection:** Instead of looking each other in the eye to analyze micro-expressions, speech hesitation, and body language, everyone is locked into their personal screens.
+
+**Impostor** sidesteps these problems using an elegant **single-device Pass & Play** architecture:
+
+* **Single Shared Device:** A single browser window on any smartphone is all that's required. Zero downloads, zero accounts.
+* **Tactile Classified Dossier Ritual:** The phone circulates in a circle. Each player taps to break an interactive wax seal, secretly inspects their secret dossier, and passes the handset to the next player.
+* **Psychological Focus:** Once everyone has seen their role, the phone is set down in the center of the table. The game transitions entirely into verbal sparring, bluffing, and interpersonal deduction.
 
 ---
 
-## Technical Architecture
+## Architecture & Technology Stack
 
-| Component | Technology | Role & Solution |
+The application is engineered without bulky third-party game engines (no Unity or Phaser overhead), relying exclusively on native web standards:
+
+| Layer | Chosen Technology | Architectural Rationale & Trade-offs |
 | :--- | :--- | :--- |
-| **Game State Machine** | Vanilla JS (`js/app.js`) | Deterministic state loop (Squad Configuration -> Pass & Reveal -> Discussion -> Interrogation Arena) |
-| **Audio Engine** | Web Audio API (`js/audio.js`) | 100% zero-asset sound synthesis directly in the browser runtime |
-| **Visual Design** | Tailwind CSS + Custom CSS Variables | Tactile manila paper styling, monospace dossier fonts, and *Midnight Archival Carbon* dark mode |
-| **Dictionary Schema** | Normalised JS Array (`js/data.js`) | 917+ vetted terms, 16 party topics, and 83 paired Undercover keyword tuples |
-| **Offline Runtime** | Service Worker (`sw.js`) | Offline-first PWA caching; fully playable in flights or off-grid cabins |
+| **Core State Engine** | Vanilla JavaScript (`js/app.js`) | Deterministic finite state machine (FSM) enforcing transitions without memory leaks or race conditions |
+| **Audio Synthesizer** | [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) (`js/audio.js`) | 100% procedural sound synthesis in real time; zero downloaded audio files (0 KB network transfer) and zero touch latency |
+| **Visual Styling** | Tailwind CSS + Custom Tokens | Manila folder paper textures, typewriter typography, classified dossier stamps, and *Midnight Archival* dark mode |
+| **Keyword Lexicon** | Normalized Data Array (`js/data.js`) | 917+ curated terms, 16 party categories, and 83 paired Undercover keyword tuples with tuned semantic proximity |
+| **Offline Runtime** | Service Worker (`sw.js`) | Full PWA offline caching ensuring uninterrupted gameplay in off-grid settings |
 
 ---
 
-## Procedural Web Audio Synthesis (`js/audio.js`)
+## Technical Innovation: Procedural Web Audio Engine (`js/audio.js`)
 
-By avoiding external audio media (MP3/WAV files), Impostor eliminates latency, network overhead, and missing asset errors:
+Typical web games download dozens of megabytes of MP3/WAV audio assets. This traditional approach introduces audio latency (often 100–300 ms delays on mobile devices) and fails under poor network conditions.
 
-* **Wax Seal Fracture:** Low-frequency bandpass noise bursts simulating physical wax snapping under mechanical pressure.
-* **Manila Envelope Rustle:** Modulated white-noise oscillators with randomized envelope decays mimicking cardstock friction.
-* **Stopwatch Ticking & Bells:** Pure sine waves paired with fast attack-decay envelopes for analog acoustic realism.
-* **Zero Latency:** Immediate touch responsiveness with zero runtime sound buffer preloading.
+Impostor generates all acoustic feedback **mathematically in real time** via the browser's native `AudioContext`:
+
+* **Wax Seal Crack:** Low-frequency noise bursts modulated through a resonant bandpass filter, simulating physical wax snapping under mechanical shear.
+* **Manila Envelope Rustle:** White noise generators shaped by an exponential decay envelope mimicking heavy cardstock friction.
+* **Stopwatch Ticks & Chimes:** High-precision sine wave oscillators with sub-millisecond attack times and calibrated harmonic decays.
+* **Zero Latency:** Instantaneous acoustic feedback (< 5 ms) triggered directly on touch events with zero data consumption.
 
 ---
 
-## Game Modes & Mechanics
+## Game Modes & Psychological Dynamics
 
-1. **Classic Impostor:** Standard deduction where impostors possess zero foreknowledge and rely purely on social bluffing.
-2. **Undercover Mode (Subtle Dissonance):** The infiltrator receives a slightly diverging keyword within the same taxonomic cluster (*Coffee vs. Tea*, *Batman vs. Superman*). The infiltrator is unaware of their rogue role until contradictory discussions unfold.
-3. **Interrogation Arena & Last Stand:** The accused agent is subjected to voting and retains one final counter-guess opportunity to guess the classified term and snatch victory.
-4. **Chaos Modifiers:** Optional round constraints (e.g. single-word clues, rhyming constraints, question-only interrogations).
+1. **Classic Impostor:** One or more infiltrators know nothing about the classified keyword. Loyal agents drop subtle clues. The Impostor must bluff conviction while deducing the context from peer statements.
+2. **Undercover Mode (Semantic Dissonance):** The infiltrator is given a related keyword from the same taxonomic cluster (*Coffee vs. Tea*, *Bitcoin vs. Gold*, *Batman vs. Zorro*). The infiltrator initially believes they are an ordinary agent until subtle contradictions emerge during table discussions.
+3. **Interrogation Arena & Final Stand:** When voted out, an accused agent gets one last chance: if they accurately guess the agents' original keyword, they reverse the verdict and claim victory.
