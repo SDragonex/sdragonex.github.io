@@ -1,6 +1,6 @@
 ---
 title: Dany Chaker
-description: "Osobní web a inženýrský blog Danyho Chakera. Softwarové inženýrství, systémová architektura, projekty 4Fit, Maturita 2027, SuppleZ a technické eseje."
+description: "Osobní web a inženýrský blog Danyho Chakera. Softwarové inženýrství, systémová architektura, projekty 4Fit, Maturita, SuppleZ a technické eseje."
 ---
 {% crt() %}
 ```
@@ -46,12 +46,12 @@ Tato stránka slouží ke sdílení mých projektů, nápadů a technických pos
     </div>
   </div>
 
-  <!-- Maturita 2027 -->
+  <!-- Maturita -->
   <div class="project-card">
-    <h3 class="project-title">Maturita 2027</h3>
+    <h3 class="project-title">Maturita</h3>
     <div class="project-tagline">Komplexní studijní portál a znalostní báze pro IT obor</div>
     <div class="project-desc">
-      169+ zpracovaných studijních okruhů pro IT obor na SŠTE Brno s automatizovaným Python build pipeline (build.py) a bleskurychlým vyhledávačem Pagefind.
+      169+ zpracovaných studijních okruhů pro IT obor na SŠTE Brno s automatizovaným Python validačním pipeline a bleskurychlým vyhledávačem Pagefind. Průběžně aktualizovaná báze pro studenty.
     </div>
     <div class="project-footer">
       <a href="https://sdragonex.github.io/Maturita/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
