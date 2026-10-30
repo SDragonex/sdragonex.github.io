@@ -18,56 +18,60 @@ weight: 30
   </div>
   <div class="project-meta-specs">
     <div>Architektura: <strong>Offline-First PWA (Zero-Framework)</strong></div>
-    <div>Stack: <strong>Vanilla JavaScript (ES6+), Service Worker, CSS Glassmorphism</strong></div>
-    <div>Verze: <strong>v4.0 Produkční</strong></div>
+    <div>Stack: <strong>Vanilla JavaScript (ES6+), IndexedDB, Service Worker, CSS Glassmorphism</strong></div>
+    <div>Verze: <strong>v4.0 / v4.1 Produkční</strong></div>
   </div>
 </div>
 
 ## K čemu projekt slouží a jaký problém řeší
 
-Segment sportovní výživy, nootropik a biohackingu představuje mnohamiliardový globální průmysl. Běžný uživatel, který se snaží zlepšit svou koncentraci, spánek, sportovní výkon nebo dlouhověkost, však čelí **třem zásadním problémům:**
+Segment sportovní výživy, nootropik a biohackingu představuje mnohamiliardový globální průmysl. Běžný uživatel, který se snaží optimalizovat svůj spánek, kognitivní fokus, regeneraci nebo dlouhověkost, však naráží na **tři zásadní problémy:**
 
-1. **Informační šum a komerční bias:** Většina dostupných online zdrojů jsou e-shopy nebo sponzorované recenze influencerů, jejichž primárním cílem je prodat předražené směsi látek s mikroskopickými (neúčinnými) dávkami.
-2. **Ignorování farmakologie a rizik:** Uživatelé často kombinují desítky látek bez porozumění mechanismu účinku na receptorové úrovni, biologickému poločasu rozpadu v krvi či nebezpečným kontraindikacím (např. kombinace serotonergních nootropik s běžnými antidepresivy vedoucí k serotoninovému syndromu).
-3. **Narušení soukromí a datová těžba:** Většina zdravotních a doplňkových aplikací vyžaduje registraci, propojení s cloudem a ukládá citlivá osobní data na externí servery za účelem cílené reklamy.
+1. **Informační šum a komerční bias:** Většina online zdrojů jsou e-shopy či sponzorované recenze, jejichž cílem je prodat proprietární směsi látek s neúčinnými (podprahovými) dávkami.
+2. **Nebezpečné interakce a absorpční kolize:** Lidé běžně kombinují desítky látek bez porozumění mechanismu účinku na receptorové úrovni, poločasu rozpadu či absorpčním kolizím (např. užívání zinku současně se železem, které se v těle vzájemně blokují, nebo nebezpečné kombinace 5-HTP se stimulanty či SSRI).
+3. **Narušení soukromí:** Zdravotní aplikace často vyžadují registraci a ukládají citlivá osobní data na cloudové servery za účelem monetizace a cílené reklamy.
 
-**SuppleZ** byl navržen jako radikální protipól: **čistá, vědecky podložená encyklopedie a osobní deník**, který neprodává žádné zboží, nemá affiliate odkazy, nezobrazuje bannery a neobsahuje žádné sledovací skripty.
+**SuppleZ** byl navržen jako nezávislý protipól: **vědecky podložená encyklopedie, interakční analyzátor a osobní protokol**, který neobsahuje reklamy, sponzorované produkty, sledovací pixely ani cookies. 
 
-Veškerá data o osobním užívání, cyklování a subjektivním hodnocení zůstávají **100% soukromá a uložená výhradně v paměti vašeho prohlížeče**.
+Veškerá data zůstávají **100% soukromá a uložena výhradně v zařízení uživatele** prostřednictvím asynchronní databáze IndexedDB.
 
 ---
 
 ## Architektura a technologický stack
 
-Projekt je postaven na filozofii **Zero-Framework Architecture** — namísto stovek megabajtů závislostí v `node_modules` využívá plný potenciál moderních webových standardů:
+Projekt striktně dodržuje filozofii **Zero-Framework Architecture** s nulovými runtime závislostmi:
 
 | Vrstva | Zvolená technologie | Architektonické odůvodnění & Výhody |
 | :--- | :--- | :--- |
-| **Klientská logika** | [Vanilla JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Nulové runtime frameworky (žádný React, Vue ani Angular). Okamžitý start aplikace (< 30 ms), nulové riziko zranitelností v dodavatelském řetězci (supply chain) |
-| **Offline subsystém** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | Plnohodnotná Progressive Web App (PWA) instalovatelná na plochu mobilu i PC. Funguje 100% offline v letadle i tělocvičně |
-| **Vizuál & Styling** | CSS3 Custom Properties & Glassmorphism | Hardwarově akcelerované rozhraní s plynulým přechodem mezi světlým a tmavým cyberpunkovým režimem, responsivní CSS Grid |
-| **Struktura databáze** | Normalizovaný JSON (`database.json`) | Precizní farmakologické schéma látek se stupněm vědeckých důkazů a bezpečnostním semaforem |
-| **Perzistence dat** | Web Storage API (LocalStorage) | Lokální izolované úložiště pro záznamy stacků a dávek s okamžitým obousměrným exportem/importem do otevřeného JSON |
+| **Klientská logika** | [Vanilla JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Nulové frameworky (žádný React, Vue ani Angular). Okamžitý start (< 30 ms), nulové riziko zranitelností v dodavatelském řetězci |
+| **Asynchronní úložiště** | IndexedDB & LocalStorage (`db.js`) | Robustní lokální databáze s automatickou migrací schémat pro ukládání deníků, dávkování a uživatelských stacků |
+| **Offline subsystém** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | Cache-First pro statická aktiva, Network-First pro databázový bundle; 100% offline provoz v letadle i tělocvičně |
+| **Styling & UI** | CSS3 Custom Properties & Glassmorphism | Cyberpunková estetika s plynulým střídáním světlého a tmavého režimu, responsivní CSS Grid a hardwarová akcelerace |
+| **Strukturovaná data** | Normalizovaný JSON (`supplements.bundle.json`) | Precizní farmakologické schéma s ID rozsahy pro 9 specializovaných kategorií |
 
 ---
 
-## Farmakologický systém & Úrovně vědecké evidence
+## Klíčové inženýrské moduly aplikace
 
-Každá z látek v databázi prochází přísnou klasifikací:
+### 1. Real-time Analýza interakcí (Interaction Checker)
+Aplikace obsahuje algoritmus pro křížovou kontrolu látek v uživatelském stacku:
+* **Synergie:** Detekuje ověřené kombinace násobící biologický účinek (např. *Kofein + L-Theanin* pro čistý fokus bez třesu, *Vitamín D3 + K2 + Hořčík* pro optimální vstřebávání vápníku).
+* **Časové kompetice:** Upozorňuje na absorpční kolize na stejných transportních receptorech v trávicím traktu (např. *Zinek vs. Železo*, *Vápník vs. Hořčík*).
+* **Kritická varování:** Okamžitě červeně signalizuje nebezpečné lékové kontraindikace (např. *5-HTP + SSRI* s rizikem serotoninového syndromu, *Yohimbin + silná sympatomimetika*).
 
-* **9 specializovaných kategorií:** Zdraví & vitamíny (100–199), Výkon & sport (200–299), Spánek & regenerace (300–399), Redukce tuku (400–499), Hormonální optimalizace (500–599), Nootropika & kognice (600–699), Experimentální peptidy (700–799), Anabolické látky (800–899), Ochrana zdraví & PCT (900–999).
-* **Klasifikace vědecké evidence (Evidence Grade):**
-  * **Stupeň A:** Robustní data podložená vícero dvojitě zaslepenými, placebem kontrolovanými humánními studiemi a systematickými metaanalýzami.
-  * **Stupeň B:** Slibné klinické studie na menším vzorku lidí nebo rozsáhlé epidemiologické kohorty.
-  * **Stupeň C:** Předběžná data ze zvířecích modelů, in-vitro testů nebo empirická praxe vyžadující další klinické ověření.
-* **Bezpečnostní semafor (Risk Triage):**
-  * <span style="color: #2ecc71; font-weight: bold;">Zelená:</span> Bezpečné látky s minimálními vedlejšími účinky při doporučeném dávkování.
-  * <span style="color: #f1c40f; font-weight: bold;">Žlutá:</span> Látky vyžadující cyklování, opatrnost při dávkování nebo sledování krevních hodnot.
-  * <span style="color: #e74c3c; font-weight: bold;">Červená:</span> Vysoké riziko, přísné kontraindikace, silné hormonální či kardiovaskulární dopady vyžadující odborný dohled.
+### 2. Cirkadiánní rozvrh (Denní protokol ve 4 blocích)
+Aplikace automaticky analyzuje farmakokinetiku vybraných látek a rozvrhne je do optimálních denních bloků:
+1. **Ráno nalačno:** Rychle vstřebatelné aminokyseliny a peptidy (např. *L-Tyrosin, B-komplex, BPC-157*).
+2. **Dopoledne se snídaní s tuky:** Látky rozpustné v tucích vyžadující lipidy pro absorpci (např. *Vitamín D3 + K2, Omega 3 EPA/DHA*).
+3. **Předtréninkový blok / Odpolední fokus:** Vazodilatátory a cholinergika (např. *L-Citrulin, Kofein, Alpha-GPC*).
+4. **Večer před spaním:** Modulátory GABA receptorů a podpora hlubokého spánku (např. *Magnesium bisglycinát, Apigenin, Glycin*).
 
----
+### 3. Vizuální kalkulačka ředění peptidů (Reconstitution Calculator)
+* Matematický modul pro přesný výpočet koncentrace, objemu dávky a počtu dávek ve vialce pro výzkumné peptidy (*BPC-157, TB-500, GHK-Cu, GLP-1*).
+* **Interaktivní vizuální inzulínová stříkačka (U-100 i U-40):** V reálném čase graficky vykresluje píst a hladinu tekutiny s přesným vyznačením dílků (IU/tiky), což eliminuje chyby při dávkování.
 
-## Osobní deník a správa stacků
-* Možnost skládat látky do tematických stacků (např. *Ranní fokus bez kofeinu*, *Hluboký REM spánek*, *Předtréninkový booster*).
-* Sledování subjektivní odezvy organismu a časování dávek podle poločasu rozpadu.
-* Plná suverenita uživatele: jedním kliknutím lze celou databázi osobních záznamů stáhnout do JSON souboru nebo obnovit na jiném zařízení bez prostředníka.
+### 4. Farmakologická klasifikace & Vědecká evidence
+* **9 kategorií:** Zdraví & vitamíny (100–199), Výkon & sport (200–299), Spánek & regenerace (300–399), Redukce tuku (400–499), Hormonální optimalizace (500–599), Nootropika & kognice (600–699), Experimentální peptidy (700–799), Anabolické látky (800–899), Ochrana zdraví & PCT (900–999).
+* **Úrovně evidence:** Stupeň A (metaanalýzy a randomizované placebem kontrolované humánní studie), Stupeň B (menší klinické kohorty), Stupeň C (in-vitro a zvířecí modely).
+* **Bezpečnostní semafor:** Barevná klasifikace rizikovosti (Zelená pro bezpečné běžné látky, Žlutá pro opatrnost a cyklování, Červená pro vysoké riziko vyžadující lékařský dohled).
+* **Osobní deník:** Cyklování protokolů, záznamy dávek s časovou značkou a 1-klikový export/import JSON záloh.
