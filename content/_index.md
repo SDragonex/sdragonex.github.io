@@ -1,5 +1,6 @@
 ---
 title: Dany Chaker
+description: "Personal website and engineering blog of Dany Chaker. Systems architecture, software engineering, mobile applications (4Fit, Maturita 2027, SuppleZ) and technical essays."
 ---
 {% crt() %}
 ```
