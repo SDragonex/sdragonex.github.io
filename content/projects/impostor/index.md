@@ -61,6 +61,7 @@ Impostor generates all acoustic feedback **mathematically in real time** via the
 
 * **Wax Seal Crack:** Low-frequency noise bursts modulated through a resonant bandpass filter, simulating physical wax snapping under mechanical shear.
 * **Manila Envelope Rustle:** White noise generators shaped by an exponential decay envelope mimicking heavy cardstock friction.
+* **Stamp Impact Thud:** Low-frequency bass transient simulating a physical wooden bureaucratic ink stamp hitting a wooden desk.
 * **Stopwatch Ticks & Chimes:** High-precision sine wave oscillators with sub-millisecond attack times and calibrated harmonic decays.
 * **Zero Latency:** Instantaneous acoustic feedback (< 5 ms) triggered directly on touch events with zero data consumption.
 
@@ -69,5 +70,8 @@ Impostor generates all acoustic feedback **mathematically in real time** via the
 ## Game Modes & Psychological Dynamics
 
 1. **Classic Impostor:** One or more infiltrators know nothing about the classified keyword. Loyal agents drop subtle clues. The Impostor must bluff conviction while deducing the context from peer statements.
-2. **Undercover Mode (Semantic Dissonance):** The infiltrator is given a related keyword from the same taxonomic cluster (*Coffee vs. Tea*, *Bitcoin vs. Gold*, *Batman vs. Zorro*). The infiltrator initially believes they are an ordinary agent until subtle contradictions emerge during table discussions.
+2. **Undercover Mode (Semantic Dissonance):** The infiltrator is given a related keyword from the same taxonomic cluster (*Coffee vs. Tea*, *Minecraft vs. Roblox*, *Batman vs. Superman*). The infiltrator initially believes they are an ordinary agent until subtle contradictions emerge during table discussions.
 3. **Interrogation Arena & Final Stand:** When voted out, an accused agent gets one last chance: if they accurately guess the agents' original keyword, they reverse the verdict and claim victory.
+4. **Squad Manager:** Persistent device storage for recurring player names with an automated callsign generator.
+5. **Chaos Cards (Party Modifiers):** Optional round constraints (e.g. single-word clues only, rhyming constraints, question-only interrogations).
+6. **Custom Deck Builder & Evening Scoreboard:** In-app creation and storage of custom secret word packs with cumulative team vs. impostor scoring.
