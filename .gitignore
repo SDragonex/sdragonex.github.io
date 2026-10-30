@@ -4,3 +4,4 @@ tools/
 /.agent
 /.github/agents
 /.github/hooks
+MEMORY.md
