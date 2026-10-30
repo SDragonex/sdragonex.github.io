@@ -1,6 +1,6 @@
 ---
 title: Dany Chaker
-description: "Personal website and engineering blog of Dany Chaker. Systems architecture, software engineering, mobile applications (4Fit, Maturita 2027, SuppleZ) and technical essays."
+description: "Personal website and engineering blog of Dany Chaker. Systems architecture, software engineering, mobile applications (4Fit, Maturita, SuppleZ) and technical essays."
 ---
 {% crt() %}
 ```
@@ -46,12 +46,12 @@ This website is built to share my projects, engineering ideas, and technical ins
     </div>
   </div>
 
-  <!-- Maturita 2027 -->
+  <!-- Maturita -->
   <div class="project-card">
-    <h3 class="project-title">Maturita 2027</h3>
-    <div class="project-tagline">Automated study portal & knowledge base for IT</div>
+    <h3 class="project-title">Maturita</h3>
+    <div class="project-tagline">Automated study portal & continuous knowledge base for IT</div>
     <div class="project-desc">
-      169+ comprehensive study topics for Information Technology at SŠTE Brno with an automated Python build & validation pipeline (build.py) and instant Pagefind search.
+      169+ comprehensive study topics for Information Technology at SŠTE Brno with an automated Python validation pipeline (build.py) and instant Pagefind search. Continuously updated for future graduates.
     </div>
     <div class="project-footer">
       <a href="https://sdragonex.github.io/Maturita/" target="_blank" rel="noopener noreferrer" class="btn-action primary">
