@@ -25,6 +25,30 @@
 			<link rel="alternate" hreflang="{{ tr.lang }}" href="{{ tr.permalink | safe }}" />
 		{%- endfor %}
 	{%- endif %}
+	<link rel="alternate" hreflang="x-default" href="{{ config.base_url | safe }}" />
+
+	{%- if current_path is defined and lang == config.default_language and current_path == "/" %}
+	<script>
+		(function() {
+			try {
+				var pref = localStorage.getItem("preferred_lang");
+				if (pref === "en") return;
+				if (pref === "cs") {
+					window.location.replace("{{ get_url(path='/', lang='cs') | safe }}");
+					return;
+				}
+				var langs = navigator.languages || [navigator.language || navigator.userLanguage || ""];
+				for (var i = 0; i < langs.length; i++) {
+					var l = (langs[i] || "").toLowerCase();
+					if (l.indexOf("cs") === 0 || l.indexOf("sk") === 0) {
+						window.location.replace("{{ get_url(path='/', lang='cs') | safe }}");
+						break;
+					}
+				}
+			} catch(e) {}
+		})();
+	</script>
+	{%- endif %}
 
 	{%- if config.extra.comments %}
 		<link rel="me" href="https://{{ config.extra.comments.host }}/@{{ config.extra.comments.user }}" />
