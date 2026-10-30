@@ -1,1 +1,6 @@
 public/
+tools/
+/.github/skills
+/.agent
+/.github/agents
+/.github/hooks
