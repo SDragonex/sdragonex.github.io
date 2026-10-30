@@ -8,19 +8,29 @@ Místo pro uchování jiskry, než se vytratí... Plánovaná témata z oblasti 
 
 ## Psychologie, duševní zdraví & Hope-core
 
-### 1. `Draft připraven` Architektura vnitřního klidu
+### 1. [Architektura vnitřního klidu: O soběstačnosti, naději a víře v sebe samého](/cs/blog/the-architecture-of-inner-peace/)
+`Koncept připraven k náhledu` &bull; [Přejít na článek &rarr;](/cs/blog/the-architecture-of-inner-peace/)
 - O duševním zdraví, kognitivní hygieně a digitálním tichu v době nekonečných feedů.
-- Proč je **hope-core** a optimismus radikálním rozhodnutím, nikoliv naivitou.
-- Návrat k Emersonově soběstačnosti (*self-reliance*) ve 21. století.
+- Proč je **hope-core** a optimismus radikálním rozhodnutím a disciplínou, nikoliv naivitou.
+- Návrat k vnitřnímu klidu a vědomému bytí bez neustálého informačního přetížení.
 
-### 2. Radikální víra v sebe samého a překonání strachu
-- Jak zvládat syndrom podvodníka (*imposter syndrome*) a pochybnosti o sobě.
-- Přechod od pasivního konzumu k aktivní tvorbě: proč na vašem hlase a práci záleží.
-- Budování vnitřního kompasu nezávislého na vnějším hodnocení a sociálních sítích.
+### 2. Radikální víra v sebe samého: Překonání syndromu podvodníka
+`V přípravě`
+- Jak zvládat syndrom podvodníka (*imposter syndrome*) a paralyzující pochybnosti o sobě.
+- Přechod od pasivního konzumu k aktivní tvorbě: proč na vašem individuálním hlase a práci záleží.
+- Budování vnitřního kompasu nezávislého na vnějším hodnocení, lajcích a sociálních sítích.
 
-### 3. Síla malých rituálů a každodenní laskavost
+### 3. Moderní soběstačnost: Emerson ve 21. století
+`V přípravě`
+- Filozofie *Self-Reliance* v éře algoritmů doporučovacích systémů a cloudových korporací.
+- Schopnost být v tichu sám se sebou bez nutnosti okamžitě sahat po telefonu.
+- Vlastnictví svých nástrojů, myšlenek a nezávislého vkusu.
+
+### 4. Psychologie odolnosti & Síla malých rituálů
+`V přípravě`
 - Proč velká vítězství začínají u ranní tiché kávy a soustředěného bloku hluboké práce.
-- Psychologie odolnosti (*resilience*): jak čelit životním pádům bez ztráty lidskosti a naděje.
+- Psychologie resilience: jak čelit životním pádům, selháním a těžkým obdobím bez ztráty lidskosti a naděje.
+- Každodenní laskavost k sobě i svému okolí jako nejlepší obrana proti cynismu.
 
 ---
 
