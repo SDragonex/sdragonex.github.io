@@ -10,6 +10,36 @@
   --container-width: 56rem;
 }
 
+/* --- Dedicated Theme Backgrounds (Decoupled from Accent Color) --- */
+:root,
+[data-theme="light"] {
+  --bg-color: #faf9f6 !important;
+  --bg-overlay: linear-gradient(rgb(250 249 246 / 0.92), rgb(250 249 246 / 0.92)) !important;
+  --glass-bg: rgb(250 249 246 / 0.85) !important;
+}
+
+[data-theme="dark"] {
+  --bg-color: #000000 !important;
+  --bg-overlay: linear-gradient(rgb(0 0 0 / 0.96), rgb(0 0 0 / 0.96)) !important;
+  --glass-bg: rgb(12 12 12 / 0.85) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-color: #000000 !important;
+    --bg-overlay: linear-gradient(rgb(0 0 0 / 0.96), rgb(0 0 0 / 0.96)) !important;
+    --glass-bg: rgb(12 12 12 / 0.85) !important;
+  }
+}
+
+/* Responsive Table & Code Wrapper */
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* --- CRT Centering & Responsive Framing --- */
 .crt {
   width: -moz-fit-content !important;
