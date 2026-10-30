@@ -17,52 +17,57 @@ weight: 30
     </a>
   </div>
   <div class="project-meta-specs">
-    <div>Architektura: <strong>Offline PWA</strong></div>
+    <div>Architektura: <strong>Offline-First PWA (Zero-Framework)</strong></div>
     <div>Stack: <strong>Vanilla JavaScript (ES6+), Service Worker, CSS Glassmorphism</strong></div>
     <div>Verze: <strong>v4.0 Produkční</strong></div>
   </div>
 </div>
 
-## Přehled projektu
+## K čemu projekt slouží a jaký problém řeší
 
-**SuppleZ** je progresivní webová aplikace (PWA) navržená jako nezávislá, přehledná a vědecky podložená encyklopedie suplementace, nootropik, peptidů a biohackingu. Cílem projektu je poskytnout rychlé a čisté rozhraní bez reklamních bannerů, placených propagací produktů a sledovacích skriptů.
+Segment sportovní výživy, nootropik a biohackingu představuje mnohamiliardový globální průmysl. Běžný uživatel, který se snaží zlepšit svou koncentraci, spánek, sportovní výkon nebo dlouhověkost, však čelí **třem zásadním problémům:**
 
-Aplikace funguje **100% offline**, nevyžaduje uživatelskou registraci a veškerá osobní data (deníky, dávkování, poznámky) ukládá výhradně lokálně v prohlížeči uživatele.
+1. **Informační šum a komerční bias:** Většina dostupných online zdrojů jsou e-shopy nebo sponzorované recenze influencerů, jejichž primárním cílem je prodat předražené směsi látek s mikroskopickými (neúčinnými) dávkami.
+2. **Ignorování farmakologie a rizik:** Uživatelé často kombinují desítky látek bez porozumění mechanismu účinku na receptorové úrovni, biologickému poločasu rozpadu v krvi či nebezpečným kontraindikacím (např. kombinace serotonergních nootropik s běžnými antidepresivy vedoucí k serotoninovému syndromu).
+3. **Narušení soukromí a datová těžba:** Většina zdravotních a doplňkových aplikací vyžaduje registraci, propojení s cloudem a ukládá citlivá osobní data na externí servery za účelem cílené reklamy.
+
+**SuppleZ** byl navržen jako radikální protipól: **čistá, vědecky podložená encyklopedie a osobní deník**, který neprodává žádné zboží, nemá affiliate odkazy, nezobrazuje bannery a neobsahuje žádné sledovací skripty.
+
+Veškerá data o osobním užívání, cyklování a subjektivním hodnocení zůstávají **100% soukromá a uložená výhradně v paměti vašeho prohlížeče**.
 
 ---
 
-## Architektura a technologické principy
+## Architektura a technologický stack
 
-Projekt byl vyvinut s důrazem na nulovou závislost na externích frameworcích (Zero-framework architecture) pro maximální rychlost a minimální paměťovou stopu.
+Projekt je postaven na filozofii **Zero-Framework Architecture** — namísto stovek megabajtů závislostí v `node_modules` využívá plný potenciál moderních webových standardů:
 
-| Komponenta | Použitá technologie | Architektonický princip |
+| Vrstva | Zvolená technologie | Architektonické odůvodnění & Výhody |
 | :--- | :--- | :--- |
-| **Jádro logiky** | Vanilla JS (ES6+) | Čistý JavaScript bez objemných runtime knihoven, klientský routing a rendering |
-| **Styling & UI** | CSS3 Grid, Flexbox, Custom Properties | Cyberpunk Glassmorphism s podporou plynulých animací a hardwarové akcelerace |
-| **Offline Engine** | Service Worker (`sw.js`) | Cache-first strategie pro statické soubory, Network-first pro databázi |
-| **Strukturovaná data** | Normalizovaný JSON (`database.json`) | Kompletní farmakologické profily látek |
-| **Perzistence dat** | Web Storage API (LocalStorage) | Bezpečné ukládání osobního protokolu uživatele s exportem do JSON |
+| **Klientská logika** | [Vanilla JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Nulové runtime frameworky (žádný React, Vue ani Angular). Okamžitý start aplikace (< 30 ms), nulové riziko zranitelností v dodavatelském řetězci (supply chain) |
+| **Offline subsystém** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | Plnohodnotná Progressive Web App (PWA) instalovatelná na plochu mobilu i PC. Funguje 100% offline v letadle i tělocvičně |
+| **Vizuál & Styling** | CSS3 Custom Properties & Glassmorphism | Hardwarově akcelerované rozhraní s plynulým přechodem mezi světlým a tmavým cyberpunkovým režimem, responsivní CSS Grid |
+| **Struktura databáze** | Normalizovaný JSON (`database.json`) | Precizní farmakologické schéma látek se stupněm vědeckých důkazů a bezpečnostním semaforem |
+| **Perzistence dat** | Web Storage API (LocalStorage) | Lokální izolované úložiště pro záznamy stacků a dávek s okamžitým obousměrným exportem/importem do otevřeného JSON |
 
 ---
 
-## Databázová struktura látek
+## Farmakologický systém & Úrovně vědecké evidence
 
-Každá položka v databázi obsahuje detailně ověřená data:
+Každá z látek v databázi prochází přísnou klasifikací:
 
-* **9 specializovaných kategorií:** Zdraví & vitamíny (100–199), Výkon & sport (200–299), Spánek & regenerace (300–399), Redukce tuku (400–499), Hormonální optimalizace (500–599), Nootropika & kognice (600–699), Experimentální peptidy & výzkum (700–799), Anabolické látky (800–899), Ochrana zdraví & PCT (900–999).
-* **Farmakologické ukazatele:** Přesný mechanismus účinku na buněčné úrovni, biologický poločas rozpadu látky v těle, kontraindikace a interakce s běžnými léčivy.
-* **Úroveň vědeckých důkazů (Evidence Level):**
-  * **Stupeň A:** Robustní evidence z vícero dvojitě zaslepených, placebem kontrolovaných humánních studií a metaanalýz.
-  * **Stupeň B:** Slibné výsledky z menších klinických studií nebo rozsáhlých pozorování.
-  * **Stupeň C:** Předběžná data, zvířecí modely nebo empirická praxe vyžadující další výzkum.
-* **Bezpečnostní semafor:** Barevná klasifikace rizikovosti (Zelená pro bezpečné běžné látky, Žlutá pro opatrnost a interakce, Červená pro vysoké riziko a přísné režimy).
+* **9 specializovaných kategorií:** Zdraví & vitamíny (100–199), Výkon & sport (200–299), Spánek & regenerace (300–399), Redukce tuku (400–499), Hormonální optimalizace (500–599), Nootropika & kognice (600–699), Experimentální peptidy (700–799), Anabolické látky (800–899), Ochrana zdraví & PCT (900–999).
+* **Klasifikace vědecké evidence (Evidence Grade):**
+  * **Stupeň A:** Robustní data podložená vícero dvojitě zaslepenými, placebem kontrolovanými humánními studiemi a systematickými metaanalýzami.
+  * **Stupeň B:** Slibné klinické studie na menším vzorku lidí nebo rozsáhlé epidemiologické kohorty.
+  * **Stupeň C:** Předběžná data ze zvířecích modelů, in-vitro testů nebo empirická praxe vyžadující další klinické ověření.
+* **Bezpečnostní semafor (Risk Triage):**
+  * <span style="color: #2ecc71; font-weight: bold;">Zelená:</span> Bezpečné látky s minimálními vedlejšími účinky při doporučeném dávkování.
+  * <span style="color: #f1c40f; font-weight: bold;">Žlutá:</span> Látky vyžadující cyklování, opatrnost při dávkování nebo sledování krevních hodnot.
+  * <span style="color: #e74c3c; font-weight: bold;">Červená:</span> Vysoké riziko, přísné kontraindikace, silné hormonální či kardiovaskulární dopady vyžadující odborný dohled.
 
 ---
 
-## Osobní deník a cyklování suplementace
-
-Aplikace integruje pokročilý protokol pro sledování suplementačních cyklů:
-
-* Záznamy jednotlivých užití s časem, přesnou dávkou a subjektivním hodnocením efektivity.
-* Možnost organizovat suplementy do tematických stacků (např. ranní fokus, podpora hlubokého spánku, tréninkový stack).
-* Obousměrný export a import dat v otevřeném formátu JSON pro zálohování a přenositelnost mezi zařízeními.
+## Osobní deník a správa stacků
+* Možnost skládat látky do tematických stacků (např. *Ranní fokus bez kofeinu*, *Hluboký REM spánek*, *Předtréninkový booster*).
+* Sledování subjektivní odezvy organismu a časování dávek podle poločasu rozpadu.
+* Plná suverenita uživatele: jedním kliknutím lze celou databázi osobních záznamů stáhnout do JSON souboru nebo obnovit na jiném zařízení bez prostředníka.
