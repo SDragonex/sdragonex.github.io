@@ -2,6 +2,7 @@
 title = "Výzva být vidět"
 authors = ["Dany Chaker"]
 date = 2025-10-21
+description = "Proč jsem se rozhodl spustit osobní web a inženýrský blog, reflexe tvorby a překonávání potřeby nekonečného refaktorování."
 +++
 
 {% crt() %}

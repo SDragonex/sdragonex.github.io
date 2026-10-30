@@ -3,6 +3,7 @@ title = "Revolut: Digitální banka, která redefinuje finance"
 authors = ["Dany Chaker"]
 date = 2026-03-24
 insert_anchor_links = "heading"
+description = "Inženýrský pohled na Revolut: architektura distribuovaných systémů, Scala a Finagle backend, real-time streaming v Kafce, hybridní cloud a fintech kultura."
 +++
 
 {% crt() %}

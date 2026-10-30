@@ -28,6 +28,7 @@ accent_color = "#ED2100"
 accent_color_dark = "#ED2100"
 default_theme = "system"
 styles = ["projects.css"]
+scripts = ["site.js"]
 
 [extra.nav]
 show_feed = false

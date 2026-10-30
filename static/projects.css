@@ -32,13 +32,121 @@
   }
 }
 
-/* Responsive Table & Code Wrapper */
-table {
+/* --- Modern Responsive Tables --- */
+.table-wrapper {
   display: block;
+  width: 100%;
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin: 1.75rem 0;
+  border-radius: var(--rounded-corner, 10px);
+  border: 1px solid var(--fg-muted-2);
+  background-color: var(--fg-muted-1);
+  box-shadow: var(--edge-highlight);
 }
+
+.table-wrapper table {
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+}
+
+table:not(pre table) {
+  display: table !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  border-collapse: collapse !important;
+  table-layout: auto;
+  margin: 1.75rem 0;
+  background-color: var(--fg-muted-1);
+  border: 1px solid var(--fg-muted-2);
+  border-radius: var(--rounded-corner, 10px);
+  box-shadow: var(--edge-highlight);
+  overflow: hidden;
+}
+
+table:not(pre table) thead {
+  background-color: var(--fg-muted-2);
+  border-bottom: 2px solid var(--fg-muted-3);
+}
+
+table:not(pre table) th {
+  padding: 0.85rem 1.15rem !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-align: left;
+  color: var(--fg-color) !important;
+  border-bottom: 2px solid var(--fg-muted-3) !important;
+  letter-spacing: 0.02em;
+  background-color: var(--fg-muted-2) !important;
+}
+
+table:not(pre table) td {
+  padding: 0.8rem 1.15rem !important;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--fg-color);
+  border-bottom: 1px solid var(--fg-muted-2);
+  vertical-align: top;
+}
+
+table:not(pre table) tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table:not(pre table) tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+table:not(pre table) tbody tr:hover {
+  background-color: var(--fg-muted-2) !important;
+}
+
+/* --- Clean Typography & Anchor Offsets --- */
+h1, h2, h3, h4, h5, h6, [id] {
+  scroll-margin-top: 5.5rem !important;
+}
+
+hr {
+  border: none !important;
+  border-top: 1px solid var(--fg-muted-2) !important;
+  margin: 2.5rem 0 !important;
+  width: 100% !important;
+  height: 0 !important;
+  overflow: visible !important;
+}
+
+hr::after {
+  display: none !important;
+  content: "" !important;
+}
+
+/* Subtle Scrollbars for Tables & Code Blocks */
+.table-wrapper::-webkit-scrollbar,
+pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-track,
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb,
+pre::-webkit-scrollbar-thumb {
+  background: var(--fg-muted-3);
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover,
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
 
 /* --- CRT Panels: Full Width & Terminal Box --- */
 .crt {

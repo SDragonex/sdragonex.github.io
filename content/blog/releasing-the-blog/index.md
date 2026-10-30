@@ -2,6 +2,7 @@
 title = "The challenge to be viewed"
 authors = ["Dany Chaker"]
 date = 2025-10-21
+description = "Why I finally decided to publish my personal engineering website and blog, overcoming the endless refactoring loop and shipping."
 +++
 
 
