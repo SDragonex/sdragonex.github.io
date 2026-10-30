@@ -555,11 +555,13 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .cert-badge-img {
-  width: 76px;
-  height: 76px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .cert-info {
@@ -607,7 +609,7 @@ pre::-webkit-scrollbar-thumb:hover {
 /* --- Services Grid --- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin: 1.5rem 0 2.5rem 0;
 }
@@ -648,6 +650,10 @@ pre::-webkit-scrollbar-thumb:hover {
   }
   
   .certs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
     grid-template-columns: 1fr;
   }
   
