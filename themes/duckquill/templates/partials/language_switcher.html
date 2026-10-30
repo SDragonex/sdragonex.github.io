@@ -22,18 +22,18 @@
 				{%- if lcode == config.default_language -%}
 					{#- If it does, link to the root path (no language code in URL) -#}
 					<li>
-						<a lang="{{ lcode }}" href="{{ current_url | replace(from='/' ~ lang ~ '/', to = '/') }}">{{ language_name }}</a>
+						<a lang="{{ lcode }}" onclick="try{localStorage.setItem('preferred_lang','{{ lcode }}');}catch(e){}" href="{{ current_url | replace(from='/' ~ lang ~ '/', to = '/') }}">{{ language_name }}</a>
 					</li>
 					{#- Check if the current language is the default language -#}
 					{#- If it is, append the language code to the base URL -#}
 				{%- elif lang == config.default_language -%}
 					<li>
-						<a lang="{{ lcode }}" href="{{ config.base_url }}/{{ lcode }}{{ current_path | default(value="/") | safe }}">{{ language_name }}</a>
+						<a lang="{{ lcode }}" onclick="try{localStorage.setItem('preferred_lang','{{ lcode }}');}catch(e){}" href="{{ config.base_url }}/{{ lcode }}{{ current_path | default(value='/') | safe }}">{{ language_name }}</a>
 					</li>
 				{%- else -%}
 					{#- If it's not, replace the current language code in the URL with the new one -#}
 					<li>
-						<a lang="{{ lcode }}" href="{{ current_url | replace(from='/' ~ lang ~ '/', to='/' ~ lcode ~ '/') }}">{{ language_name }}</a>
+						<a lang="{{ lcode }}" onclick="try{localStorage.setItem('preferred_lang','{{ lcode }}');}catch(e){}" href="{{ current_url | replace(from='/' ~ lang ~ '/', to='/' ~ lcode ~ '/') }}">{{ language_name }}</a>
 					</li>
 				{%- endif -%}
 			{%- endfor -%}
