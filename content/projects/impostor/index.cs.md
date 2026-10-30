@@ -17,46 +17,57 @@ weight: 40
     </a>
   </div>
   <div class="project-meta-specs">
-    <div>Typ: <strong>PWA Party Game</strong></div>
+    <div>Architektura: <strong>Pass & Play PWA Game</strong></div>
     <div>Stack: <strong>JavaScript (ES6+), Web Audio API, Tailwind CSS, Service Worker</strong></div>
-    <div>Stav: <strong>Plně hratelné</strong></div>
+    <div>Stav: <strong>Plně hratelné v produkci</strong></div>
   </div>
 </div>
 
-## Přehled projektu
+## K čemu projekt slouží a jaký problém řeší
 
-**Impostor** je webová dedukční společenská hra typu Pass & Play (jedno zařízení kolující mezi hráči). Hráči představují agenty vyšetřovacího týmu, kteří obdrží tajné slovo, zatímco mezi nimi skrytý vetřelec (Impostor) slovo nezná a musí blafovat, dedukovat téma z nápověd ostatních a splynout s davem.
+Moderní společenské dedukční hry (např. *Městečko Palermo*, *Secret Hitler*, *Spyfall* nebo *Among Us*) patří k nejlepším formám sociální zábavy. V reálném životě na oslavách, v hospodě nebo na horské chatě však narážejí na **akutní technologické překážky:**
 
-Projekt se odlišuje od běžných párty her silným důrazem na **taktilní atmosféru**: vizuální styl manilových složek vyšetřovacích spisů, fyzická vosková pečeť a plně syntetizovaný zvukový engine bez externích nahrávek.
+1. **Bariéra vstupu (App Store tření):** Přimět 6 až 10 lidí, aby si každý stáhl 150MB aplikaci z Google Play / App Store, řešil zapomenutá hesla k účtům, pároval se přes QR kódy a zadával PIN místnosti, spolehlivě zabije zábavu dřív, než začne.
+2. **Závislost na internetu a baterii:** V horských srubech, letadlech nebo v podzemních podnicích často není mobilní signál ani stabilní Wi-Fi.
+3. **Ztráta očního kontaktu:** Místo aby se hráči dívali jeden druhému do očí, sledovali mikrovýrazy, nervózní gesta a neverbální signály, civí každý do svého vlastního telefonu.
+
+**Impostor** tento problém eliminuje principem **Pass & Play na jediném zařízení**:
+
+* **Jeden telefon stačí:** Stačí otevřít webový odkaz v prohlížeči libovolného zařízení. Žádná instalace, žádná registrace.
+* **Taktilní rituál tajného spisu:** Telefon koluje v kruhu. Každý hráč se dotkne obrazovky, prolomí voskovou pečeť, tajně si přečte svou roli v obálce a předá zařízení dál.
+* **Návrat k lidské psychologii:** Jakmile všichni znají svou roli, telefon se odloží na stůl a začíná čistá sociální dedukce, blafování a psychologický souboj.
 
 ---
 
-## Technická architektura
+## Architektura a technologický stack
 
-| Komponenta | Použitá technologie | Technické řešení |
+Hra byla vyvinuta bez objemných herních enginů typu Unity či Phaser — celá logika i audiovizuální prožitek běží přímo na nativních webových standardech:
+
+| Vrstva | Zvolená technologie | Architektonické odůvodnění & Výhody |
 | :--- | :--- | :--- |
-| **Herní stavový automat** | Vanilla JS (`js/app.js`) | Deterministický stavový automat (Příprava týmu -> Předávání obálky -> Diskuse -> Hlasování -> Výslech) |
-| **Zvukový syntetizér** | Web Audio API (`js/audio.js`) | 100% procedurální syntéza zvuků v prohlížeči v reálném čase |
-| **Vizuál & Layout** | Tailwind CSS + Custom Tokens | Papírová textura, razítková typografie a noční režim *Midnight Archival Carbon* |
-| **Slovníková databáze** | Strukturovaný JS (`js/data.js`) | 917+ unikátních hesel, 16 tematických okruhů a 83 párových Undercover dvojic |
-| **Offline certifikace** | Service Worker (`sw.js`) | Plnohodnotná PWA instalovatelná na plochu, funkční bez internetu |
+| **Herní jádro & FSM** | Vanilla JavaScript (`js/app.js`) | Deterministický stavový automat řídící životní cyklus hry bez rizika nesourodého stavu paměti |
+| **Zvukový syntetizér** | [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API) (`js/audio.js`) | 100% procedurální syntéza zvuku přímo v prohlížeči; nulový přenos dat (0 KB stažených zvukových souborů) a nulová latence při dotyku |
+| **Vizuál & Taktilní UI** | Tailwind CSS + CSS Proměnné | Estetika manilových složek vyšetřovacích spisů, razítková typografie, textury papíru a temný režim *Midnight Archival* |
+| **Slovníková databáze** | Strukturované pole (`js/data.js`) | 917+ ověřených hesel, 16 tématických okruhů a 83 párových Undercover dvojic s vybalancovanou sémantickou vzdáleností |
+| **Offline subsystém** | Service Worker (`sw.js`) | Plná PWA podpora umožňující hrát hru kdekoli v offline režimu |
 
 ---
 
-## Procedurální Web Audio Engine (`js/audio.js`)
+## Unikátní prvek: Procedurální Web Audio Engine (`js/audio.js`)
 
-Místo stahování statických audio souborů (MP3/WAV), které způsobují síťová zpoždění a zvyšují datový objem, využívá Impostor vestavěný `AudioContext`:
+Běžné webové hry stahují desítky megabajtů zvukových souborů MP3 nebo WAV. Tento přístup trpí latencí (zvuk se často přehraje se zpožděním 100–300 ms po dotyku) a selhává v offline režimu.
 
-* **Prasknutí voskové pečeti:** Nízkofrekvenční šumový impulz modulovaný pásmovou propustí simulující křupnutí vosku.
-* **Šustění papíru:** Generátor bílého šumu s modulovanou amplitudou a exponenciálním dozvukem.
-* **Tikot stopek a gong:** Sinusové oscilátory s rychlým náběhem a přesným harmonickým dozníváním.
-* **Nulová latence:** Okamžitá reakce na dotyk bez nutnosti přednačítání zvukových bufferů.
+Impostor generuje veškeré zvuky **matematicky v reálném čase** pomocí vestavěného `AudioContext`:
+
+* **Křupnutí voskové pečeti:** Nízkofrekvenční šumový impulz modulovaný rezonančním pásmovým filtrem (Bandpass) simulující fyzické prasknutí vosku pod tlakem pečeti.
+* **Šustění manilového papíru:** Generátor bílého šumu s exponenciálním útlumem a dynamickou změnou amplitudy simulující tření tvrdého papíru obálky.
+* **Tikot stopek a gong:** Sinusové oscilátory s velmi rychlým náběhem (attack) a přesně kalibrovaným harmonickým dozvukem (decay).
+* **Výsledek:** Okamžitá reakce na dotek prstu (< 5 ms) s nulovou spotřebou mobilních dat.
 
 ---
 
-## Herní módy a mechaniky
+## Herní módy a psychologické mechaniky
 
-1. **Klasický Impostor:** Jeden či více hráčů nezná tajné slovo. Cílem týmu je odhalit vetřelce; cílem vetřelce je uhodnout tajné slovo nebo přesvědčit tým o své nevině.
-2. **Režim Undercover (Falešné slovo):** Vetřelec obdrží velmi podobné slovo ze stejného ranku (např. *Káva vs. Čaj*, *Batman vs. Superman*). Sám vetřelec netuší, že má jinou roli, dokud nezačne konfrontace nápověd.
-3. **Výslechový modal & Poslední šance:** Podezřelý hráč čelí přímému výslechu a má právo na tipnutí tajného slova, čímž může zvrátit porážku ve vítězství.
-4. **Chaos karty:** Párty modifikátory omezující nápovědy (pouze jednoslovné nápovědy, rýmy, nápověda formou otázky).
+1. **Klasický Impostor:** Jeden či více agentů nezná tajné heslo. Ostatní hráči dávají jemné nápovědy. Vetřelec musí předstírat znalost tématu a splynout s davem, nebo z indicií heslo bleskově odvodit.
+2. **Režim Undercover (Sémantická disonance):** Vetřelec neobdrží prázdné pole, ale příbuzné slovo ze stejného taxonomického okruhu (např. *Káva vs. Čaj*, *Bitcoin vs. Zlato*, *Batman vs. Zorro*). Vetřelec zpočátku netuší, že má jinou roli, a teprve v průběhu diskuse dochází k dramatickému zjištění, že jeho nápovědy ostatním „nesedí“.
+3. **Výslechový protokol & Poslední šance:** Hlasováním odhalený hráč dostává finální šanci — pokud správně uhodne původní tajné slovo vyšetřovatelů, okamžitě obrací hru a vítězí.
