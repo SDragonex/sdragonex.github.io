@@ -19,54 +19,58 @@ weight: 10
   </div>
 </div>
 
-## Project Overview
+## Purpose & Problem Statement
 
-**4Fit** is a commercial mobile platform designed to bridge the gap between fitness enthusiasts, certified personal trainers, and gym facilities. Traditional fitness trackers struggle with user retention and lack real-world integration with gym venues. 4Fit solves this by fusing discovery matchmaking, real-time messaging, and a geofenced retention engine.
+Conventional fitness applications frequently fall into one of two traps: either acting as sterile digital spreadsheets for manual set logging or as passive video libraries. In real life, the gym industry faces a major systemic bottleneck: **severe user drop-off (churn rate)** and disconnected workflows across three key stakeholders:
 
-The platform is anchored on four fundamental pillars: **simplicity, clarity, retention, and synergy** between athlete and trainer.
+1. **Fitness Enthusiasts (Athletes):** Following the initial January surge, over 60% of gym-goers abandon their routines within 6 weeks due to lack of accountability, isolation, and friction when attempting to find vetted personal trainers.
+2. **Personal Trainers:** Spend disproportionate unbillable hours chasing clients in WhatsApp or Instagram direct messages, resolving last-minute cancellations, and managing calendars manually.
+3. **Gym Facility Operators:** Struggle with member retention and lack a digital channel to integrate local gym members with resident accredited coaching staff.
+
+**4Fit** bridges this gap through a unified digital ecosystem built upon **four foundational pillars:**
+
+* **FitCheck (Geofenced Retention Engine):** Drives adherence through fair-play gamification validated by physical gym visits.
+* **Trainer Swipe Discovery:** Streamlined matchmaking linking athletes with certified trainers by location, specialty, and verified reviews.
+* **Integrated Scheduling & Direct Messaging:** Eliminates fragmented chat channels by combining scheduling and real-time messaging into a single hub.
+* **Interactive Gym Directory:** Comprehensive geographical map featuring membership pricing, amenities, and resident coaching rosters.
 
 ---
 
 ## Architecture & Technology Stack
 
-The project leverages a cross-platform architecture built on Flutter for client apps and Supabase as an enterprise-grade backend infrastructure.
+The project employs a modern cross-platform architecture prioritizing native interface fluidity, high framerates, and enterprise-grade cloud security:
 
-| Component | Technology | Purpose & Implementation |
+| Layer | Chosen Technology | Architectural Rationale & Trade-offs |
 | :--- | :--- | :--- |
-| **Mobile Frontend** | Flutter (Dart) | Native 60fps rendering across iOS and Android from a single unified codebase |
-| **Backend & DB** | Supabase (PostgreSQL) | Auth management, Row Level Security (RLS) policies, and real-time event streams |
-| **Geolocation Engine** | `geolocator` + Anti-Mocking | Physical gym presence verification within a 100-meter radius |
-| **Admin Web Portal** | Flutter Web / HTML5 | Trainer certification verification, gym inventory management, and telemetry |
-| **Persistence & Cache** | Local Cache & SQLite | Zero-data-loss offline caching for check-ins in subterranean facilities |
+| **Mobile Client** | [Flutter](https://flutter.dev/) (Dart) | Single shared codebase across iOS and Android. Guaranteed 60/120 fps rendering via the Impeller engine, ensuring pixel-perfect visual parity |
+| **Backend & Auth** | [Supabase](https://supabase.com/) | Relational PostgreSQL over NoSQL. Security enforced at the database layer via Row Level Security (RLS) policies; native WebSockets for instant messaging |
+| **Geolocation Subsystem** | `geolocator` + Anti-Mocking | Precise Haversine distance computations within a 100-meter radius, coupled with OS-level mock location detection |
+| **Local Offline Storage** | SQLite & Encrypted SharedPrefs | Ensures frictionless check-in logging in subterranean basement gyms lacking cellular coverage, with an automatic background sync queue |
+| **Administration Portal** | Flutter Web | Dedicated desktop web portal for reviewing trainer credentials, managing gym profiles, and monitoring platform metrics |
 
 ---
 
-## Core System Modules
+## Engineering Module Highlights
 
-### 1. Trainer Matchmaking (Swipe Discovery)
-* Fast, card-based trainer discovery inspired by modern swipe mechanics.
-* Users browse detailed coach portfolios, specialties (strength training, mobility, body recomposition), verified certifications, and verified client testimonials.
-* Mutual matchmaking initiates direct communication and workout onboarding.
+### 1. FitCheck Geofencing Engine & Cheat Mitigation
+The habit gamification system relies on visit veracity. If check-ins could be spoofed, streaks would lose all competitive and psychological weight.
+* **100-Meter Geofencing:** Device GPS coordinates are evaluated in real time against the partner gym's geographic boundaries.
+* **Anti-Mock Detection:** The client inspects platform-specific flags (Android `Location.isFromMockProvider()` and iOS core location telemetry) to reject emulated GPS inputs.
+* **Fair-Play Habit Algoritm:** Restricts rewards to one streak point per calendar week upon reaching pre-set weekly targets, preventing artificial visit spamming.
 
-### 2. Interactive Gym Directory & Geo-Map
-* Real-time map displaying partnered gym facilities in the user's vicinity.
-* Detailed gym cards provide facility photography, admission pricing, equipment lists, and certified resident trainers.
+### 2. Data Security Architecture (PostgreSQL Row Level Security)
+Because personal health metrics and private trainer-client consultations are sensitive, security cannot rely on client-side rules alone:
+* Access control is enforced directly by PostgreSQL **RLS policies**.
+* Athletes hold cryptographically restricted access to their individual workout logs and messages.
+* Trainers can access client data exclusively when granted explicit authorization through mutual matchmaking.
 
-### 3. FitCheck: Geofenced Gamification & Retention
-Sustained workout adherence is the primary challenge in fitness software. 4Fit implements **FitCheck**:
-* **100m Geofencing Radius:** Check-ins are strictly permitted only when the device is physically detected within partner facility premises.
-* **Anti-Mock Location Protection:** Kernel-level validation blocks mock GPS providers on both Android and iOS devices.
-* **Habit Streaks:** Users set weekly workout targets. The retention algorithm increments streak counters once per period to ensure fair play.
-* **Offline Caching:** For basement gym locations lacking cellular connectivity, check-in payloads are encrypted locally and dispatched asynchronously once connection is restored.
-
-### 4. Direct Messaging & Scheduling
-* Real-time in-app chat for workout routines and nutritional adjustments.
-* Integrated booking calendar for scheduling sessions directly into the coach's timetable.
+### 3. Trainer Matchmaking (Swipe Discovery)
+* The client UI leverages hardware-accelerated gestural cards.
+* Trainer profiles feature accredited certifications, focus areas (e.g., powerlifting, orthopedic rehabilitation, calisthenics), and verified client reviews.
+* Mutual matches automatically initialize an encrypted direct chat channel and shared scheduling calendar.
 
 ---
 
-## UI/UX Engineering
-
-* **AMOLED Dark Mode:** Deep black backgrounds designed for OLED efficiency with vibrant cyan accents (`#2596be`).
-* **Adaptive Theming:** Ready for Android 13+ Material You themed icons and iOS 18+ dynamic tinting.
-* **5-Slot Dock Navigation:** Balanced bottom dock featuring Feed, Map, Trainers (focal elevated element), Chat, and Profile.
+## Design System & UX
+* **AMOLED Dark Mode:** Pitch-black background (`#000000`) engineered for OLED power efficiency during workouts, complemented by a signature high-energy turquoise accent (`#2596be`).
+* **One-Handed Ergonomic Navigation:** A 5-slot bottom dock optimized for thumb accessibility while holding workout equipment (Feed, Map, Trainers, Chat, Profile).
