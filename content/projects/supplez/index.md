@@ -17,50 +17,57 @@ weight: 30
     </a>
   </div>
   <div class="project-meta-specs">
-    <div>Architecture: <strong>Offline PWA</strong></div>
+    <div>Architecture: <strong>Offline-First PWA (Zero-Framework)</strong></div>
     <div>Stack: <strong>Vanilla JavaScript (ES6+), Service Worker, CSS Glassmorphism</strong></div>
     <div>Version: <strong>v4.0 Production</strong></div>
   </div>
 </div>
 
-## Project Overview
+## Purpose & Problem Statement
 
-**SuppleZ** is a progressive web application designed as a transparent, evidence-based compendium covering supplementation, nootropics, peptides, and human biohacking. The project was engineered to deliver clean, ad-free pharmacology data without telemetry, sponsored placements, or paywalled paywalls.
+Nutritional supplementation, nootropics, and human biohacking represent a multi-billion-dollar global commercial machine. A typical individual seeking to optimize sleep architecture, mental focus, athletic endurance, or metabolic health is met with **three fundamental challenges:**
 
-The app is **100% offline capable**, requires no user registration, and stores all personal logs exclusively inside the client's local storage sandbox.
+1. **Information Pollution & Commercial Bias:** The vast majority of online resources are commercial supplement storefronts or sponsored influencer endorsements engineered to peddle high-margin proprietary blends with sub-therapeutic doses.
+2. **Pharmacological Blind Spots & Drug Interactions:** Users frequently stack multiple bioactive compounds without understanding molecular receptor mechanics, biological elimination half-lives, or dangerous drug-drug interactions (e.g. co-administering serotonergic compounds with SSRIs risking serotonin syndrome).
+3. **Privacy Exploitation:** Health tracking platforms routinely demand account creation, harvest biomarker telemetry, and monetize sensitive health profiles across data brokers.
+
+**SuppleZ** was designed as an uncompromising antidote: a **transparent, evidence-based compendium and personal protocol journal**. It sells no physical products, runs zero advertisements, contains no telemetry beacons, and uses zero third-party tracking scripts.
+
+All personal logging, dosing stacks, and self-reported efficacy metrics remain **100% private and sandboxed strictly inside your local browser**.
 
 ---
 
-## Architecture & Zero-Dependency Principles
+## Architecture & Technology Stack
 
-SuppleZ is built without external frontend frameworks to ensure zero runtime overhead and instant initial load.
+The application adheres strictly to a **Zero-Framework Architecture** philosophy — eschewing megabytes of npm package dependencies in favor of native web platform capabilities:
 
-| Layer | Technology | Architectural Choice |
+| Layer | Chosen Technology | Architectural Rationale & Trade-offs |
 | :--- | :--- | :--- |
-| **Application Core** | Vanilla JS (ES6+) | Direct DOM manipulation, custom client-side router, and zero npm runtime dependencies |
-| **Interface Styling** | CSS3 Grid, Flexbox, Custom Tokens | Cyberpunk glassmorphism aesthetic with native hardware acceleration |
-| **Offline Engine** | Service Worker (`sw.js`) | Cache-first caching for static assets, Network-first updates for the database |
-| **Data Normalization** | JSON Schema (`database.json`) | Complete pharmacological dossiers for individual substances |
-| **Client Storage** | LocalStorage API | Local storage of personalized dosage logs with JSON backup import/export |
+| **Client Engine** | [Vanilla JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) | Zero third-party runtime frameworks (no React, Vue, or Angular overhead). Instant launch latency (< 30 ms), zero vulnerability footprint across dependencies |
+| **Offline Architecture** | [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) (`sw.js`) | True Progressive Web App (PWA) installable on desktop and mobile home screens. Operates completely offline during transatlantic flights or underground gyms |
+| **Visual Design** | CSS3 Custom Properties & Glassmorphism | Hardware-accelerated UI with seamless light/dark mode transitions, fluid CSS Grid layouts, and tactile micro-interactions |
+| **Data Normalization** | Normalized JSON (`database.json`) | Pharmacological schema with granular scientific evidence ratings and clinical risk triage indicators |
+| **Data Persistence** | Web Storage API (LocalStorage) | Fully isolated client storage for personal stack logs with instant JSON export and backup restoration |
 
 ---
 
-## Pharmacological Schema & Categorization
+## Pharmacological Schema & Scientific Evidence Grading
 
-The database categorizes substances across clearly delineated ID ranges:
+Every compound in the database undergoes rigorous classification:
 
-* **9 Curated Categories:** Fundamental Health (100–199), Athletic Performance (200–299), Sleep & Recovery (300–399), Fat Loss & Thermogenesis (400–499), Hormonal Optimization (500–599), Cognitive Nootropics (600–699), Experimental Research & Peptides (700–799), Anabolic Agents (800–899), Organ Protection & PCT (900–999).
-* **Clinical Properties:** Cellular mechanism of action, elimination half-life, known pharmacological contraindications, and drug-drug interactions.
-* **Evidence Quality Grading:**
-  * **Grade A:** Replicated double-blind, placebo-controlled human randomized trials and systematic meta-analyses.
-  * **Grade B:** Preliminary human clinical trials or extensive epidemiological cohort studies.
-  * **Grade C:** In-vitro findings, animal models, or anecdotal empirical biohacker reports.
-* **Safety Triage:** Color-coded risk indicators (Green for benign compounds, Yellow for compounds demanding dosage prudence, Red for high-risk compounds with narrow therapeutic windows).
+* **9 Specialized Categories:** Fundamental Health (100–199), Athletic Performance (200–299), Sleep & Recovery (300–399), Fat Loss & Thermogenesis (400–499), Hormonal Optimization (500–599), Cognitive Nootropics (600–699), Experimental Research Peptides (700–799), Anabolic Agents (800–899), Organ Protection & PCT (900–999).
+* **Evidence Quality Grading (Evidence Grade):**
+  * **Grade A:** Robust empirical evidence validated by multiple double-blind, randomized, placebo-controlled human trials and systematic meta-analyses.
+  * **Grade B:** Promising data supported by smaller human clinical cohorts or epidemiological research.
+  * **Grade C:** Preliminary findings from animal models, in-vitro assays, or empirical biohacker documentation requiring clinical validation.
+* **Safety & Risk Triage:**
+  * <span style="color: #2ecc71; font-weight: bold;">Green:</span> Benign compounds with extensive safety records at suggested clinical doses.
+  * <span style="color: #f1c40f; font-weight: bold;">Yellow:</span> Compounds demanding strict cycling, dosage vigilance, or routine bloodwork monitoring.
+  * <span style="color: #e74c3c; font-weight: bold;">Red:</span> High-risk compounds carrying narrow therapeutic margins, pronounced endocrine disruption, or significant cardiovascular strain.
 
 ---
 
-## Personal Logging & Stack Cycling
-
-* Detailed ingestion logs tracking dosage timestamp, quantity, and subjective efficacy ratings.
-* Thematic stack creation (e.g. morning focus stack, circadian alignment, athletic performance stack).
-* Complete data portability via JSON backup export and restore mechanisms.
+## Personal Logging & Protocol Management
+* Construct custom personalized stacks (e.g., *Caffeine-Free Deep Focus*, *Circadian Phase Alignment*, *Pre-Workout Neural Primer*).
+* Monitor subjective bioavailability and time dosing around biological elimination half-lives.
+* Uncompromised digital sovereignty: export complete personal records to an open JSON archive with a single click.
