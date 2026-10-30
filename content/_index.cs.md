@@ -1,5 +1,6 @@
 ---
 title: Dany Chaker
+description: "Osobní web a inženýrský blog Danyho Chakera. Softwarové inženýrství, systémová architektura, projekty 4Fit, Maturita 2027, SuppleZ a technické eseje."
 ---
 {% crt() %}
 ```
